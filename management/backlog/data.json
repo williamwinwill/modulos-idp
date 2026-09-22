@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 4,
-  "updatedAt": "2026-09-22T03:17:32.449Z",
+  "revision": 5,
+  "updatedAt": "2026-09-22T03:18:17.328Z",
   "items": [
     {
       "id": "ATL-001",
@@ -16,12 +16,12 @@
       "implementation": "Controle local entregue em management/backlog, com sete abas, criação e edição, filtros, histórico, persistência atômica, revisão concorrente, cliente Codex e conclusão verificada no Git. Navegação dos três módulos preservada e gestão excluída dos exports individuais.",
       "verification": "29 testes aprovados: regras de transição, hipótese opcional/obrigatória, adiamento, revisão concorrente, persistência, commit real, ancestralidade e portabilidade. Navegador: sete abas, Doing, criação simples, edição persistente lida pelo CLI, busca por ID, itens adiados e alternância de tema verificados. Revisão visual desktop realizada; mobile ainda não inspecionado.",
       "validationResult": "approved",
-      "commit": "",
+      "commit": "e0f744dfe19835fcfa082cb15e570f0e47ede96e",
       "owner": "Codex",
       "deferred": false,
-      "status": "validation",
+      "status": "done",
       "createdAt": "2026-09-22T03:10:34.739Z",
-      "updatedAt": "2026-09-22T03:17:32.449Z",
+      "updatedAt": "2026-09-22T03:18:17.328Z",
       "history": [
         {
           "at": "2026-09-22T03:10:34.739Z",
@@ -73,9 +73,34 @@
             }
           },
           "commitEvidence": null
+        },
+        {
+          "at": "2026-09-22T03:18:17.328Z",
+          "actor": "Codex",
+          "from": "validation",
+          "to": "done",
+          "changes": {
+            "commit": {
+              "from": "",
+              "to": "e0f744dfe19835fcfa082cb15e570f0e47ede96e"
+            },
+            "status": {
+              "from": "validation",
+              "to": "done"
+            }
+          },
+          "commitEvidence": {
+            "hash": "e0f744dfe19835fcfa082cb15e570f0e47ede96e",
+            "subject": "ATL-001: adiciona controle colaborativo de backlog com commit verificado",
+            "checkedAt": "2026-09-22T03:18:17.495Z"
+          }
         }
       ],
-      "commitEvidence": null
+      "commitEvidence": {
+        "hash": "e0f744dfe19835fcfa082cb15e570f0e47ede96e",
+        "subject": "ATL-001: adiciona controle colaborativo de backlog com commit verificado",
+        "checkedAt": "2026-09-22T03:18:17.495Z"
+      }
     },
     {
       "id": "ATL-002",
