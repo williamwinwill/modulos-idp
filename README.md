@@ -80,3 +80,7 @@ O primeiro comando verifica referências locais, executa os testes dos motores/l
 - [Agentes CI/CD](modules/agents/README.md) · [Base Python](modules/agents/engine/README.md)
 - [Repositórios Atlas](modules/repositories/README.md) · [Automação](modules/repositories/docs/AUTOMACAO.md) · [Backlog](modules/repositories/docs/BACKLOG.md)
 - [Catálogo Backstage](modules/backstage/README.md) · [Motor e relações](modules/backstage/docs/MOTOR.md)
+
+## Controle de backlog
+
+Execute `npm run backlog` e abra [Gestão do backlog](http://127.0.0.1:4381/management/backlog/). O controle tem sete etapas, dados compartilhados com Codex e conclusão vinculada a commit verificado. Consulte [as instruções do quadro](management/backlog/README.md). É uma área de gestão, mantendo os três módulos do produto independentes.

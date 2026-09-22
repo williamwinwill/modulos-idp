@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync, realpathSync, writeFileSync, rmSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, realpathSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -22,11 +22,14 @@ export function exportModule(id, destination) {
   try {
     const copy = relative => cpSync(path.join(projectRoot, relative), path.join(target, relative), {
       recursive: true,
-      filter: source => !['__pycache__', 'saida-demo', '.DS_Store'].includes(path.basename(source)) && !source.endsWith('.pyc')
+      filter: source => !['__pycache__', 'saida-demo', '.DS_Store', 'backlog-server.mjs', 'backlog.mjs'].includes(path.basename(source)) && !source.endsWith('.pyc')
     });
     copy(`modules/${selected.id}`);
     for (const shared of selected.shared) copy(`shared/${shared}`);
     for (const file of ['index.html', 'package.json', '.gitignore', 'tools', 'tests']) copy(file);
+    const packageInfo = JSON.parse(readFileSync(path.join(target, 'package.json'), 'utf8'));
+    delete packageInfo.scripts.backlog;
+    writeFileSync(path.join(target, 'package.json'), JSON.stringify(packageInfo, null, 2) + '\n');
     writeFileSync(path.join(target, 'atlas.config.js'),
       `(function(root){const config=${JSON.stringify({ modules: [selected] }, null, 2)};if(typeof module==='object'&&module.exports)module.exports=config;else root.AtlasPlatform=config;})(globalThis);\n`);
     writeFileSync(path.join(target, 'README.md'), `# ${selected.title} — módulo independente\n\nAbra \`index.html\` no navegador, ou sirva esta pasta com \`python3 -m http.server 8765\`. Não exige npm install ou build.\n\nCopie esta pasta inteira para transportar o módulo, preservando \`modules/\`, \`shared/\` e \`atlas.config.js\`. O menu contém somente o módulo exportado.\n\nDocumentação: [modules/${selected.id}/README.md](modules/${selected.id}/README.md).\n\nVerificação (Node.js 18+): \`node tools/test.mjs\`.\n\nConfigurações e snapshots salvos no navegador não fazem parte deste pacote. Exporte os JSONs pela interface antes de mudar de origem. Tokens não são incluídos.\n`);

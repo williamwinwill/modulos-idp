@@ -24,4 +24,12 @@
     nav.append(link);
   });
   host.replaceChildren(caption,nav);
+  const managementHost=document.querySelector('[data-atlas-management]');
+  if(managementHost && globalThis.AtlasPlatform?.management){
+    const link=document.createElement('a');
+    link.href=new URL(globalThis.AtlasPlatform.management.path,base).href;
+    link.textContent=globalThis.AtlasPlatform.management.title+' →';
+    link.className='management-link';
+    managementHost.append(link);
+  }
 })();

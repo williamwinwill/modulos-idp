@@ -6,6 +6,7 @@
   else root.AtlasPlatform = config;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   return {
+    management: { title: 'Gestão do backlog', path: 'management/backlog/index.html' },
     modules: [
       { id: 'agents', title: 'Agentes', path: 'modules/agents/index.html', icon: '▦', shared: ['theme', 'navigation'] },
       { id: 'repositories', title: 'Repositórios Atlas', path: 'modules/repositories/index.html', icon: '▱', shared: ['theme', 'navigation', 'ui', 'graph'] },

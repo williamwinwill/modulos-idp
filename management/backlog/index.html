@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Backlog da plataforma · Atlas</title>
+  <link rel="stylesheet" href="../../shared/theme/theme.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../shared/theme/theme.js"></script>
+  <script src="../../atlas.config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <aside class="rail">
+    <a class="logo" href="../../index.html"><span aria-hidden="true">◈</span> atlas <small>/ labs</small></a>
+    <div class="rail-heading">WORKSPACE</div>
+    <a class="rail-current" href="#backlog">Gestão do backlog</a>
+    <div class="rail-heading">MÓDULOS DO PRODUTO</div>
+    <nav id="modules" aria-label="Módulos do produto"></nav>
+    <div class="rail-note">Ideias, decisões e entregas.<br>Um quadro para construir juntos.</div>
+  </aside>
+  <main>
+    <header class="topbar"><span>Plataforma <span class="slash">/</span> Gestão do produto</span><button data-theme-toggle class="button">Alternar tema</button></header>
+    <div class="workspace-body">
+      <div class="heading"><div><div class="eyebrow">DA IDEIA À ENTREGA</div><h1>Nosso backlog.</h1><p>Três módulos. Um lugar para decidir o próximo passo.</p></div><button id="new" class="button primary" disabled>+ Nova ideia</button></div>
+      <div class="sync-row"><span id="connection" role="status">Conectando ao quadro…</span><button id="refresh" class="text-button">Atualizar</button></div>
+      <div id="error" class="error" role="alert" hidden></div>
+      <div id="offline" class="offline" hidden><h2>Abra o quadro pelo servidor local</h2><p>Para você e Codex trabalharem nos mesmos dados, execute na pasta atlas-platform:</p><code>npm run backlog</code><p>Depois acesse <a href="http://127.0.0.1:4381/management/backlog/">o quadro local</a>.</p></div>
+      <div id="tabs" class="tabs" role="tablist" aria-label="Etapas do backlog"></div>
+      <section id="stage-panel" role="tabpanel" aria-labelledby="tab-backlog">
+        <div class="stage-intro"><div><h2 id="stage-name">Backlog</h2><p id="stage-description"></p></div><span id="stage-count" class="muted"></span></div>
+        <div class="toolbar"><label class="search-label"><span class="sr-only">Buscar por ID ou título</span><input id="search" type="search" placeholder="Buscar por ID ou título…"></label><label><span class="sr-only">Filtrar módulo</span><select id="module-filter"><option value="all">Todos os módulos</option><option value="agents">Agentes CI/CD</option><option value="repositories">Repositórios</option><option value="backstage">Backstage</option><option value="cross">Transversal</option></select></label></div>
+        <div id="cards" class="cards"></div>
+      </section>
+      <footer><span id="footer-count">Carregando…</span><span>Concluído = validação aprovada + commit verificado</span></footer>
+    </div>
+  </main>
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="item-form">
+      <div class="editor-header"><div><span class="eyebrow" id="item-id">NOVA IDEIA</span><h2 id="editor-title">Uma ideia para o backlog</h2></div><button type="button" class="button" id="close" aria-label="Fechar detalhes">Fechar</button></div>
+      <div class="editor-body">
+        <div id="form-error" class="error" role="alert" hidden></div>
+        <div id="conflict" class="offline" hidden>Há uma versão mais recente deste item. Seu texto foi preservado. Copie o que deseja manter e use <button type="button" id="reload-item" class="text-button">Recarregar item</button> para revisar a versão atual.</div>
+        <label>Título<input name="title" maxlength="180" required placeholder="Qual ideia ou problema vamos trabalhar?"></label>
+        <div class="two"><label>Módulo<select name="module"><option value="agents">Agentes CI/CD</option><option value="repositories">Repositórios</option><option value="backstage">Backstage</option><option value="cross">Transversal</option></select></label><label>Responsável<input name="owner" placeholder="A definir"></label></div>
+        <label>Ideia / problema<textarea name="description" rows="2" placeholder="Uma frase basta para começar."></textarea></label>
+        <div class="two"><label>Etapa<select name="status" id="status"></select></label><label class="checkbox"><input type="checkbox" name="deferred"> Adiado por enquanto</label></div>
+        <div id="transition-help" class="field-help"></div>
+        <details id="planning"><summary>Refinamento <span>Plano e critérios de aceite</span></summary><div class="details-content"><label>Plano<textarea name="plan" rows="4" placeholder="Como vamos entregar? Recorte, passos e dependências."></textarea></label><label>Critérios de aceite<textarea name="acceptance" rows="3" placeholder="O que precisamos verificar para aceitar a entrega?"></textarea></label></div></details>
+        <details id="hypothesis-section"><summary>Validar hipótese <span>Opcional</span></summary><div class="details-content"><label class="checkbox"><input type="checkbox" name="hypothesisRequired"> Exigir hipótese aprovada antes de To do</label><label>Hipótese e resultado do experimento<textarea name="hypothesis" rows="3" placeholder="O que queremos confirmar e como vamos testar?"></textarea></label><label>Resultado<select name="hypothesisResult"><option value="pending">Pendente</option><option value="approved">Aprovada</option><option value="rejected">Rejeitada</option></select></label></div></details>
+        <details id="delivery"><summary>Implementação e validação <span>Evidências da entrega</span></summary><div class="details-content"><label>O que foi implementado<textarea name="implementation" rows="3" placeholder="Mudanças, arquivos e limitações conhecidas."></textarea></label><label>Verificações realizadas<textarea name="verification" rows="3" placeholder="Testes, resultados e revisão realizada."></textarea></label><label>Resultado da validação<select name="validationResult"><option value="pending">Pendente</option><option value="approved">Aprovada</option><option value="rejected">Precisa de ajustes</option></select></label><label>Commit da entrega<input name="commit" placeholder="Hash do commit verificado no Git"></label><p class="field-help">O commit deve existir na branch atual e mencionar o ID do item na mensagem. A verificação acontece ao concluir.</p><div id="commit-evidence" class="field-help"></div></div></details>
+        <details id="collaborate"><summary>Trabalhar com Codex <span>Continuar na conversa</span></summary><div class="details-content"><p class="field-help">Copie o pedido e envie nesta conversa. Codex atualiza o quadro quando começar; o botão apenas prepara o texto.</p><textarea id="prompt" rows="3" readonly aria-label="Pedido para enviar ao Codex"></textarea><button type="button" class="button" id="copy-prompt">Copiar pedido</button></div></details>
+        <details id="history-section"><summary>Histórico <span id="history-count"></span></summary><ol id="history"></ol></details>
+      </div>
+      <div class="editor-footer"><span id="save-note">Ideias novas não precisam de plano.</span><button class="button primary" type="submit" id="save">Salvar ideia</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>

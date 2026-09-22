@@ -5,6 +5,7 @@
   "description": "Módulos estáticos e portáveis da plataforma Atlas",
   "engines": { "node": ">=18" },
   "scripts": {
+    "backlog": "node tools/backlog-server.mjs",
     "test": "node tools/test.mjs",
     "check:links": "node tools/check-links.mjs",
     "export:module": "node tools/export-module.mjs"

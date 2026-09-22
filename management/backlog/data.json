@@ -1,0 +1,857 @@
+{
+  "schemaVersion": 1,
+  "revision": 4,
+  "updatedAt": "2026-09-22T03:17:32.449Z",
+  "items": [
+    {
+      "id": "ATL-001",
+      "title": "Controle de backlog da plataforma",
+      "module": "cross",
+      "description": "Quadro colaborativo com sete etapas, dados compartilhados com Codex e conclusão vinculada a commit.",
+      "plan": "Criar controle separado dos três módulos, com edição local persistente, histórico, cliente para Codex, validação das transições e verificação de commit no Git.",
+      "acceptance": "Sete abas solicitadas; ideias simples; plano e aceite exigidos em To do; hipótese opcional; Doing visível; evidências em Validação; Concluído apenas com commit verificado; dados compartilhados e conflitos protegidos.",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "Controle local entregue em management/backlog, com sete abas, criação e edição, filtros, histórico, persistência atômica, revisão concorrente, cliente Codex e conclusão verificada no Git. Navegação dos três módulos preservada e gestão excluída dos exports individuais.",
+      "verification": "29 testes aprovados: regras de transição, hipótese opcional/obrigatória, adiamento, revisão concorrente, persistência, commit real, ancestralidade e portabilidade. Navegador: sete abas, Doing, criação simples, edição persistente lida pelo CLI, busca por ID, itens adiados e alternância de tema verificados. Revisão visual desktop realizada; mobile ainda não inspecionado.",
+      "validationResult": "approved",
+      "commit": "",
+      "owner": "Codex",
+      "deferred": false,
+      "status": "validation",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:17:32.449Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "doing",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Controle de backlog da plataforma"
+            }
+          },
+          "note": "Implementação solicitada pelo usuário nesta conversa."
+        },
+        {
+          "at": "2026-09-22T03:15:53.783Z",
+          "actor": "Você",
+          "from": "doing",
+          "to": "doing",
+          "changes": {
+            "implementation": {
+              "from": "",
+              "to": "Quadro com sete abas, filtros por módulo, edição de ideias, histórico, servidor local, cliente para Codex e verificação de commits implementados. Validação funcional em andamento."
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-22T03:17:32.449Z",
+          "actor": "Codex",
+          "from": "doing",
+          "to": "validation",
+          "changes": {
+            "implementation": {
+              "from": "Quadro com sete abas, filtros por módulo, edição de ideias, histórico, servidor local, cliente para Codex e verificação de commits implementados. Validação funcional em andamento.",
+              "to": "Controle local entregue em management/backlog, com sete abas, criação e edição, filtros, histórico, persistência atômica, revisão concorrente, cliente Codex e conclusão verificada no Git. Navegação dos três módulos preservada e gestão excluída dos exports individuais."
+            },
+            "verification": {
+              "from": "",
+              "to": "29 testes aprovados: regras de transição, hipótese opcional/obrigatória, adiamento, revisão concorrente, persistência, commit real, ancestralidade e portabilidade. Navegador: sete abas, Doing, criação simples, edição persistente lida pelo CLI, busca por ID, itens adiados e alternância de tema verificados. Revisão visual desktop realizada; mobile ainda não inspecionado."
+            },
+            "validationResult": {
+              "from": "pending",
+              "to": "approved"
+            },
+            "status": {
+              "from": "doing",
+              "to": "validation"
+            }
+          },
+          "commitEvidence": null
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-002",
+      "title": "Integrar o agente CI/CD ao ambiente real",
+      "module": "agents",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Integrar o agente CI/CD ao ambiente real"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-003",
+      "title": "Exportar e importar a configuração do agente",
+      "module": "agents",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Exportar e importar a configuração do agente"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-004",
+      "title": "Descobrir dependências nos arquivos dos repositórios",
+      "module": "repositories",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Descobrir dependências nos arquivos dos repositórios"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-005",
+      "title": "Preparar PR com atualização da versão em uso",
+      "module": "repositories",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Preparar PR com atualização da versão em uso"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-006",
+      "title": "Editar metadados e topics dos repositórios",
+      "module": "repositories",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Editar metadados e topics dos repositórios"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-007",
+      "title": "Coletar o catálogo Backstage pelo backend",
+      "module": "backstage",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Coletar o catálogo Backstage pelo backend"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-008",
+      "title": "Identificar pendências de responsáveis no catálogo",
+      "module": "backstage",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Identificar pendências de responsáveis no catálogo"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-009",
+      "title": "Relacionar entidades, repositórios e pipelines",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Relacionar entidades, repositórios e pipelines"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-010",
+      "title": "Visão 360º de um sistema",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Visão 360º de um sistema"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-011",
+      "title": "Central de recomendações",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Central de recomendações"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-012",
+      "title": "Score explicável de saúde de engenharia",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Score explicável de saúde de engenharia"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-013",
+      "title": "Comparar arquitetura declarada e observada",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Comparar arquitetura declarada e observada"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-014",
+      "title": "Campanhas de atualização",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Campanhas de atualização"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-015",
+      "title": "Padrões de engenharia e conformidade",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Padrões de engenharia e conformidade"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-016",
+      "title": "Radar de obsolescência",
+      "module": "cross",
+      "description": "Adiado por decisão do usuário. Detalhes preservados em docs/backlog/RADAR-E-IMPACTO.md.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": true,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Radar de obsolescência"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-017",
+      "title": "Análise de impacto",
+      "module": "cross",
+      "description": "Adiado por decisão do usuário. Detalhes preservados em docs/backlog/RADAR-E-IMPACTO.md.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": true,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Análise de impacto"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-018",
+      "title": "Assistente contextual de engenharia",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Assistente contextual de engenharia"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-019",
+      "title": "Timeline técnica",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Timeline técnica"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-020",
+      "title": "Cockpit de Engenharia",
+      "module": "cross",
+      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:10:34.739Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Cockpit de Engenharia"
+            }
+          },
+          "note": "Ideia importada; não indica trabalho em execução."
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-021",
+      "title": "Salvar visões e filtros recorrentes",
+      "module": "cross",
+      "description": "Ideia discutida na visão PO: reabrir buscas e filtros usados com frequência nos módulos.",
+      "plan": "",
+      "acceptance": "",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "",
+      "deferred": false,
+      "status": "backlog",
+      "createdAt": "2026-09-22T03:16:44.382Z",
+      "updatedAt": "2026-09-22T03:16:44.382Z",
+      "history": [
+        {
+          "at": "2026-09-22T03:16:44.382Z",
+          "actor": "Você",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Salvar visões e filtros recorrentes"
+            },
+            "module": {
+              "from": null,
+              "to": "cross"
+            },
+            "description": {
+              "from": null,
+              "to": "Ideia discutida na visão PO: reabrir buscas e filtros usados com frequência nos módulos."
+            },
+            "plan": {
+              "from": null,
+              "to": ""
+            },
+            "acceptance": {
+              "from": null,
+              "to": ""
+            },
+            "hypothesis": {
+              "from": null,
+              "to": ""
+            },
+            "hypothesisRequired": {
+              "from": null,
+              "to": false
+            },
+            "hypothesisResult": {
+              "from": null,
+              "to": "pending"
+            },
+            "implementation": {
+              "from": null,
+              "to": ""
+            },
+            "verification": {
+              "from": null,
+              "to": ""
+            },
+            "validationResult": {
+              "from": null,
+              "to": "pending"
+            },
+            "commit": {
+              "from": null,
+              "to": ""
+            },
+            "owner": {
+              "from": null,
+              "to": ""
+            },
+            "deferred": {
+              "from": null,
+              "to": false
+            },
+            "status": {
+              "from": null,
+              "to": "backlog"
+            }
+          },
+          "commitEvidence": null
+        }
+      ],
+      "commitEvidence": null
+    }
+  ]
+}

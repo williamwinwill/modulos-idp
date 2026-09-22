@@ -17,7 +17,7 @@ function visit(directory) {
     else if (/\.test\.(cjs|mjs)$/.test(entry.name)) files.push(file);
   }
 }
-for (const directory of ['modules', 'shared', 'tests']) visit(path.join(projectRoot, directory));
+for (const directory of ['modules', 'shared', 'management', 'tests']) visit(path.join(projectRoot, directory));
 const result = spawnSync(process.execPath, ['--test', ...files.sort()], { stdio: 'inherit' });
 if (result.error) console.error(result.error.message);
 process.exitCode = result.status ?? 1;
