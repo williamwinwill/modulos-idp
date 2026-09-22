@@ -1,0 +1,261 @@
+[
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Domain",
+    "metadata": {
+      "name": "engenharia",
+      "title": "Engenharia"
+    },
+    "spec": {
+      "owner": "group:default/plataforma"
+    },
+    "relations": [
+      {
+        "type": "ownedBy",
+        "targetRef": "group:default/plataforma"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "System",
+    "metadata": {
+      "name": "atlas",
+      "title": "Plataforma Atlas"
+    },
+    "spec": {
+      "owner": "group:default/plataforma",
+      "domain": "engenharia"
+    },
+    "relations": [
+      {
+        "type": "partOf",
+        "targetRef": "domain:default/engenharia"
+      },
+      {
+        "type": "ownedBy",
+        "targetRef": "group:default/plataforma"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "atlas-frontend",
+      "description": "Portal de engenharia e experiência do desenvolvedor."
+    },
+    "spec": {
+      "type": "website",
+      "lifecycle": "production",
+      "owner": "group:default/plataforma",
+      "system": "atlas",
+      "consumesApis": [
+        "api:default/atlas-api"
+      ],
+      "dependsOn": [
+        "component:default/atlas-backend"
+      ]
+    },
+    "relations": [
+      {
+        "type": "dependsOn",
+        "targetRef": "component:default/atlas-backend"
+      },
+      {
+        "type": "consumesApi",
+        "targetRef": "api:default/atlas-api"
+      },
+      {
+        "type": "partOf",
+        "targetRef": "system:default/atlas"
+      },
+      {
+        "type": "ownedBy",
+        "targetRef": "group:default/plataforma"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "atlas-backend",
+      "description": "Motor principal e backend do portal."
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "production",
+      "owner": "group:default/plataforma",
+      "system": "atlas",
+      "dependsOn": [
+        "resource:default/atlas-db",
+        "resource:default/atlas-cache"
+      ],
+      "providesApis": [
+        "api:default/atlas-api"
+      ]
+    },
+    "relations": [
+      {
+        "type": "dependencyOf",
+        "targetRef": "component:default/atlas-frontend"
+      },
+      {
+        "type": "dependsOn",
+        "targetRef": "resource:default/atlas-db"
+      },
+      {
+        "type": "dependsOn",
+        "targetRef": "resource:default/atlas-cache"
+      },
+      {
+        "type": "providesApi",
+        "targetRef": "api:default/atlas-api"
+      },
+      {
+        "type": "partOf",
+        "targetRef": "system:default/atlas"
+      },
+      {
+        "type": "ownedBy",
+        "targetRef": "group:default/plataforma"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "atlas-worker",
+      "description": "Processamento assíncrono da plataforma."
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "production",
+      "dependsOn": [
+        "resource:default/atlas-db"
+      ]
+    },
+    "relations": [
+      {
+        "type": "dependsOn",
+        "targetRef": "resource:default/atlas-db"
+      },
+      {
+        "type": "partOf",
+        "targetRef": "system:default/atlas"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "API",
+    "metadata": {
+      "name": "atlas-api",
+      "description": "Contrato HTTP da plataforma."
+    },
+    "spec": {
+      "type": "openapi",
+      "lifecycle": "production"
+    },
+    "relations": [
+      {
+        "type": "apiProvidedBy",
+        "targetRef": "component:default/atlas-backend"
+      },
+      {
+        "type": "apiConsumedBy",
+        "targetRef": "component:default/atlas-frontend"
+      },
+      {
+        "type": "partOf",
+        "targetRef": "system:default/atlas"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Resource",
+    "metadata": {
+      "name": "atlas-db",
+      "description": "Banco de dados consumido pelo backend e pelo worker."
+    },
+    "spec": {
+      "type": "database",
+      "dependsOn": [
+        "resource:infra/rede-privada"
+      ]
+    },
+    "relations": [
+      {
+        "type": "dependencyOf",
+        "targetRef": "component:default/atlas-backend"
+      },
+      {
+        "type": "dependencyOf",
+        "targetRef": "component:default/atlas-worker"
+      },
+      {
+        "type": "dependsOn",
+        "targetRef": "resource:infra/rede-privada"
+      },
+      {
+        "type": "partOf",
+        "targetRef": "system:default/atlas"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Resource",
+    "metadata": {
+      "name": "atlas-cache"
+    },
+    "spec": {
+      "type": "cache"
+    },
+    "relations": [
+      {
+        "type": "partOf",
+        "targetRef": "system:default/atlas"
+      }
+    ]
+  },
+  {
+    "apiVersion": "scaffolder.backstage.io/v1beta3",
+    "kind": "Template",
+    "metadata": {
+      "name": "microsservico",
+      "title": "Novo microsserviço",
+      "description": "Template de scaffolding, com responsável definido no catálogo."
+    },
+    "spec": {
+      "type": "service",
+      "owner": "group:default/plataforma"
+    },
+    "relations": [
+      {
+        "type": "ownedBy",
+        "targetRef": "group:default/plataforma"
+      }
+    ]
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Group",
+    "metadata": {
+      "name": "plataforma",
+      "title": "Time de plataforma"
+    },
+    "spec": {
+      "type": "team"
+    },
+    "relations": [
+      {
+        "type": "ownerOf",
+        "targetRef": "template:default/microsservico"
+      }
+    ]
+  }
+]

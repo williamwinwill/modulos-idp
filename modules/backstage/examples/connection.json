@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "catalogBaseUrl": "",
+  "webBaseUrl": "",
+  "kinds": [
+    "Domain",
+    "System",
+    "Component",
+    "API",
+    "Resource",
+    "Template",
+    "Group"
+  ],
+  "pageSize": 100
+}

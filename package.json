@@ -1,0 +1,12 @@
+{
+  "name": "atlas-platform-modules",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Módulos estáticos e portáveis da plataforma Atlas",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node tools/test.mjs",
+    "check:links": "node tools/check-links.mjs",
+    "export:module": "node tools/export-module.mjs"
+  }
+}

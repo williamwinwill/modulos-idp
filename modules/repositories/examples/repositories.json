@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "github": {
+    "organization": "",
+    "apiBase": "https://api.github.com",
+    "webBase": "https://github.com"
+  },
+  "includeArchived": false,
+  "rules": [
+    {
+      "pattern": "atlas-terraform-*",
+      "category": "Terraform"
+    },
+    {
+      "pattern": "atlas-template-*",
+      "category": "Template"
+    },
+    {
+      "pattern": "atlas-plugin-*",
+      "category": "Plugin"
+    }
+  ],
+  "repositories": [
+    {
+      "name": "atlas-frontend",
+      "category": "Frontend"
+    },
+    {
+      "name": "atlas",
+      "category": "Core"
+    },
+    {
+      "name": "break-glass",
+      "category": "Operação"
+    }
+  ],
+  "exclude": [],
+  "dependencies": [
+    {
+      "from": "atlas-template-rds",
+      "to": "atlas-terraform-rds",
+      "version": "v2.3.0",
+      "file": "template.yaml"
+    },
+    {
+      "from": "atlas-template-rds",
+      "to": "atlas-terraform-cloudwatch",
+      "version": "v1.4.0",
+      "file": "template.yaml"
+    }
+  ]
+}
