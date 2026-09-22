@@ -80,5 +80,3 @@ O primeiro comando verifica referências locais, executa os testes dos motores/l
 - [Agentes CI/CD](modules/agents/README.md) · [Base Python](modules/agents/engine/README.md)
 - [Repositórios Atlas](modules/repositories/README.md) · [Automação](modules/repositories/docs/AUTOMACAO.md) · [Backlog](modules/repositories/docs/BACKLOG.md)
 - [Catálogo Backstage](modules/backstage/README.md) · [Motor e relações](modules/backstage/docs/MOTOR.md)
-
-Os HTMLs antigos em `../outputs/` são apenas atalhos de compatibilidade e preservam a rota `#...` ao redirecionar. Não precisam ser levados para outro projeto.
