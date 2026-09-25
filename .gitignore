@@ -6,4 +6,5 @@ saida-demo/
 .env.*
 !.env.example
 node_modules/
+modules/initiatives/data/
 *.log

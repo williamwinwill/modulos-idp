@@ -2,7 +2,7 @@
 
 Abra [index.html](index.html) para explorar o protótipo navegável. [source.html](source.html) é o fragmento editável usado na conversa; o index é sua exportação pelo renderizador da skill visualize.
 
-Este diretório registra o refinamento de produto. Não instala um quarto módulo, não altera o menu real da plataforma e não implementa persistência. Os dados são fictícios e as alterações duram somente a sessão da demonstração. O item ATL-022 permanece em Refinar.
+Este diretório preserva o protótipo histórico, com dados fictícios e alterações apenas durante a sessão. Para cadastrar dados reais, use o [módulo Iniciativas de IA](../../../modules/initiatives/README.md), integrado à plataforma e com gravação em JSON pela página.
 
 ## Decisões do protótipo
 
@@ -17,11 +17,11 @@ Este diretório registra o refinamento de produto. Não instala um quarto módul
 - Preenchimento do mês informa quantas iniciativas possuem cada dado, separando medidos e estimados. Não é uma avaliação de desempenho.
 - Modo de apresentação oculta as ações de edição; é uma opção visual, não controle de acesso.
 
-## Persistência a implementar após aprovação
+## Evolução para o módulo real
 
-O requisito é salvar pela própria página mantendo um arquivo `iniciativas.json` como base. A proposta é um pequeno serviço de gravação, local inicialmente, com controle de revisão para evitar sobrescritas concorrentes. Hospedagem e acesso compartilhado ainda precisam ser definidos. Uma página estática no S3, por si só, não implementa a gravação autenticada do arquivo.
+O módulo real implementa o requisito de salvar pela própria página em `iniciativas.json`, usando um serviço local com controle de revisão e backup. Execute `npm run initiatives` na raiz da plataforma e abra http://127.0.0.1:4382/modules/initiatives/.
 
-Login, delegação de permissões, gravação real, integração com S3 e publicação não fazem parte desta entrega. O pedido de commit versiona o protótipo, sem autorizar essas implementações.
+Login, delegação de permissões e hospedagem compartilhada ainda não fazem parte do módulo local. Uma página estática no S3, por si só, não implementa a gravação autenticada do arquivo.
 
 ## Exportação
 
@@ -29,4 +29,4 @@ Para regenerar `index.html`, execute o `scripts/render.py` da skill visualize co
 
 ## Verificação desta versão
 
-A exportação é derivada da fonte preservada nesta pasta. A checagem de sintaxe do JavaScript e a inspeção do diff são verificações de empacotamento, não validação funcional do futuro módulo. O item não está concluído.
+A exportação é derivada da fonte preservada nesta pasta. As verificações deste protótipo são históricas; a validação funcional do módulo real está nos testes da plataforma e no item ATL-022 do controle compartilhado.

@@ -11,6 +11,8 @@ export function checkLinks(root = projectRoot) {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
       if (['.git', 'node_modules', '__pycache__'].includes(entry.name)) continue;
       const file = path.join(directory, entry.name);
+      // Historical conversation fragments contain template expressions, not routes.
+      if (file === path.join(root,'docs','prototypes') || file === path.join(root,'modules','initiatives','data')) continue;
       if (entry.isDirectory()) visit(file);
       else if (entry.name.endsWith('.html')) {
         for (const match of readFileSync(file, 'utf8').matchAll(/(?:src|href)\s*=\s*["']([^"']+)["']/g)) {

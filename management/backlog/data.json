@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 7,
-  "updatedAt": "2026-09-25T00:55:03.441Z",
+  "revision": 10,
+  "updatedAt": "2026-09-25T01:38:23.257Z",
   "items": [
     {
       "id": "ATL-001",
@@ -882,21 +882,21 @@
       "id": "ATL-022",
       "title": "Painel de iniciativas de IA em Infraestrutura e Projetos",
       "module": "cross",
-      "description": "Protótipo solicitado para organizar iniciativas e apresentar resultados à liderança. Fonte e cópia navegável em docs/prototypes/iniciativas-ia/. Usuário solicitou versionar o protótipo; implementação e persistência real ainda não autorizadas.",
-      "plan": "Refinar o protótipo com o usuário antes de implementar. Manter design system Atlas; cadastro de iniciativas com várias áreas, tipo opcional e catálogo editável de áreas/tipos; links e arquitetura; menu Indicadores com seleção livre de mês/ano e medições manuais. Usar JSON como base, com salvamento pela página por serviço de gravação a definir. Detalhes e limites no README do protótipo.",
-      "acceptance": "Para implementação futura: cadastro e filtros por área/tipo/status; tipos opcionais editáveis; indicadores mensais de tempo, redução de gasto, custo e tokens, cada um com qualidade estimada/medida; zero distinto de não informado; escolha do mês no registro; modo de apresentação; gravação real no JSON com proteção contra sobrescrita concorrente. Protótipo atual usa somente memória.",
+      "description": "Implementação autorizada pelo usuário: transformar o protótipo em módulo utilizável do Atlas com persistência real em JSON e salvamento pela página.",
+      "plan": "Implementar modules/initiatives integrado ao registro e estilos compartilhados. Servidor Node local sem dependências (porta 4382) serve a plataforma e API, valida o documento JSON, grava atomicamente com backup e controle de revisão. Base vazia criada em data/iniciativas.json, ignorada no Git e excluída dos exports. Cadastro/edição/remoção de iniciativas, várias áreas, tipo opcional, catálogos configuráveis, campos e links, indicadores com período livre e qualidade por métrica, apresentação e exportação de backup. Validar por testes de domínio/API/portabilidade e navegação real. Autenticação e hospedagem compartilhada/S3 ficam fora desta entrega local.",
+      "acceptance": "Módulo disponível no menu real. Cadastrar, editar e remover iniciativa, área/tipo sem uso e campos; arquivar categorias em uso. Salvar registros mensais escolhendo mês/ano, distinguindo zero e vazio, medido e estimado. Recarregar página e reiniciar servidor preservam dados. Conflitos de revisão recusados sem apagar formulário. JSON inválido não altera arquivo; gravação atômica e backup. Exportação do módulo não copia dados pessoais. Tema compartilhado, responsividade e apresentação. Suíte existente e novos testes aprovados, revisão funcional no navegador e commit vinculado.",
       "hypothesis": "",
       "hypothesisRequired": false,
       "hypothesisResult": "pending",
-      "implementation": "",
-      "verification": "Fonte preservada byte a byte em docs/prototypes/iniciativas-ia/source.html; exportação navegável gerada em index.html; JavaScript analisado com node:vm sem erros de sintaxe. Verificações de empacotamento, sem validação funcional de um módulo ou persistência real.",
-      "validationResult": "pending",
+      "implementation": "Módulo modules/initiatives integrado ao menu e tema Atlas. CRUD de iniciativas, múltiplas áreas, tipo opcional, catálogos e campos personalizados; indicadores por mês com rascunhos, zero/vazio, medido/estimado, custo em centavos; filtros e apresentação. Serviço local Node na porta 4382 grava JSON validado com revisão, lock, substituição atômica e backup. Conflitos preservam campos alterados e incorporam campos remotos não editados após recarga. Base vazia ignorada no Git e excluída dos pacotes. Documentação de uso e recuperação.",
+      "verification": "Aprovado por Codex: 43/43 testes via tools/test.mjs (domínio, API, gravação/releitura, backup, revisão concorrente, proteção de rotas e exportação dos quatro módulos). JavaScript validado e git diff --check sem erros. Chrome com base temporária: cadastro sem tipo e múltiplas áreas, recarga real, dois períodos e rascunhos, zero/vazio e custo R$ 0,03, catálogos/campos/links, conflito entre editores preservando descrição e dois links sem sobrescrever responsável remoto, apresentação, arquivamento, remoção de área/campo e exclusão de iniciativa. Inspeção visual em tema claro/escuro; viewport 390px sem overflow da página. Serviço real iniciado com base vazia; testes não alteram dados reais. Escopo local, sem autenticação remota/S3/publicação.",
+      "validationResult": "approved",
       "commit": "",
       "owner": "Codex",
       "deferred": false,
-      "status": "refine",
+      "status": "validation",
       "createdAt": "2026-09-25T00:54:06.244Z",
-      "updatedAt": "2026-09-25T00:55:03.441Z",
+      "updatedAt": "2026-09-25T01:38:23.257Z",
       "history": [
         {
           "at": "2026-09-25T00:54:06.244Z",
@@ -980,6 +980,77 @@
             "status": {
               "from": "backlog",
               "to": "refine"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-25T01:18:57.665Z",
+          "actor": "Codex",
+          "from": "refine",
+          "to": "todo",
+          "changes": {
+            "description": {
+              "from": "Protótipo solicitado para organizar iniciativas e apresentar resultados à liderança. Fonte e cópia navegável em docs/prototypes/iniciativas-ia/. Usuário solicitou versionar o protótipo; implementação e persistência real ainda não autorizadas.",
+              "to": "Implementação autorizada pelo usuário: transformar o protótipo em módulo utilizável do Atlas com persistência real em JSON e salvamento pela página."
+            },
+            "plan": {
+              "from": "Refinar o protótipo com o usuário antes de implementar. Manter design system Atlas; cadastro de iniciativas com várias áreas, tipo opcional e catálogo editável de áreas/tipos; links e arquitetura; menu Indicadores com seleção livre de mês/ano e medições manuais. Usar JSON como base, com salvamento pela página por serviço de gravação a definir. Detalhes e limites no README do protótipo.",
+              "to": "Implementar modules/initiatives integrado ao registro e estilos compartilhados. Servidor Node local sem dependências (porta 4382) serve a plataforma e API, valida o documento JSON, grava atomicamente com backup e controle de revisão. Base vazia criada em data/iniciativas.json, ignorada no Git e excluída dos exports. Cadastro/edição/remoção de iniciativas, várias áreas, tipo opcional, catálogos configuráveis, campos e links, indicadores com período livre e qualidade por métrica, apresentação e exportação de backup. Validar por testes de domínio/API/portabilidade e navegação real. Autenticação e hospedagem compartilhada/S3 ficam fora desta entrega local."
+            },
+            "acceptance": {
+              "from": "Para implementação futura: cadastro e filtros por área/tipo/status; tipos opcionais editáveis; indicadores mensais de tempo, redução de gasto, custo e tokens, cada um com qualidade estimada/medida; zero distinto de não informado; escolha do mês no registro; modo de apresentação; gravação real no JSON com proteção contra sobrescrita concorrente. Protótipo atual usa somente memória.",
+              "to": "Módulo disponível no menu real. Cadastrar, editar e remover iniciativa, área/tipo sem uso e campos; arquivar categorias em uso. Salvar registros mensais escolhendo mês/ano, distinguindo zero e vazio, medido e estimado. Recarregar página e reiniciar servidor preservam dados. Conflitos de revisão recusados sem apagar formulário. JSON inválido não altera arquivo; gravação atômica e backup. Exportação do módulo não copia dados pessoais. Tema compartilhado, responsividade e apresentação. Suíte existente e novos testes aprovados, revisão funcional no navegador e commit vinculado."
+            },
+            "verification": {
+              "from": "Fonte preservada byte a byte em docs/prototypes/iniciativas-ia/source.html; exportação navegável gerada em index.html; JavaScript analisado com node:vm sem erros de sintaxe. Verificações de empacotamento, sem validação funcional de um módulo ou persistência real.",
+              "to": ""
+            },
+            "status": {
+              "from": "refine",
+              "to": "todo"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-25T01:19:00.987Z",
+          "actor": "Codex",
+          "from": "todo",
+          "to": "doing",
+          "changes": {
+            "implementation": {
+              "from": "",
+              "to": "Implementação iniciada: módulo real com servidor local, persistência JSON e integração compartilhada."
+            },
+            "status": {
+              "from": "todo",
+              "to": "doing"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-25T01:38:23.257Z",
+          "actor": "Codex",
+          "from": "doing",
+          "to": "validation",
+          "changes": {
+            "implementation": {
+              "from": "Implementação iniciada: módulo real com servidor local, persistência JSON e integração compartilhada.",
+              "to": "Módulo modules/initiatives integrado ao menu e tema Atlas. CRUD de iniciativas, múltiplas áreas, tipo opcional, catálogos e campos personalizados; indicadores por mês com rascunhos, zero/vazio, medido/estimado, custo em centavos; filtros e apresentação. Serviço local Node na porta 4382 grava JSON validado com revisão, lock, substituição atômica e backup. Conflitos preservam campos alterados e incorporam campos remotos não editados após recarga. Base vazia ignorada no Git e excluída dos pacotes. Documentação de uso e recuperação."
+            },
+            "verification": {
+              "from": "",
+              "to": "Aprovado por Codex: 43/43 testes via tools/test.mjs (domínio, API, gravação/releitura, backup, revisão concorrente, proteção de rotas e exportação dos quatro módulos). JavaScript validado e git diff --check sem erros. Chrome com base temporária: cadastro sem tipo e múltiplas áreas, recarga real, dois períodos e rascunhos, zero/vazio e custo R$ 0,03, catálogos/campos/links, conflito entre editores preservando descrição e dois links sem sobrescrever responsável remoto, apresentação, arquivamento, remoção de área/campo e exclusão de iniciativa. Inspeção visual em tema claro/escuro; viewport 390px sem overflow da página. Serviço real iniciado com base vazia; testes não alteram dados reais. Escopo local, sem autenticação remota/S3/publicação."
+            },
+            "validationResult": {
+              "from": "pending",
+              "to": "approved"
+            },
+            "status": {
+              "from": "doing",
+              "to": "validation"
             }
           },
           "commitEvidence": null

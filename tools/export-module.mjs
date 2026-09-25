@@ -22,17 +22,19 @@ export function exportModule(id, destination) {
   try {
     const copy = relative => cpSync(path.join(projectRoot, relative), path.join(target, relative), {
       recursive: true,
-      filter: source => !['__pycache__', 'saida-demo', '.DS_Store', 'backlog-server.mjs', 'backlog.mjs'].includes(path.basename(source)) && !source.endsWith('.pyc')
+      filter: source => source !== path.join(projectRoot,'modules','initiatives','data') && !['__pycache__', 'saida-demo', '.DS_Store', 'backlog-server.mjs', 'backlog.mjs'].includes(path.basename(source)) && !source.endsWith('.pyc')
     });
     copy(`modules/${selected.id}`);
     for (const shared of selected.shared) copy(`shared/${shared}`);
     for (const file of ['index.html', 'package.json', '.gitignore', 'tools', 'tests']) copy(file);
     const packageInfo = JSON.parse(readFileSync(path.join(target, 'package.json'), 'utf8'));
     delete packageInfo.scripts.backlog;
+    if(selected.id !== 'initiatives') delete packageInfo.scripts.initiatives;
     writeFileSync(path.join(target, 'package.json'), JSON.stringify(packageInfo, null, 2) + '\n');
     writeFileSync(path.join(target, 'atlas.config.js'),
       `(function(root){const config=${JSON.stringify({ modules: [selected] }, null, 2)};if(typeof module==='object'&&module.exports)module.exports=config;else root.AtlasPlatform=config;})(globalThis);\n`);
     writeFileSync(path.join(target, 'README.md'), `# ${selected.title} — módulo independente\n\nAbra \`index.html\` no navegador, ou sirva esta pasta com \`python3 -m http.server 8765\`. Não exige npm install ou build.\n\nCopie esta pasta inteira para transportar o módulo, preservando \`modules/\`, \`shared/\` e \`atlas.config.js\`. O menu contém somente o módulo exportado.\n\nDocumentação: [modules/${selected.id}/README.md](modules/${selected.id}/README.md).\n\nVerificação (Node.js 18+): \`node tools/test.mjs\`.\n\nConfigurações e snapshots salvos no navegador não fazem parte deste pacote. Exporte os JSONs pela interface antes de mudar de origem. Tokens não são incluídos.\n`);
+    if(selected.id==='initiatives')writeFileSync(path.join(target,'README.md'),`# Iniciativas de IA — módulo independente\n\nExecute \`npm run initiatives\` (Node.js 18+) e abra http://127.0.0.1:4382/modules/initiatives/. Não exige npm install ou build. O serviço cria uma base JSON vazia em modules/initiatives/data/iniciativas.json.\n\nDados pessoais e backups não são incluídos nesta exportação. Para transportar seus registros, copie o JSON separadamente com o servidor parado. Consulte [a documentação](modules/initiatives/README.md).\n\nVerificação: \`node tools/test.mjs\`.\n`);
     const errors = checkLinks(target);
     if (errors.length) throw new Error(errors.join('\n'));
   } catch (error) {
@@ -46,7 +48,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   try {
     console.log(`Módulo exportado: ${exportModule(process.argv[2], process.argv[3])}`);
   } catch (error) {
-    console.error(`${error.message}\nUso: node tools/export-module.mjs <agents|repositories|backstage> <pasta-nova>`);
+    console.error(`${error.message}\nUso: node tools/export-module.mjs <id-do-modulo> <pasta-nova>`);
     process.exitCode = 1;
   }
 }

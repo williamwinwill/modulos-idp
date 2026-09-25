@@ -1,6 +1,6 @@
 # Atlas · Módulos portáveis
 
-Três módulos independentes de interface, com tema, navegação e componentes visuais compartilhados. HTML, CSS e JavaScript nativo, sem framework, CDN, dependências npm ou build. Abra [index.html](index.html) para escolher o módulo.
+Quatro módulos independentes de interface, com tema, navegação e componentes visuais compartilhados. HTML, CSS e JavaScript nativo, sem framework, CDN, dependências npm ou build. Abra [index.html](index.html) para escolher o módulo. Iniciativas de IA utiliza um serviço Node local para gravar sua base JSON.
 
 ## Estrutura
 
@@ -16,9 +16,12 @@ atlas-platform/
 │   ├── repositories/           # discovery GitHub, relações e versões
 │   │   ├── index.html, app.js, core.js, graph-view.js
 │   │   └── examples/, docs/, tests/
-│   └── backstage/              # catálogo e relações Backstage
-│       ├── index.html, app.js, core.js, demo.js, style.css
-│       └── examples/, docs/, tests/
+│   ├── backstage/              # catálogo e relações Backstage
+│   │   ├── index.html, app.js, core.js, demo.js, style.css
+│   │   └── examples/, docs/, tests/
+│   └── initiatives/            # iniciativas de IA e indicadores mensais
+│       ├── index.html, app.js, core.js, server.mjs, style.css
+│       └── data/               # JSON e backup privados; ignorados no Git
 ├── shared/
 │   ├── theme/                  # tema claro/escuro e preferência
 │   ├── navigation/             # menu e página inicial
@@ -50,6 +53,7 @@ Com Node.js 18+ disponível, execute na raiz deste projeto, sem `npm install`:
 node tools/export-module.mjs backstage ../atlas-backstage
 node tools/export-module.mjs repositories ../atlas-repositories
 node tools/export-module.mjs agents ../atlas-agents
+node tools/export-module.mjs initiatives ../atlas-iniciativas
 ```
 
 Cada comando cria um pacote autossuficiente com o módulo escolhido, somente as pastas compartilhadas declaradas por ele, exemplos, documentação e testes. Abra o `index.html` do pacote exportado. O menu terá apenas esse módulo; nenhuma tela aponta para um módulo ausente.
@@ -80,7 +84,14 @@ O primeiro comando verifica referências locais, executa os testes dos motores/l
 - [Agentes CI/CD](modules/agents/README.md) · [Base Python](modules/agents/engine/README.md)
 - [Repositórios Atlas](modules/repositories/README.md) · [Automação](modules/repositories/docs/AUTOMACAO.md) · [Backlog](modules/repositories/docs/BACKLOG.md)
 - [Catálogo Backstage](modules/backstage/README.md) · [Motor e relações](modules/backstage/docs/MOTOR.md)
+- [Iniciativas de IA](modules/initiatives/README.md) · cadastro e indicadores com persistência local
+
+## Usar Iniciativas de IA
+
+Execute `npm run initiatives` (Node.js 18+) e abra **http://127.0.0.1:4382/modules/initiatives/**. A página salva diretamente em `modules/initiatives/data/iniciativas.json`, mantendo backup da versão anterior e rejeitando gravações concorrentes desatualizadas. A primeira execução inicia uma base vazia. Não é necessário `npm install`.
+
+O servidor escuta apenas no computador local. Acesso compartilhado entre computadores e gravação em S3 exigem uma implantação autenticada posterior. Servir somente os arquivos estáticos não habilita a gravação. Consulte a documentação do módulo para transportar ou restaurar o JSON.
 
 ## Controle de backlog
 
-Execute `npm run backlog` e abra [Gestão do backlog](http://127.0.0.1:4381/management/backlog/). O controle tem sete etapas, dados compartilhados com Codex e conclusão vinculada a commit verificado. Consulte [as instruções do quadro](management/backlog/README.md). É uma área de gestão, mantendo os três módulos do produto independentes.
+Execute `npm run backlog` e abra [Gestão do backlog](http://127.0.0.1:4381/management/backlog/). O controle tem sete etapas, dados compartilhados com Codex e conclusão vinculada a commit verificado. Consulte [as instruções do quadro](management/backlog/README.md). É uma área de gestão, mantendo os módulos do produto independentes.

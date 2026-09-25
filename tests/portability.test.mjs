@@ -19,6 +19,7 @@ for (const module of config.modules) {
       renameSync(original, moved);
       assert.deepEqual(checkLinks(moved), []);
       const exported = require(path.join(moved, 'atlas.config.js'));
+      assert.equal(existsSync(path.join(moved,'modules','initiatives','data')),false,'bases pessoais não devem integrar o pacote');
       assert.deepEqual(exported.modules.map(item => item.id), [module.id]);
       for (const sibling of config.modules.filter(item => item.id !== module.id)) {
         assert.equal(existsSync(path.join(moved, 'modules', sibling.id)), false);
