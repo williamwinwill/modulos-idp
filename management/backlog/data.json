@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 10,
-  "updatedAt": "2026-09-25T01:38:23.257Z",
+  "revision": 11,
+  "updatedAt": "2026-09-25T01:39:06.319Z",
   "items": [
     {
       "id": "ATL-001",
@@ -891,12 +891,12 @@
       "implementation": "Módulo modules/initiatives integrado ao menu e tema Atlas. CRUD de iniciativas, múltiplas áreas, tipo opcional, catálogos e campos personalizados; indicadores por mês com rascunhos, zero/vazio, medido/estimado, custo em centavos; filtros e apresentação. Serviço local Node na porta 4382 grava JSON validado com revisão, lock, substituição atômica e backup. Conflitos preservam campos alterados e incorporam campos remotos não editados após recarga. Base vazia ignorada no Git e excluída dos pacotes. Documentação de uso e recuperação.",
       "verification": "Aprovado por Codex: 43/43 testes via tools/test.mjs (domínio, API, gravação/releitura, backup, revisão concorrente, proteção de rotas e exportação dos quatro módulos). JavaScript validado e git diff --check sem erros. Chrome com base temporária: cadastro sem tipo e múltiplas áreas, recarga real, dois períodos e rascunhos, zero/vazio e custo R$ 0,03, catálogos/campos/links, conflito entre editores preservando descrição e dois links sem sobrescrever responsável remoto, apresentação, arquivamento, remoção de área/campo e exclusão de iniciativa. Inspeção visual em tema claro/escuro; viewport 390px sem overflow da página. Serviço real iniciado com base vazia; testes não alteram dados reais. Escopo local, sem autenticação remota/S3/publicação.",
       "validationResult": "approved",
-      "commit": "",
+      "commit": "7e815f491c4935ab964a134ce0d48b99107793a1",
       "owner": "Codex",
       "deferred": false,
-      "status": "validation",
+      "status": "done",
       "createdAt": "2026-09-25T00:54:06.244Z",
-      "updatedAt": "2026-09-25T01:38:23.257Z",
+      "updatedAt": "2026-09-25T01:39:06.319Z",
       "history": [
         {
           "at": "2026-09-25T00:54:06.244Z",
@@ -1054,9 +1054,34 @@
             }
           },
           "commitEvidence": null
+        },
+        {
+          "at": "2026-09-25T01:39:06.319Z",
+          "actor": "Codex",
+          "from": "validation",
+          "to": "done",
+          "changes": {
+            "commit": {
+              "from": "",
+              "to": "7e815f491c4935ab964a134ce0d48b99107793a1"
+            },
+            "status": {
+              "from": "validation",
+              "to": "done"
+            }
+          },
+          "commitEvidence": {
+            "hash": "7e815f491c4935ab964a134ce0d48b99107793a1",
+            "subject": "ATL-022: implementa modulo de iniciativas com persistencia JSON",
+            "checkedAt": "2026-09-25T01:39:06.479Z"
+          }
         }
       ],
-      "commitEvidence": null
+      "commitEvidence": {
+        "hash": "7e815f491c4935ab964a134ce0d48b99107793a1",
+        "subject": "ATL-022: implementa modulo de iniciativas com persistencia JSON",
+        "checkedAt": "2026-09-25T01:39:06.479Z"
+      }
     }
   ]
 }
