@@ -1,0 +1,286 @@
+<style>
+#infra-ia { --ia-bg:light-dark(#f3f5f9,#101217); --ia-paper:light-dark(#ffffff,#181b22); --ia-ink:light-dark(#202735,#e7eaf0); --ia-muted:light-dark(#566276,#9da6b7); --ia-line:light-dark(#d7dee8,#2c313d); --ia-soft:light-dark(#edf1f6,#20242d); --ia-accent:light-dark(#6047c5,#a29bff); --ia-accent-bg:light-dark(#f0ecfc,#292640); --ia-primary:light-dark(#6750cf,#8275ee); --ia-green:light-dark(#18724f,#70d8b3); --ia-green-bg:light-dark(#e7f4ed,#1e352e); --ia-input-line:light-dark(#a6b2c5,#2c313d); --ia-warn:light-dark(#865b12,#edc17a); --ia-warn-bg:light-dark(#fff3d9,#392e20); color:var(--ia-ink); background:var(--ia-bg); font:14px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; display:grid; grid-template-columns:200px minmax(0,1fr); }
+#infra-ia * { box-sizing:border-box; }
+#infra-ia [hidden] { display:none !important; }
+#infra-ia button,#infra-ia input,#infra-ia select,#infra-ia textarea { font:inherit; color:inherit; }
+#infra-ia button { cursor:pointer; border:1px solid var(--ia-line); border-radius:7px; background:var(--ia-paper); padding:10px 14px; font-size:12px; font-weight:500; display:inline-flex; gap:8px; align-items:center; justify-content:center; }
+#infra-ia button:active { transform:scale(.98); }
+#infra-ia button:disabled { cursor:default; opacity:.55; }
+#infra-ia .ia-primary { color:#fff; background:var(--ia-primary); border-color:var(--ia-primary); }
+#infra-ia .ia-quiet { border-color:transparent; background:transparent; }
+#infra-ia .ia-top { display:flex; justify-content:space-between; gap:12px; align-items:center; min-height:76px; padding:16px 24px; background:var(--ia-paper); border-bottom:1px solid var(--ia-line); flex-wrap:wrap; }
+#infra-ia .ia-brand { display:flex; align-items:center; gap:10px; }
+#infra-ia .ia-mark { display:grid; place-items:center; width:34px; height:34px; background:var(--ia-primary); color:#fff; border-radius:9px; flex-shrink:0; }
+#infra-ia .ia-brand strong { font-weight:500; display:block; }
+#infra-ia small { font-size:12px; color:var(--ia-muted); }
+#infra-ia .ia-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+#infra-ia .ia-between { justify-content:space-between; }
+#infra-ia .ia-badge { display:inline-flex; align-items:center; padding:4px 7px; font-size:11px; font-weight:400; border-radius:4px; background:var(--ia-soft); color:var(--ia-muted); white-space:nowrap; }
+#infra-ia .ia-good { color:var(--ia-green); background:var(--ia-green-bg); }
+#infra-ia .ia-amber { color:var(--ia-warn); background:var(--ia-warn-bg); }
+#infra-ia nav { display:flex; gap:20px; padding:0 26px; background:var(--ia-paper); border-bottom:1px solid var(--ia-line); flex-wrap:wrap; }
+#infra-ia nav button { padding:13px 0; border:0; border-radius:0; background:transparent; color:var(--ia-muted); border-bottom:2px solid transparent; }
+#infra-ia nav button[aria-current="page"] { color:var(--ia-accent); border-bottom-color:var(--ia-accent); }
+#infra-ia main { padding:28px 24px; }
+#infra-ia h1 { font-size:32px; line-height:1.2; font-weight:500; letter-spacing:-1.15px; margin:8px 0 10px; }
+#infra-ia h2 { font-size:16px; font-weight:500; margin:0; }
+#infra-ia h3 { font-size:14px; font-weight:500; margin:0 0 12px; }
+#infra-ia p { margin:0; }
+#infra-ia .ia-muted { color:var(--ia-muted); }
+#infra-ia .ia-heading { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+#infra-ia label { display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--ia-muted); min-width:0; }
+#infra-ia input:not([type="checkbox"]),#infra-ia select,#infra-ia textarea { width:100%; min-width:0; padding:10px 12px; border:1px solid var(--ia-input-line); background:var(--ia-paper); border-radius:7px; font-size:12px; }
+#infra-ia input[type="checkbox"] { accent-color:var(--ia-accent); width:16px; height:16px; }
+#infra-ia textarea { resize:vertical; min-height:86px; }
+#infra-ia .ia-period { min-width:165px; }
+#infra-ia .ia-kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:17px 0 20px; }
+#infra-ia .ia-kpi { background:var(--ia-paper); border:1px solid var(--ia-line); border-radius:10px; padding:16px; min-width:0; }
+#infra-ia .ia-kpi strong { display:block; font-size:27px; line-height:1.35; letter-spacing:-.8px; font-weight:500; margin:8px 0 3px; font-variant-numeric:tabular-nums; }
+#infra-ia .ia-panel { border:1px solid var(--ia-line); background:var(--ia-paper); border-radius:11px; padding:20px; min-width:0; }
+#infra-ia .ia-tools { display:flex; gap:10px; flex-wrap:wrap; align-items:end; margin-bottom:16px; }
+#infra-ia .ia-tools label { flex:1; min-width:140px; }
+#infra-ia .ia-tools label:first-child { flex:2; }
+#infra-ia .ia-table-wrap { overflow-x:auto; }
+#infra-ia table { width:100%; border-collapse:collapse; font-size:13px; }
+#infra-ia th { text-align:left; font-size:11px; font-weight:500; letter-spacing:.3px; color:var(--ia-muted); padding:13px 12px; border-bottom:1px solid var(--ia-line); background:light-dark(#eef2f7,#20242d); white-space:nowrap; }
+#infra-ia td { padding:var(--ia-cell-pad,16px) 12px; border-bottom:1px solid var(--ia-line); vertical-align:middle; }
+#infra-ia tbody tr:last-child td { border-bottom:0; }
+#infra-ia .ia-name { display:block; border:0; padding:0; background:transparent; text-align:left; font-weight:500; color:var(--ia-ink); }
+#infra-ia .ia-desc { display:block; max-width:280px; margin-top:4px; }
+#infra-ia .ia-num { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+#infra-ia .ia-num small { display:block; }
+#infra-ia .ia-areas { display:flex; flex-wrap:wrap; gap:4px; margin-top:7px; }
+#infra-ia .ia-footer { border-top:1px solid var(--ia-line); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:14px 26px; color:var(--ia-muted); font-size:12px; background:var(--ia-paper); }
+#infra-ia .ia-stack { display:grid; gap:16px; }
+#infra-ia .ia-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+#infra-ia .ia-full { grid-column:1/-1; }
+#infra-ia .ia-check { flex-direction:row; align-items:center; color:var(--ia-ink); font-size:14px; }
+#infra-ia fieldset { border:0; padding:0; margin:0; min-width:0; }
+#infra-ia legend { color:var(--ia-muted); font-size:12px; margin-bottom:8px; }
+#infra-ia .ia-rule { border:0; border-top:1px solid var(--ia-line); margin:20px 0; }
+#infra-ia details summary { cursor:pointer; font-weight:500; padding:8px 0; }
+#infra-ia details[open] summary { margin-bottom:10px; }
+#infra-ia .ia-metric { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(110px,.75fr); gap:12px; align-items:end; }
+#infra-ia .ia-list-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:11px 0; border-bottom:1px solid var(--ia-line); }
+#infra-ia .ia-list-row:last-child { border:0; }
+#infra-ia .ia-copy { white-space:pre-wrap; overflow-wrap:anywhere; }
+#infra-ia .ia-link { color:var(--ia-accent); overflow-wrap:anywhere; }
+#infra-ia .ia-result-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+#infra-ia .ia-track { height:7px; background:var(--ia-soft); border-radius:5px; margin-top:7px; }
+#infra-ia .ia-track span { display:block; height:7px; border-radius:5px; background:var(--ia-accent); }
+#infra-ia .ia-empty { padding:32px 16px; text-align:center; color:var(--ia-muted); }
+#infra-ia .ia-notice { color:var(--ia-accent); font-size:12px; }
+#infra-ia .ia-error { color:light-dark(#a23030,#ffb4ab); }
+@media(hover:hover) and (pointer:fine) { #infra-ia button:hover { background:var(--ia-soft); } #infra-ia .ia-primary:hover { background:light-dark(#563fba,#8275ee); } #infra-ia .ia-name:hover { color:var(--ia-accent); background:transparent; } }
+@media(max-width:740px) { #infra-ia .ia-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } #infra-ia main { padding:18px; } #infra-ia .ia-result-grid { grid-template-columns:1fr; } }
+@media(max-width:480px) { #infra-ia .ia-grid { grid-template-columns:1fr; } #infra-ia .ia-top,#infra-ia .ia-footer { padding:14px; } #infra-ia nav { padding:0 14px; gap:16px; } #infra-ia main { padding:14px; } #infra-ia h1 { font-size:23px; } #infra-ia .ia-kpi { padding:12px; } #infra-ia .ia-kpi strong { font-size:23px; } #infra-ia .ia-panel { padding:14px; } #infra-ia .ia-metric { grid-template-columns:1fr; } }
+@media(pointer:coarse) { #infra-ia button,#infra-ia select,#infra-ia input:not([type="checkbox"]) { min-height:44px; } #infra-ia input,#infra-ia select,#infra-ia textarea { font-size:16px !important; } }
+#infra-ia .ia-workspace { min-width:0; }
+#infra-ia .ia-sidebar { background:var(--ia-paper); border-right:1px solid var(--ia-line); padding:28px 14px; display:flex; flex-direction:column; gap:22px; }
+#infra-ia .ia-sidebar .ia-brand { font-size:23px; font-weight:500; letter-spacing:-.7px; padding:0 8px; }
+#infra-ia .ia-sidebar .ia-brand small { font-size:11px; letter-spacing:0; }
+#infra-ia .ia-workspace-label { display:flex; gap:10px; align-items:center; padding:13px 9px; margin:0 3px; border:1px solid var(--ia-line); border-radius:8px; font-size:12px; }
+#infra-ia .ia-workspace-label strong { display:block; font-weight:500; }
+#infra-ia .ia-workspace-label small { font-size:11px; }
+#infra-ia .ia-nav-label { font-size:11px; letter-spacing:1.4px; color:var(--ia-muted); padding:0 8px; margin-bottom:10px; }
+#infra-ia .ia-module { display:flex; align-items:center; gap:9px; border-radius:8px; padding:11px 10px; color:var(--ia-muted); font-size:12px; }
+#infra-ia .ia-module.active { background:var(--ia-accent-bg); color:var(--ia-accent); border:1px solid color-mix(in srgb,var(--ia-accent) 22%,var(--ia-line)); }
+#infra-ia .ia-sidebar nav { padding:0; border:0; gap:4px; flex-direction:column; }
+#infra-ia .ia-sidebar nav button { width:100%; padding:11px 12px; border:0; border-radius:7px; justify-content:flex-start; text-align:left; }
+#infra-ia .ia-sidebar nav button[aria-current="page"] { background:var(--ia-accent-bg); color:var(--ia-accent); }
+#infra-ia .ia-sidebar-bottom { margin-top:auto; border-top:1px solid var(--ia-line); padding:20px 8px 0; font-size:11px; color:var(--ia-muted); }
+#infra-ia .ia-crumb { color:var(--ia-muted); font-size:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+#infra-ia .ia-crumb strong { font-weight:500; color:var(--ia-ink); }
+#infra-ia .ia-eyebrow { font-size:11px; letter-spacing:1.6px; color:var(--ia-accent); margin-bottom:6px; }
+#infra-ia .ia-period-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end; }
+#infra-ia .ia-period-actions .ia-period { flex:1 1 175px; min-width:0; }
+#infra-ia .ia-period-actions .ia-period input,#infra-ia .ia-period-actions>button { height:40px; }
+#infra-ia .ia-period-actions>button { flex:0 0 auto; }
+#infra-ia .ia-heading:has(.ia-period-actions) { align-items:flex-end; }
+#infra-ia .ia-heading>.ia-period-actions { flex:0 1 390px; }
+#infra-ia .ia-row.ia-between:has(>.ia-period-actions) { align-items:flex-end; gap:16px; }
+#infra-ia .ia-row.ia-between:has(>.ia-period-actions)>h2 { padding-bottom:8px; }
+#infra-ia .ia-kpi strong { font-size:27px; overflow-wrap:anywhere; }
+#infra-ia #ia-form-error:empty { display:none; }
+#infra-ia .ia-heading .ia-muted { font-size:12px; }
+@media(max-width:900px) { #infra-ia { grid-template-columns:180px minmax(0,1fr); } #infra-ia .ia-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } #infra-ia .ia-grid { grid-template-columns:1fr; } #infra-ia .ia-result-grid { grid-template-columns:1fr; } }
+@media(max-width:720px) { #infra-ia { grid-template-columns:minmax(0,1fr); } #infra-ia .ia-sidebar { padding:18px; border-right:0; border-bottom:1px solid var(--ia-line); gap:14px; } #infra-ia .ia-workspace-label,#infra-ia .ia-module-list,#infra-ia .ia-sidebar-bottom,#infra-ia .ia-sidebar .ia-nav-label { display:none; } #infra-ia .ia-sidebar nav { flex-direction:row; flex-wrap:wrap; gap:6px; } #infra-ia .ia-sidebar nav button { width:auto; flex:1; justify-content:center; padding:10px 8px; } #infra-ia .ia-top { min-height:62px; } }
+@media(max-width:440px) { #infra-ia .ia-period-actions { width:100%; } #infra-ia .ia-period-actions>button { flex:1 1 100%; } #infra-ia .ia-period-actions .ia-period { flex-basis:100%; } }
+</style>
+<div id="infra-ia" aria-label="Protótipo do painel de iniciativas de IA">
+  <aside class="ia-sidebar" aria-label="Plataforma Atlas">
+    <div class="ia-brand"><span class="ia-mark">◈</span>atlas <small>/ labs</small></div>
+    <div class="ia-workspace-label"><i data-lucide="building-2" aria-hidden="true"></i><div><strong>Engenharia</strong><small>Infraestrutura e projetos</small></div></div>
+    <div class="ia-module-list"><p class="ia-nav-label">PLATAFORMA</p><span class="ia-module"><i data-lucide="bot" aria-hidden="true"></i>Agentes</span><span class="ia-module"><i data-lucide="folders" aria-hidden="true"></i>Repositórios Atlas</span><span class="ia-module"><i data-lucide="hexagon" aria-hidden="true"></i>Catálogo Backstage</span><span class="ia-module active"><i data-lucide="sparkles" aria-hidden="true"></i>Iniciativas de IA</span></div>
+    <div><p class="ia-nav-label">INICIATIVAS DE IA</p><nav aria-label="Navegação principal"><button data-view="list" aria-current="page"><i data-lucide="list" aria-hidden="true"></i>Iniciativas</button><button data-view="results"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>Indicadores</button><button data-view="settings"><i data-lucide="sliders-horizontal" aria-hidden="true"></i>Configurações</button></nav></div>
+    <div class="ia-sidebar-bottom">Atlas ecosystem<br><span>Iniciativas, adoção e resultados.</span></div>
+  </aside>
+  <div class="ia-workspace">
+  <header class="ia-top">
+    <div class="ia-crumb">Plataforma <span>/</span><strong>Iniciativas de IA</strong></div>
+    <div class="ia-row"><span class="ia-badge ia-amber">Demonstração</span><button id="ia-theme"><i data-lucide="sun-moon" aria-hidden="true"></i>Tema</button><button id="ia-present"><i data-lucide="presentation" aria-hidden="true"></i>Apresentar</button></div>
+  </header>
+  <main id="ia-content"></main>
+  <footer class="ia-footer"><span>Atlas · Iniciativas de IA · dados fictícios</span><span id="ia-feedback" role="status" aria-live="polite">Alterações válidas somente nesta demonstração</span></footer>
+  </div>
+</div>
+<script>
+(() => {
+const root=document.getElementById('infra-ia'), content=root.querySelector('#ia-content');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=v=>new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1}).format(v);
+const money=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
+const statuses=['Ideia','Em avaliação','Em desenvolvimento','Em uso','Pausada','Encerrada'];
+let areas=['DevOps','Redes','Cloud','Atlas'].map(name=>({name,active:true}));
+let kinds=['Agente','MCP','Skill','Assistente','Assistente agêntico','Workflow com IA'].map(name=>({name,active:true}));
+let kindFilter='';
+let extraFields=[];
+const metric=(v,q='Medido')=>({value:v,quality:q});
+const m=(hours,saving,cost,tokens,q='Medido')=>({hours:metric(hours,q),saving:metric(saving,q),cost:metric(cost,'Medido'),tokens:metric(tokens,'Medido'),evidence:q==='Medido'?'Amostra de execuções e apontamento manual do mês. Dados ilustrativos.':'Estimativa a validar com as primeiras execuções. Dados ilustrativos.'});
+let items=[
+ {id:1,name:'Triagem inteligente de incidentes',areas:['DevOps','Redes'],status:'Em uso',owner:'Equipe de operações',description:'Classifica alertas e sugere o próximo passo para o time de plantão.',architecture:'Alertas de monitoramento → classificação por IA → consulta aos runbooks → sugestão revisada pelo analista.',model:'Modelo corporativo de linguagem',links:[{type:'Confluence',title:'Runbook e desenho da solução',url:'https://example.com/runbook'},{type:'Painel',title:'Indicadores da triagem',url:'https://example.com/triagem'},{type:'Repositório do projeto',title:'Serviço de triagem',url:'https://example.com/triagem-repo'},{type:'Repositório IaC',title:'Infraestrutura da solução',url:'https://example.com/triagem-iac'}],metrics:{'2026-09':m(42,0,180,1800000),'2026-08':m(30,0,150,1400000)},custom:{},updated:'24/09/2026'},
+ {id:2,name:'Revisão assistida de Terraform',areas:['Cloud','DevOps'],status:'Em uso',owner:'Engenharia de cloud',description:'Apoia a revisão de mudanças de infraestrutura antes do deploy.',architecture:'Pull request → análise do plano Terraform → revisão com IA → comentário para validação humana.',model:'Modelo corporativo de código',links:[],metrics:{'2026-09':m(28,1200,240,2200000,'Estimado'),'2026-08':m(16,600,160,1300000,'Estimado')},custom:{},updated:'23/09/2026'},
+ {id:3,name:'Assistente de conhecimento Atlas',areas:['Atlas'],status:'Em desenvolvimento',owner:'Equipe Atlas',description:'Encontra orientações e referências nos documentos da plataforma.',architecture:'Pergunta → busca nos documentos autorizados → resposta com referências.',model:'A definir',links:[],metrics:{},custom:{},updated:'22/09/2026'},
+ {id:4,name:'Análise de capacidade cloud',areas:['Cloud'],status:'Em uso',owner:'Operações de cloud',description:'Identifica recursos ociosos e apoia recomendações de ajuste.',architecture:'Inventário e métricas → análise → recomendação com justificativa → aprovação do time.',model:'Modelo corporativo de linguagem',links:[],metrics:{'2026-09':m(16,3200,110,800000),'2026-08':m(12,2400,95,650000)},custom:{},updated:'24/09/2026'},
+ {id:5,name:'Diagnóstico assistido de conectividade',areas:['Redes','Cloud'],status:'Em avaliação',owner:'Engenharia de redes',description:'Relaciona eventos de rede para apoiar a investigação de falhas.',architecture:'Proposta em avaliação.',model:'A definir',links:[],metrics:{},custom:{},updated:'20/09/2026'},
+ {id:6,name:'Documentação de mudanças com IA',areas:['DevOps','Atlas'],status:'Ideia',owner:'A definir',description:'Gera uma primeira versão da documentação a partir das mudanças aprovadas.',architecture:'Ainda não definida.',model:'A definir',links:[],metrics:{},custom:{},updated:'19/09/2026'}
+];
+items.forEach((item,index)=>item.kind=['Agente','Skill','Assistente','Workflow com IA','Assistente agêntico',''][index]);
+const metricKeys=['hours','saving','cost','tokens'];
+const columns={kind:{label:'Tipo',show:true},status:{label:'Status',show:true},owner:{label:'Responsável',show:true},hours:{label:'Tempo poupado',show:true},saving:{label:'Redução de gasto',show:true},cost:{label:'Custo de operação',show:true},tokens:{label:'Tokens',show:false}};
+let view='list', selected=null, period='2026-09', query='', area='', status='', quality='Medido', presenting=false, confirmDelete=null;
+const measureDrafts=new Map();
+const draftKey=()=>`${selected}:${period}`;
+const month=()=>{const label=new Intl.DateTimeFormat('pt-BR',{month:'long',year:'numeric'}).format(new Date(`${period}-01T12:00:00`));return label.charAt(0).toUpperCase()+label.slice(1);};
+function readMeasureForm(form){const data=new FormData(form),record={evidence:String(data.get('evidence')||'').trim()};metricKeys.forEach(key=>{const raw=data.get(key);record[key]={value:raw===''?null:Number(raw),quality:data.get(key+'-quality')};});return record;}
+const icon=name=>`<i data-lucide="${name}" aria-hidden="true"></i>`;
+const note=text=>root.querySelector('#ia-feedback').textContent=text;
+const option=(v,current,label=v)=>`<option value="${esc(v)}" ${v===current?'selected':''}>${esc(label)}</option>`;
+const statusBadge=s=>`<span class="ia-badge ${s==='Em uso'?'ia-good':s==='Ideia'||s==='Em avaliação'?'ia-amber':''}">${esc(s)}</span>`;
+function filtered(){return items.filter(i=>(!query||(i.name+' '+i.description+' '+i.owner).toLocaleLowerCase('pt-BR').includes(query.toLocaleLowerCase('pt-BR')))&&(!area||i.areas.includes(area))&&(!status||i.status===status)&&(!kindFilter||(kindFilter==='__untyped__'?!i.kind:i.kind===kindFilter)));}
+function metricValue(i,k){return i.metrics[period]?.[k]??{value:null,quality:'Estimado'};}
+function metricLabel(k,v){return k==='hours'?`${fmt(v)} h`:k==='tokens'?fmt(v):money(v);}
+function qualifies(x){return x.value!==null&&Number.isFinite(x.value)&&(quality==='Todos'||x.quality===quality);}
+function totals(list,k){const values=list.map(i=>metricValue(i,k)).filter(qualifies);return {sum:values.reduce((s,x)=>s+x.value,0),count:values.length};}
+function selector(){return `<label class="ia-period">${view==='measure'?'Mês do registro':'Período'}<input id="ia-period" type="month" min="1900-01" max="9999-12" required value="${period}"></label>`;}
+function filters(){return `<div class="ia-tools"><label>Buscar iniciativas<input id="ia-query" value="${esc(query)}" placeholder="Nome, descrição ou responsável"></label><label>Área<select id="ia-area">${option('',area,'Todas as áreas')}${areas.map(a=>option(a.name,area,a.name+(a.active?'':' · arquivada'))).join('')}</select></label><label>Tipo<select id="ia-kind-filter">${option('',kindFilter,'Todos os tipos')}${option('__untyped__',kindFilter,'Sem tipo')}${kinds.map(k=>option(k.name,kindFilter,k.name+(k.active?'':' · arquivado'))).join('')}</select></label><label>Status<select id="ia-status">${option('',status,'Todos os status')}${statuses.map(s=>option(s,status)).join('')}</select></label></div>`;}
+function qualityControl(){return `<div class="ia-row ia-between"><label class="ia-row" style="flex-direction:row;align-items:center">Indicadores<select id="ia-quality" style="width:auto">${option('Medido',quality,'Somente medidos')}${option('Estimado',quality,'Somente estimados')}${option('Todos',quality,'Medidos + estimados')}</select></label><small>${quality==='Todos'?'Totais combinam medições e estimativas':'Valores não informados ficam fora dos totais'}</small></div>`;}
+function kpis(list){const h=totals(list,'hours'),s=totals(list,'saving'),c=totals(list,'cost');return `<div class="ia-kpis"><div class="ia-kpi"><small>Iniciativas em uso</small><strong>${list.filter(i=>i.status==='Em uso').length}<span style="font-size:14px;color:var(--ia-muted)"> / ${list.length}</span></strong><small>No recorte selecionado</small></div>${[[h,'Tempo poupado','hours'],[s,'Redução de gasto','saving'],[c,'Custo de operação','cost']].map(([t,label,k])=>`<div class="ia-kpi"><small>${label}</small><strong>${t.count?metricLabel(k,t.sum):'—'}</strong><small>${t.count} de ${list.length} iniciativas · ${quality==='Todos'?'combinado':quality.toLowerCase()}</small></div>`).join('')}</div>`;}
+function table(list,indicators=false){
+ const keys=Object.keys(columns).filter(k=>columns[k].show&&(indicators?metricKeys.includes(k):!metricKeys.includes(k)));
+ const custom=indicators?[]:extraFields.filter(f=>f.show);
+ return `<div class="ia-table-wrap"><table><thead><tr><th>Iniciativa / áreas</th>${keys.map(k=>`<th class="${metricKeys.includes(k)?'ia-num':''}">${columns[k].label}</th>`).join('')}${custom.map(f=>`<th>${esc(f.name)}</th>`).join('')}</tr></thead><tbody>${list.map(i=>`<tr><td><button class="ia-name" data-open="${i.id}">${esc(i.name)}</button><small class="ia-desc" ${design.descriptions&&!indicators?'':'hidden'}>${esc(i.description)}</small><div class="ia-areas">${i.areas.map(a=>`<span class="ia-badge">${esc(a)}</span>`).join('')}</div></td>${keys.map(k=>{if(k==='kind')return `<td>${i.kind?`<span class="ia-badge">${esc(i.kind)}</span>`:'<small>Sem tipo</small>'}</td>`;if(k==='owner')return `<td>${esc(i.owner||'Não informado')}</td>`;if(k==='status')return `<td>${statusBadge(i.status)}</td>`;const v=metricValue(i,k);return `<td class="ia-num">${qualifies(v)?`${metricLabel(k,v.value)}<small>${v.quality}</small>`:v.value===null?'<small>Não informado</small>':'<small>Fora do recorte</small>'}</td>`;}).join('')}${custom.map(f=>`<td>${esc(i.custom[f.id]||'—')}</td>`).join('')}</tr>`).join('')}</tbody></table>${list.length?'':'<div class="ia-empty">Nenhuma iniciativa encontrada para estes filtros.</div>'}</div>`;
+}
+const design={density:'Confortável',descriptions:true};
+function render(){
+root.style.setProperty('--ia-cell-pad',design.density==='Compacta'?'10px':'16px');
+root.querySelectorAll('[data-view]').forEach(b=>{b.setAttribute('aria-current',b.dataset.view===view?'page':'false');b.hidden=presenting&&b.dataset.view==='settings';});
+root.querySelector('#ia-present').innerHTML=icon(presenting?'pencil':'presentation')+(presenting?'Voltar à edição':'Apresentar');
+if(view==='list')renderList();else if(view==='results')renderResults();else if(view==='settings')renderSettings();else if(view==='detail')renderDetail();else if(view==='edit')renderEdit();else if(view==='measure')renderMeasure();
+if(view==='edit'){
+ const value=current()?.kind||'';
+ content.querySelector('#ia-edit-form > .ia-grid').insertAdjacentHTML('beforeend',`<label class="ia-full">Tipo · opcional<select name="initiative-kind">${option('',value,'Sem tipo')}${kinds.filter(k=>k.active||k.name===value).map(k=>option(k.name,value,k.name+(k.active?'':' · arquivado'))).join('')}</select><small>Os tipos podem ser cadastrados em Configurações.</small></label>`);
+}
+if(view==='detail'){const item=current();content.querySelector('.ia-heading .ia-row').insertAdjacentHTML('beforeend',`<span class="ia-badge">${esc(item.kind||'Sem tipo')}</span>`);}
+const periodLabel=content.querySelector('.ia-period');
+if(periodLabel){const actions=periodLabel.parentElement;if(actions.classList.contains('ia-row')){actions.classList.add('ia-period-actions');actions.classList.remove('ia-row');}}
+if(['list','results','settings'].includes(view)){const heading=content.querySelector('h1');if(heading)heading.insertAdjacentHTML('beforebegin','<p class="ia-eyebrow">INFRAESTRUTURA E PROJETOS</p>');}
+const saveInitiative=content.querySelector('#ia-edit-form button[type="submit"]');if(saveInitiative)saveInitiative.textContent='Salvar iniciativa';
+const saveMetrics=content.querySelector('#ia-measure-form button[type="submit"]');if(saveMetrics)saveMetrics.textContent='Salvar este mês';
+if(view==='settings'){
+ const grid=content.querySelector('.ia-grid'),columnPanel=grid.children[1];
+ columnPanel.classList.add('ia-full');
+ columnPanel.innerHTML=`<h3>Colunas das tabelas</h3><div class="ia-grid">${[['Iniciativas',false],['Indicadores',true]].map(([title,isMetric])=>`<fieldset><legend>${title}</legend><div class="ia-stack">${Object.entries(columns).filter(([key])=>metricKeys.includes(key)===isMetric).map(([key,c])=>`<label class="ia-check"><input type="checkbox" data-column="${key}" ${c.show?'checked':''}>${c.label}</label>`).join('')}</div></fieldset>`).join('')}</div><small style="display:block;margin-top:16px">Nome e áreas sempre visíveis. Ocultar uma coluna preserva os dados.</small>`;
+ grid.children[0].insertAdjacentHTML('afterend',`<section class="ia-panel"><h3>Tipos de iniciativa</h3>${kinds.map((k,index)=>{const used=items.some(i=>i.kind===k.name);return `<div class="ia-list-row"><span>${esc(k.name)} ${k.active?'':'<small>· arquivado</small>'}</span><button class="ia-quiet" data-kind-action="${index}">${!k.active?'Reativar':used?'Arquivar':'Remover'}</button></div>`;}).join('')}<form id="ia-kind-form" class="ia-row" style="margin-top:16px"><label style="flex:1">Novo tipo<input name="kind" required maxlength="50" placeholder="Ex.: Ferramenta de IA"></label><button type="submit" style="align-self:end">Adicionar</button></form><small style="display:block;margin-top:12px">Campo opcional. Tipos em uso são arquivados, preservando os cadastros existentes.</small></section>`);
+}
+if(view==='settings'){const storage=content.querySelector('.ia-grid > section:last-child');storage.innerHTML=`<div class="ia-row ia-between"><h3 style="margin:0">Salvamento pela página</h3><span class="ia-badge ia-amber">Fluxo proposto</span></div><div class="ia-row" style="margin-top:16px"><span class="ia-badge">Editar</span><span>→</span><span class="ia-badge">Salvar</span><span>→</span><span class="ia-badge ia-good">Arquivo atualizado</span></div><small style="display:block;margin-top:14px">Base: iniciativas.json · sem baixar e substituir manualmente · gravação real prevista para a implementação.</small>`;}
+globalThis.lucide?.createIcons({attrs:{width:16,height:16}});
+}
+function renderList(){const list=filtered();content.innerHTML=`<div class="ia-heading"><div><h1>Iniciativas de IA</h1><p class="ia-muted">Organize as iniciativas por área, tipo e estágio.</p></div>${presenting?'':`<button class="ia-primary" id="ia-new">${icon('plus')}Nova iniciativa</button>`}</div>${filters()}<section class="ia-panel" style="padding:0"><div class="ia-row ia-between" style="padding:17px 20px 7px"><h2>Iniciativas <span class="ia-badge">${list.length}</span></h2>${presenting?'':`<button class="ia-quiet" id="ia-columns">${icon('columns-3')}Colunas</button>`}</div>${table(list)}</section>`;}
+function renderResults(){
+ const list=filtered();
+ content.innerHTML=`<div class="ia-heading"><div><h1>Indicadores</h1><p class="ia-muted">Acompanhe tempo poupado, redução de gasto e custos por mês.</p></div>${selector()}</div>${filters()}${qualityControl()}${kpis(list)}
+ <section class="ia-panel" style="padding:0;margin-bottom:20px"><div class="ia-row ia-between" style="padding:17px 20px 12px"><h2>Indicadores por iniciativa</h2><small>${month()}</small></div>${table(list,true)}</section>
+ <div class="ia-result-grid"><section class="ia-panel"><h3>Estágio das iniciativas</h3>${statuses.map(s=>{const n=list.filter(i=>i.status===s).length;return `<div style="margin-top:14px"><div class="ia-row ia-between"><span>${s}</span><span>${n}</span></div><div class="ia-track"><span style="width:${list.length?n/list.length*100:0}%"></span></div></div>`}).join('')}</section>
+ <section class="ia-panel"><h3>Participação por área</h3>${areas.map(a=>{const n=list.filter(i=>i.areas.includes(a.name)).length;return n?`<div class="ia-list-row"><span>${esc(a.name)}</span><span>${n} iniciativas</span></div>`:''}).join('')}<small style="display:block;margin-top:16px">Uma iniciativa pode aparecer em mais de uma área. O total geral conta cada iniciativa uma vez.</small></section>
+ <section class="ia-panel"><h3>Preenchimento do mês</h3>${metricKeys.map(k=>{const values=list.map(i=>metricValue(i,k)).filter(x=>x.value!==null&&Number.isFinite(x.value));const measured=values.filter(x=>x.quality==='Medido').length;return `<div class="ia-list-row"><div><span>${columns[k].label}</span><small style="display:block">${measured} medidos · ${values.length-measured} estimados</small></div><span>${values.length} de ${list.length}</span></div>`}).join('')}<small style="display:block;margin-top:16px">Iniciativas que informaram cada valor neste mês, incluindo zero e estimativas. Respeita os filtros de área, tipo, status e busca; independe do filtro de qualidade.</small></section></div>`;
+}
+function current(){return items.find(i=>i.id===selected);}
+function back(label='Voltar ao portfólio'){return `<button class="ia-quiet" id="ia-back" style="margin-bottom:16px;padding-left:0">${icon('arrow-left')}${label}</button>`;}
+function renderDetail(){const i=current();if(!i){view='list';render();return;}const record=i.metrics[period];content.innerHTML=`${back()}<div class="ia-heading"><div><div class="ia-row" style="margin-bottom:10px">${statusBadge(i.status)}${i.areas.map(a=>`<span class="ia-badge">${esc(a)}</span>`).join('')}</div><h1>${esc(i.name)}</h1><p class="ia-muted">${esc(i.owner||'Responsável não informado')} · atualizado em ${esc(i.updated)}</p></div>${presenting?'':`<button id="ia-edit">${icon('pencil')}Editar iniciativa</button>`}</div><div class="ia-grid"><section class="ia-panel"><h3>Problema e solução</h3><p class="ia-copy">${esc(i.description)}</p><hr class="ia-rule"><h3>Arquitetura</h3><p class="ia-copy">${esc(i.architecture||'Ainda não informada')}</p><small style="display:block;margin-top:16px">Modelo / provedor: ${esc(i.model||'Não informado')}</small></section><section class="ia-panel"><h3>Documentação e recursos</h3>${i.links.length?i.links.map(l=>`<div class="ia-list-row"><div><small>${esc(l.type)}</small><div><a class="ia-link" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.title||l.type)} ↗</a></div></div></div>`).join(''):'<p class="ia-muted">Nenhum link cadastrado.</p>'}${i.links.length?'<small style="display:block;margin-top:14px">Links fictícios para example.com.</small>':''}</section><section class="ia-panel ia-full"><div class="ia-row ia-between"><h2>Registro mensal</h2><div class="ia-row">${selector()}${presenting?'':`<button class="ia-primary" id="ia-measure">${icon('plus')}${record?'Editar registro':'Registrar indicadores'}</button>`}</div></div><div class="ia-kpis">${['hours','saving','cost','tokens'].map(k=>{const x=metricValue(i,k);return `<div class="ia-kpi" style="background:var(--ia-bg)"><small>${columns[k].label}${k==='cost'?' · IA + infra':''}</small><strong>${x.value===null?'—':metricLabel(k,x.value)}</strong><span class="ia-badge ${x.value===null?'':x.quality==='Medido'?'ia-good':'ia-amber'}">${x.value===null?'Não informado':x.quality}</span></div>`}).join('')}</div><h3>Evidência / premissas</h3><p class="ia-copy ia-muted">${esc(record?.evidence||'Ainda não há registro para este mês.')}</p></section>${extraFields.length?`<section class="ia-panel ia-full"><h3>Informações adicionais</h3>${extraFields.map(f=>`<div class="ia-list-row"><span>${esc(f.name)}</span><span>${esc(i.custom[f.id]||'Não informado')}</span></div>`).join('')}</section>`:''}</div>`;}
+function renderEdit(){const i=current()||{name:'',areas:[],status:'Ideia',owner:'',description:'',architecture:'',model:'',links:[],custom:{}};content.innerHTML=`${back()}<div class="ia-heading"><div><h1>${selected?'Editar iniciativa':'Nova iniciativa'}</h1><p class="ia-muted">Comece pelo essencial. Os indicadores podem ser registrados depois.</p></div></div><form id="ia-edit-form" class="ia-panel ia-stack"><div class="ia-grid"><label class="ia-full">Nome *<input name="name" required maxlength="120" value="${esc(i.name)}" placeholder="Ex.: Assistente de diagnóstico de redes"></label><label class="ia-full">Descrição *<textarea name="description" required placeholder="Qual problema resolve e como a IA ajuda?">${esc(i.description)}</textarea></label><fieldset class="ia-full"><legend>Áreas envolvidas *</legend><div class="ia-row">${areas.filter(a=>a.active||i.areas.includes(a.name)).map(a=>`<label class="ia-check"><input type="checkbox" name="areas" value="${esc(a.name)}" ${i.areas.includes(a.name)?'checked':''}>${esc(a.name)}${a.active?'':' (arquivada)'}</label>`).join('')}</div></fieldset><label>Status<select name="status">${statuses.map(s=>option(s,i.status)).join('')}</select></label><label>Responsável<input name="owner" value="${esc(i.owner)}" placeholder="Pessoa ou equipe"></label></div><details><summary>Arquitetura e modelo</summary><div class="ia-grid"><label class="ia-full">Arquitetura<textarea name="architecture" placeholder="Componentes e fluxo principal">${esc(i.architecture)}</textarea></label><label class="ia-full">Modelo / provedor<input name="model" value="${esc(i.model)}" placeholder="Pode ser preenchido depois"></label></div></details><details ${i.links.length?'open':''}><summary>Documentação e links</summary><div id="ia-link-fields" class="ia-stack">${i.links.map(linkFields).join('')}</div><button type="button" id="ia-add-link" style="margin-top:12px">${icon('plus')}Adicionar link</button></details>${extraFields.length?`<details open><summary>Campos personalizados</summary><div class="ia-grid">${extraFields.map(f=>`<label>${esc(f.name)}<input name="custom-${f.id}" type="${f.type}" ${f.type==='number'?'step="any"':''} value="${esc(i.custom[f.id]||'')}"></label>`).join('')}</div></details>`:''}<p id="ia-form-error" class="ia-error" role="alert"></p><div class="ia-row"><button class="ia-primary" type="submit">Salvar no protótipo</button><button type="button" id="ia-cancel">Cancelar</button></div></form>`;}
+function linkFields(l={type:'Confluence',title:'',url:''}){return `<div class="ia-link-fields ia-grid"><label>Tipo<select name="link-type">${['Confluence','Arquitetura','Painel','Repositório do projeto','Repositório IaC','Outro'].map(t=>option(t,l.type)).join('')}</select></label><label>Título<input name="link-title" value="${esc(l.title)}" placeholder="Nome do recurso"></label><label>Endereço<input type="url" name="link-url" required value="${esc(l.url)}" placeholder="https://..."></label><div class="ia-row"><button type="button" data-remove-link>Remover link</button></div></div>`;}
+function renderMeasure(){
+ const i=current(),saved=i.metrics[period],draft=measureDrafts.get(draftKey()),record=draft||saved;
+ content.innerHTML=`${back('Voltar à iniciativa')}<div class="ia-heading"><div><h1>Registrar indicadores</h1><p class="ia-muted">${esc(i.name)}</p></div></div>
+ <form id="ia-measure-form" class="ia-panel ia-stack">
+ <div class="ia-row ia-between" style="align-items:flex-end">${selector()}<span class="ia-badge ${saved?'ia-good':'ia-amber'}">${draft?'Rascunho deste mês':saved?'Registro existente':'Novo registro'}</span></div>
+ <small>${month()} · ${saved?'Ao salvar, os valores deste mês serão atualizados.':'Ainda não há indicadores salvos para este mês.'}</small>
+ <div class="ia-grid">${[['hours','Tempo poupado (horas/mês)'],['saving','Redução de gasto (R$/mês)'],['cost','Custo de operação: IA + infra (R$/mês)'],['tokens','Tokens consumidos no mês']].map(([k,label])=>{const x=record?.[k]||{value:null,quality:'Estimado'};return `<div class="ia-metric"><label>${label}<input type="number" min="0" ${k==='tokens'?'step="1"':'step="0.1"'} name="${k}" value="${x.value??''}" placeholder="Não informado"></label><label>Qualidade<select name="${k}-quality">${option('Estimado',x.quality)}${option('Medido',x.quality)}</select></label></div>`;}).join('')}
+ <label class="ia-full">Evidências e premissas<textarea name="evidence" placeholder="Ex.: 100 execuções × 25 minutos poupados; custo informado na fatura.">${esc(record?.evidence||'')}</textarea></label></div>
+ <small>Em branco = não informado. Zero = valor conhecido igual a zero. Horas poupadas não são convertidas automaticamente em dinheiro.</small>
+ <small>Ao trocar de mês, o rascunho fica preservado nesta demonstração. Salve cada mês separadamente.</small>
+ <div class="ia-row"><button type="submit" class="ia-primary">Salvar este mês</button><button type="button" id="ia-cancel-measure">Cancelar</button></div></form>`;
+}
+function renderSettings(){content.innerHTML=`<div class="ia-heading"><div><h1>Configurações</h1><p class="ia-muted">Adapte o catálogo à organização da sua área.</p></div></div><div class="ia-grid"><section class="ia-panel"><h3>Áreas</h3>${areas.map((a,idx)=>{const used=items.some(i=>i.areas.includes(a.name));return `<div class="ia-list-row"><span>${esc(a.name)} ${a.active?'':'<small>· arquivada</small>'}</span><button class="ia-quiet" data-area-action="${idx}">${!a.active?'Reativar':used?'Arquivar':'Remover'}</button></div>`}).join('')}<form id="ia-area-form" class="ia-row" style="margin-top:16px"><label style="flex:1">Nova área<input name="area" required maxlength="50" placeholder="Ex.: Segurança"></label><button type="submit" style="align-self:end">Adicionar</button></form><small style="display:block;margin-top:12px">Áreas em uso são arquivadas e continuam nos registros existentes.</small></section><section class="ia-panel"><h3>Colunas da tabela</h3><div class="ia-stack">${Object.entries(columns).map(([k,c])=>`<label class="ia-check"><input type="checkbox" data-column="${k}" ${c.show?'checked':''}>${c.label}</label>`).join('')}</div><small style="display:block;margin-top:16px">Nome e áreas sempre visíveis. Ocultar uma coluna preserva os dados.</small></section><section class="ia-panel ia-full"><h3>Campos personalizados</h3>${extraFields.length?extraFields.map(f=>`<div class="ia-list-row"><label class="ia-check"><input type="checkbox" data-custom-show="${f.id}" ${f.show?'checked':''}>${esc(f.name)} <small>${esc({text:'Texto',number:'Número',url:'Link',date:'Data'}[f.type])}</small></label><div class="ia-row">${confirmDelete===f.id?`<small>Excluir os valores deste campo?</small><button data-delete-field="${f.id}">Confirmar exclusão</button><button id="ia-cancel-delete">Cancelar</button>`:`<button class="ia-quiet" data-confirm-field="${f.id}">Excluir campo</button>`}</div></div>`).join(''):'<p class="ia-muted">Nenhum campo adicional.</p>'}<form id="ia-field-form" class="ia-tools" style="margin:18px 0 0"><label>Nome do campo<input name="field" required maxlength="60" placeholder="Ex.: Patrocinador"></label><label>Tipo<select name="type"><option value="text">Texto</option><option value="number">Número</option><option value="url">Link</option><option value="date">Data</option></select></label><button type="submit">Adicionar campo</button></form></section><section class="ia-panel ia-full"><div class="ia-row ia-between"><h3 style="margin:0">Arquivo de dados</h3><span class="ia-badge ia-amber">Fluxo proposto</span></div><div class="ia-row" style="margin-top:16px"><span class="ia-badge">Abrir arquivo</span><span>→</span><span class="ia-badge">Editar iniciativas</span><span>→</span><span class="ia-badge">Baixar arquivo atualizado</span></div><small style="display:block;margin-top:14px">Base proposta: iniciativas.json · atualização por um editor de cada vez · publicação manual da versão para consulta.</small></section></div>`;}
+function go(v){view=v;render();}
+root.addEventListener('click',e=>{
+const b=e.target.closest('button');if(!b)return;
+if(b.id==='ia-theme'){const dark=root.dataset.previewTheme?root.dataset.previewTheme==='dark':getComputedStyle(root).colorScheme==='dark';const next=dark?'light':'dark';root.dataset.previewTheme=next;root.style.colorScheme=next;b.innerHTML=icon(next==='dark'?'moon':'sun')+(next==='dark'?'Tema escuro':'Tema claro');globalThis.lucide?.createIcons({attrs:{width:16,height:16}});return;}
+if(b.dataset.view){go(b.dataset.view);return;}
+if(b.dataset.open){selected=Number(b.dataset.open);go('detail');return;}
+if(b.id==='ia-present'){presenting=!presenting;if(['settings','edit','measure'].includes(view))view='list';render();note(presenting?'Modo de apresentação · consulta sem edição':'Modo de edição · alterações somente na demonstração');return;}
+if(b.id==='ia-new'){selected=null;go('edit');}
+if(b.id==='ia-columns')go('settings');
+if(b.id==='ia-back')go(view==='measure'?'detail':'list');
+if(b.id==='ia-edit')go('edit');
+if(b.id==='ia-measure')go('measure');
+if(b.id==='ia-cancel')go(selected?'detail':'list');
+if(b.id==='ia-cancel-measure'){measureDrafts.delete(draftKey());go('detail');}
+if(b.id==='ia-add-link'){root.querySelector('#ia-link-fields').insertAdjacentHTML('beforeend',linkFields());}
+if(b.hasAttribute('data-remove-link'))b.closest('.ia-link-fields').remove();
+if(b.hasAttribute('data-area-action')){const idx=Number(b.dataset.areaAction),a=areas[idx];if(!a.active)a.active=true;else if(items.some(i=>i.areas.includes(a.name)))a.active=false;else{areas.splice(idx,1);if(area===a.name)area='';}render();note('Áreas atualizadas na demonstração.');}
+if(b.hasAttribute('data-kind-action')){const idx=Number(b.dataset.kindAction),kind=kinds[idx];if(!kind.active)kind.active=true;else if(items.some(i=>i.kind===kind.name))kind.active=false;else{kinds.splice(idx,1);if(kindFilter===kind.name)kindFilter='';}render();note('Tipos atualizados na demonstração.');}
+if(b.dataset.confirmField){confirmDelete=b.dataset.confirmField;render();}
+if(b.id==='ia-cancel-delete'){confirmDelete=null;render();}
+if(b.dataset.deleteField){const id=b.dataset.deleteField;extraFields=extraFields.filter(f=>f.id!==id);items.forEach(i=>delete i.custom[id]);confirmDelete=null;render();note('Campo e valores removidos da demonstração.');}
+});
+root.addEventListener('change',e=>{
+const t=e.target;
+if(t.id==='ia-period'){
+ const next=t.value;
+ if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(next)||!t.checkValidity()){t.value=period;note('Escolha um mês e ano válidos.');return;}
+ if(next===period)return;
+ const form=root.querySelector('#ia-measure-form');
+ if(form){if(!form.reportValidity()){t.value=period;return;}measureDrafts.set(draftKey(),readMeasureForm(form));}
+ period=next;render();
+ if(view==='measure')note(`Período do registro: ${month()}. Salvar atualiza apenas este mês.`);
+}
+if(t.id==='ia-area'){area=t.value;render();}
+if(t.id==='ia-kind-filter'){kindFilter=t.value;render();}
+if(t.id==='ia-status'){status=t.value;render();}
+if(t.id==='ia-quality'){quality=t.value;render();}
+if(t.dataset.column){columns[t.dataset.column].show=t.checked;note('Colunas atualizadas.');}
+if(t.dataset.customShow){extraFields.find(f=>f.id===t.dataset.customShow).show=t.checked;note('Colunas atualizadas.');}
+});
+root.addEventListener('input',e=>{if(e.target.id==='ia-query'){const start=e.target.selectionStart,end=e.target.selectionEnd;query=e.target.value;render();const input=root.querySelector('#ia-query');input.focus();input.setSelectionRange(start,end);}});
+root.addEventListener('submit',e=>{
+e.preventDefault();const form=e.target,f=new FormData(form);
+if(form.id==='ia-area-form'){const name=f.get('area').trim();if(!name)return;if(areas.some(a=>a.name.toLowerCase()===name.toLowerCase())){note('Essa área já está cadastrada.');return;}areas.push({name,active:true});render();note('Área adicionada à demonstração.');}
+if(form.id==='ia-kind-form'){const name=f.get('kind').trim();if(!name)return;if(kinds.some(k=>k.name.toLocaleLowerCase('pt-BR')===name.toLocaleLowerCase('pt-BR'))){note('Esse tipo já está cadastrado.');return;}kinds.push({name,active:true});render();note('Tipo adicionado à demonstração.');}
+if(form.id==='ia-field-form'){const name=f.get('field').trim();if(!name)return;if(extraFields.some(x=>x.name.toLowerCase()===name.toLowerCase())){note('Esse campo já existe.');return;}extraFields.push({id:'f'+Date.now(),name,type:f.get('type'),show:true});render();note('Campo disponível nos cadastros e na tabela.');}
+if(form.id==='ia-edit-form'){
+ const selectedAreas=f.getAll('areas'),name=f.get('name').trim(),description=f.get('description').trim();
+ if(!selectedAreas.length||!name||!description){root.querySelector('#ia-form-error').textContent='Preencha nome, descrição e pelo menos uma área.';return;}
+ const links=[...form.querySelectorAll('.ia-link-fields')].map(row=>({type:row.querySelector('[name="link-type"]').value,title:row.querySelector('[name="link-title"]').value.trim(),url:row.querySelector('[name="link-url"]').value.trim()}));
+ if(links.some(l=>!/^https?:\/\//i.test(l.url))){root.querySelector('#ia-form-error').textContent='Use links iniciados por http:// ou https://.';return;}
+ let i=current();if(!i){i={id:Date.now(),metrics:{},custom:{}};items.push(i);selected=i.id;}
+ Object.assign(i,{name,description,areas:selectedAreas,kind:String(f.get('initiative-kind')||''),status:f.get('status'),owner:f.get('owner').trim(),architecture:f.get('architecture').trim(),model:f.get('model').trim(),links,updated:'24/09/2026'});
+ extraFields.forEach(x=>i.custom[x.id]=String(f.get('custom-'+x.id)||''));go('detail');note('Iniciativa salva somente nesta demonstração.');
+}
+if(form.id==='ia-measure-form'){current().metrics[period]=readMeasureForm(form);measureDrafts.delete(draftKey());current().updated='24/09/2026';go('detail');note(`Registro de ${month()} atualizado somente nesta demonstração.`);}
+});
+render();
+if(globalThis.Tweak){const tweaks=new Tweak({container:root,onChange:render});tweaks.addSelect(design,'density',{label:'Espaçamento da tabela',options:['Confortável','Compacta']});tweaks.addToggle(design,'descriptions',{label:'Descrições na tabela'});}
+})();
+</script>

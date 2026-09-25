@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 5,
-  "updatedAt": "2026-09-22T03:18:17.328Z",
+  "revision": 7,
+  "updatedAt": "2026-09-25T00:55:03.441Z",
   "items": [
     {
       "id": "ATL-001",
@@ -871,6 +871,115 @@
             "status": {
               "from": null,
               "to": "backlog"
+            }
+          },
+          "commitEvidence": null
+        }
+      ],
+      "commitEvidence": null
+    },
+    {
+      "id": "ATL-022",
+      "title": "Painel de iniciativas de IA em Infraestrutura e Projetos",
+      "module": "cross",
+      "description": "Protótipo solicitado para organizar iniciativas e apresentar resultados à liderança. Fonte e cópia navegável em docs/prototypes/iniciativas-ia/. Usuário solicitou versionar o protótipo; implementação e persistência real ainda não autorizadas.",
+      "plan": "Refinar o protótipo com o usuário antes de implementar. Manter design system Atlas; cadastro de iniciativas com várias áreas, tipo opcional e catálogo editável de áreas/tipos; links e arquitetura; menu Indicadores com seleção livre de mês/ano e medições manuais. Usar JSON como base, com salvamento pela página por serviço de gravação a definir. Detalhes e limites no README do protótipo.",
+      "acceptance": "Para implementação futura: cadastro e filtros por área/tipo/status; tipos opcionais editáveis; indicadores mensais de tempo, redução de gasto, custo e tokens, cada um com qualidade estimada/medida; zero distinto de não informado; escolha do mês no registro; modo de apresentação; gravação real no JSON com proteção contra sobrescrita concorrente. Protótipo atual usa somente memória.",
+      "hypothesis": "",
+      "hypothesisRequired": false,
+      "hypothesisResult": "pending",
+      "implementation": "",
+      "verification": "Fonte preservada byte a byte em docs/prototypes/iniciativas-ia/source.html; exportação navegável gerada em index.html; JavaScript analisado com node:vm sem erros de sintaxe. Verificações de empacotamento, sem validação funcional de um módulo ou persistência real.",
+      "validationResult": "pending",
+      "commit": "",
+      "owner": "Codex",
+      "deferred": false,
+      "status": "refine",
+      "createdAt": "2026-09-25T00:54:06.244Z",
+      "updatedAt": "2026-09-25T00:55:03.441Z",
+      "history": [
+        {
+          "at": "2026-09-25T00:54:06.244Z",
+          "actor": "Codex",
+          "from": null,
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": null,
+              "to": "Painel de iniciativas de IA em Infraestrutura e Projetos"
+            },
+            "module": {
+              "from": null,
+              "to": "cross"
+            },
+            "description": {
+              "from": null,
+              "to": "Protótipo solicitado para organizar iniciativas e apresentar resultados à liderança. Fonte e cópia navegável em docs/prototypes/iniciativas-ia/. Usuário solicitou versionar o protótipo; implementação e persistência real ainda não autorizadas."
+            },
+            "plan": {
+              "from": null,
+              "to": "Refinar o protótipo com o usuário antes de implementar. Manter design system Atlas; cadastro de iniciativas com várias áreas, tipo opcional e catálogo editável de áreas/tipos; links e arquitetura; menu Indicadores com seleção livre de mês/ano e medições manuais. Usar JSON como base, com salvamento pela página por serviço de gravação a definir. Detalhes e limites no README do protótipo."
+            },
+            "acceptance": {
+              "from": null,
+              "to": "Para implementação futura: cadastro e filtros por área/tipo/status; tipos opcionais editáveis; indicadores mensais de tempo, redução de gasto, custo e tokens, cada um com qualidade estimada/medida; zero distinto de não informado; escolha do mês no registro; modo de apresentação; gravação real no JSON com proteção contra sobrescrita concorrente. Protótipo atual usa somente memória."
+            },
+            "hypothesis": {
+              "from": null,
+              "to": ""
+            },
+            "hypothesisRequired": {
+              "from": null,
+              "to": false
+            },
+            "hypothesisResult": {
+              "from": null,
+              "to": "pending"
+            },
+            "implementation": {
+              "from": null,
+              "to": ""
+            },
+            "verification": {
+              "from": null,
+              "to": ""
+            },
+            "validationResult": {
+              "from": null,
+              "to": "pending"
+            },
+            "commit": {
+              "from": null,
+              "to": ""
+            },
+            "owner": {
+              "from": null,
+              "to": "Codex"
+            },
+            "deferred": {
+              "from": null,
+              "to": false
+            },
+            "status": {
+              "from": null,
+              "to": "backlog"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-25T00:55:03.441Z",
+          "actor": "Codex",
+          "from": "backlog",
+          "to": "refine",
+          "changes": {
+            "verification": {
+              "from": "",
+              "to": "Fonte preservada byte a byte em docs/prototypes/iniciativas-ia/source.html; exportação navegável gerada em index.html; JavaScript analisado com node:vm sem erros de sintaxe. Verificações de empacotamento, sem validação funcional de um módulo ou persistência real."
+            },
+            "status": {
+              "from": "backlog",
+              "to": "refine"
             }
           },
           "commitEvidence": null

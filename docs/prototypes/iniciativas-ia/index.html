@@ -1,0 +1,1679 @@
+<!doctype html>
+<html lang="en" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Atlas · Protótipo de iniciativas de IA</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Atlas · Protótipo de iniciativas de IA" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Atlas · Protótipo de iniciativas de IA&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 10px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn,
+.nav-link {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover,
+.nav-link:not(:disabled):not([aria-disabled=&quot;true&quot;]):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled=&quot;true&quot;] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;style&gt;
+#infra-ia { --ia-bg:light-dark(#f3f5f9,#101217); --ia-paper:light-dark(#ffffff,#181b22); --ia-ink:light-dark(#202735,#e7eaf0); --ia-muted:light-dark(#566276,#9da6b7); --ia-line:light-dark(#d7dee8,#2c313d); --ia-soft:light-dark(#edf1f6,#20242d); --ia-accent:light-dark(#6047c5,#a29bff); --ia-accent-bg:light-dark(#f0ecfc,#292640); --ia-primary:light-dark(#6750cf,#8275ee); --ia-green:light-dark(#18724f,#70d8b3); --ia-green-bg:light-dark(#e7f4ed,#1e352e); --ia-input-line:light-dark(#a6b2c5,#2c313d); --ia-warn:light-dark(#865b12,#edc17a); --ia-warn-bg:light-dark(#fff3d9,#392e20); color:var(--ia-ink); background:var(--ia-bg); font:14px/1.5 Inter,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif; display:grid; grid-template-columns:200px minmax(0,1fr); }
+#infra-ia * { box-sizing:border-box; }
+#infra-ia [hidden] { display:none !important; }
+#infra-ia button,#infra-ia input,#infra-ia select,#infra-ia textarea { font:inherit; color:inherit; }
+#infra-ia button { cursor:pointer; border:1px solid var(--ia-line); border-radius:7px; background:var(--ia-paper); padding:10px 14px; font-size:12px; font-weight:500; display:inline-flex; gap:8px; align-items:center; justify-content:center; }
+#infra-ia button:active { transform:scale(.98); }
+#infra-ia button:disabled { cursor:default; opacity:.55; }
+#infra-ia .ia-primary { color:#fff; background:var(--ia-primary); border-color:var(--ia-primary); }
+#infra-ia .ia-quiet { border-color:transparent; background:transparent; }
+#infra-ia .ia-top { display:flex; justify-content:space-between; gap:12px; align-items:center; min-height:76px; padding:16px 24px; background:var(--ia-paper); border-bottom:1px solid var(--ia-line); flex-wrap:wrap; }
+#infra-ia .ia-brand { display:flex; align-items:center; gap:10px; }
+#infra-ia .ia-mark { display:grid; place-items:center; width:34px; height:34px; background:var(--ia-primary); color:#fff; border-radius:9px; flex-shrink:0; }
+#infra-ia .ia-brand strong { font-weight:500; display:block; }
+#infra-ia small { font-size:12px; color:var(--ia-muted); }
+#infra-ia .ia-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+#infra-ia .ia-between { justify-content:space-between; }
+#infra-ia .ia-badge { display:inline-flex; align-items:center; padding:4px 7px; font-size:11px; font-weight:400; border-radius:4px; background:var(--ia-soft); color:var(--ia-muted); white-space:nowrap; }
+#infra-ia .ia-good { color:var(--ia-green); background:var(--ia-green-bg); }
+#infra-ia .ia-amber { color:var(--ia-warn); background:var(--ia-warn-bg); }
+#infra-ia nav { display:flex; gap:20px; padding:0 26px; background:var(--ia-paper); border-bottom:1px solid var(--ia-line); flex-wrap:wrap; }
+#infra-ia nav button { padding:13px 0; border:0; border-radius:0; background:transparent; color:var(--ia-muted); border-bottom:2px solid transparent; }
+#infra-ia nav button[aria-current=&quot;page&quot;] { color:var(--ia-accent); border-bottom-color:var(--ia-accent); }
+#infra-ia main { padding:28px 24px; }
+#infra-ia h1 { font-size:32px; line-height:1.2; font-weight:500; letter-spacing:-1.15px; margin:8px 0 10px; }
+#infra-ia h2 { font-size:16px; font-weight:500; margin:0; }
+#infra-ia h3 { font-size:14px; font-weight:500; margin:0 0 12px; }
+#infra-ia p { margin:0; }
+#infra-ia .ia-muted { color:var(--ia-muted); }
+#infra-ia .ia-heading { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+#infra-ia label { display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--ia-muted); min-width:0; }
+#infra-ia input:not([type=&quot;checkbox&quot;]),#infra-ia select,#infra-ia textarea { width:100%; min-width:0; padding:10px 12px; border:1px solid var(--ia-input-line); background:var(--ia-paper); border-radius:7px; font-size:12px; }
+#infra-ia input[type=&quot;checkbox&quot;] { accent-color:var(--ia-accent); width:16px; height:16px; }
+#infra-ia textarea { resize:vertical; min-height:86px; }
+#infra-ia .ia-period { min-width:165px; }
+#infra-ia .ia-kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:17px 0 20px; }
+#infra-ia .ia-kpi { background:var(--ia-paper); border:1px solid var(--ia-line); border-radius:10px; padding:16px; min-width:0; }
+#infra-ia .ia-kpi strong { display:block; font-size:27px; line-height:1.35; letter-spacing:-.8px; font-weight:500; margin:8px 0 3px; font-variant-numeric:tabular-nums; }
+#infra-ia .ia-panel { border:1px solid var(--ia-line); background:var(--ia-paper); border-radius:11px; padding:20px; min-width:0; }
+#infra-ia .ia-tools { display:flex; gap:10px; flex-wrap:wrap; align-items:end; margin-bottom:16px; }
+#infra-ia .ia-tools label { flex:1; min-width:140px; }
+#infra-ia .ia-tools label:first-child { flex:2; }
+#infra-ia .ia-table-wrap { overflow-x:auto; }
+#infra-ia table { width:100%; border-collapse:collapse; font-size:13px; }
+#infra-ia th { text-align:left; font-size:11px; font-weight:500; letter-spacing:.3px; color:var(--ia-muted); padding:13px 12px; border-bottom:1px solid var(--ia-line); background:light-dark(#eef2f7,#20242d); white-space:nowrap; }
+#infra-ia td { padding:var(--ia-cell-pad,16px) 12px; border-bottom:1px solid var(--ia-line); vertical-align:middle; }
+#infra-ia tbody tr:last-child td { border-bottom:0; }
+#infra-ia .ia-name { display:block; border:0; padding:0; background:transparent; text-align:left; font-weight:500; color:var(--ia-ink); }
+#infra-ia .ia-desc { display:block; max-width:280px; margin-top:4px; }
+#infra-ia .ia-num { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+#infra-ia .ia-num small { display:block; }
+#infra-ia .ia-areas { display:flex; flex-wrap:wrap; gap:4px; margin-top:7px; }
+#infra-ia .ia-footer { border-top:1px solid var(--ia-line); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:14px 26px; color:var(--ia-muted); font-size:12px; background:var(--ia-paper); }
+#infra-ia .ia-stack { display:grid; gap:16px; }
+#infra-ia .ia-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+#infra-ia .ia-full { grid-column:1/-1; }
+#infra-ia .ia-check { flex-direction:row; align-items:center; color:var(--ia-ink); font-size:14px; }
+#infra-ia fieldset { border:0; padding:0; margin:0; min-width:0; }
+#infra-ia legend { color:var(--ia-muted); font-size:12px; margin-bottom:8px; }
+#infra-ia .ia-rule { border:0; border-top:1px solid var(--ia-line); margin:20px 0; }
+#infra-ia details summary { cursor:pointer; font-weight:500; padding:8px 0; }
+#infra-ia details[open] summary { margin-bottom:10px; }
+#infra-ia .ia-metric { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(110px,.75fr); gap:12px; align-items:end; }
+#infra-ia .ia-list-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:11px 0; border-bottom:1px solid var(--ia-line); }
+#infra-ia .ia-list-row:last-child { border:0; }
+#infra-ia .ia-copy { white-space:pre-wrap; overflow-wrap:anywhere; }
+#infra-ia .ia-link { color:var(--ia-accent); overflow-wrap:anywhere; }
+#infra-ia .ia-result-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+#infra-ia .ia-track { height:7px; background:var(--ia-soft); border-radius:5px; margin-top:7px; }
+#infra-ia .ia-track span { display:block; height:7px; border-radius:5px; background:var(--ia-accent); }
+#infra-ia .ia-empty { padding:32px 16px; text-align:center; color:var(--ia-muted); }
+#infra-ia .ia-notice { color:var(--ia-accent); font-size:12px; }
+#infra-ia .ia-error { color:light-dark(#a23030,#ffb4ab); }
+@media(hover:hover) and (pointer:fine) { #infra-ia button:hover { background:var(--ia-soft); } #infra-ia .ia-primary:hover { background:light-dark(#563fba,#8275ee); } #infra-ia .ia-name:hover { color:var(--ia-accent); background:transparent; } }
+@media(max-width:740px) { #infra-ia .ia-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } #infra-ia main { padding:18px; } #infra-ia .ia-result-grid { grid-template-columns:1fr; } }
+@media(max-width:480px) { #infra-ia .ia-grid { grid-template-columns:1fr; } #infra-ia .ia-top,#infra-ia .ia-footer { padding:14px; } #infra-ia nav { padding:0 14px; gap:16px; } #infra-ia main { padding:14px; } #infra-ia h1 { font-size:23px; } #infra-ia .ia-kpi { padding:12px; } #infra-ia .ia-kpi strong { font-size:23px; } #infra-ia .ia-panel { padding:14px; } #infra-ia .ia-metric { grid-template-columns:1fr; } }
+@media(pointer:coarse) { #infra-ia button,#infra-ia select,#infra-ia input:not([type=&quot;checkbox&quot;]) { min-height:44px; } #infra-ia input,#infra-ia select,#infra-ia textarea { font-size:16px !important; } }
+#infra-ia .ia-workspace { min-width:0; }
+#infra-ia .ia-sidebar { background:var(--ia-paper); border-right:1px solid var(--ia-line); padding:28px 14px; display:flex; flex-direction:column; gap:22px; }
+#infra-ia .ia-sidebar .ia-brand { font-size:23px; font-weight:500; letter-spacing:-.7px; padding:0 8px; }
+#infra-ia .ia-sidebar .ia-brand small { font-size:11px; letter-spacing:0; }
+#infra-ia .ia-workspace-label { display:flex; gap:10px; align-items:center; padding:13px 9px; margin:0 3px; border:1px solid var(--ia-line); border-radius:8px; font-size:12px; }
+#infra-ia .ia-workspace-label strong { display:block; font-weight:500; }
+#infra-ia .ia-workspace-label small { font-size:11px; }
+#infra-ia .ia-nav-label { font-size:11px; letter-spacing:1.4px; color:var(--ia-muted); padding:0 8px; margin-bottom:10px; }
+#infra-ia .ia-module { display:flex; align-items:center; gap:9px; border-radius:8px; padding:11px 10px; color:var(--ia-muted); font-size:12px; }
+#infra-ia .ia-module.active { background:var(--ia-accent-bg); color:var(--ia-accent); border:1px solid color-mix(in srgb,var(--ia-accent) 22%,var(--ia-line)); }
+#infra-ia .ia-sidebar nav { padding:0; border:0; gap:4px; flex-direction:column; }
+#infra-ia .ia-sidebar nav button { width:100%; padding:11px 12px; border:0; border-radius:7px; justify-content:flex-start; text-align:left; }
+#infra-ia .ia-sidebar nav button[aria-current=&quot;page&quot;] { background:var(--ia-accent-bg); color:var(--ia-accent); }
+#infra-ia .ia-sidebar-bottom { margin-top:auto; border-top:1px solid var(--ia-line); padding:20px 8px 0; font-size:11px; color:var(--ia-muted); }
+#infra-ia .ia-crumb { color:var(--ia-muted); font-size:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+#infra-ia .ia-crumb strong { font-weight:500; color:var(--ia-ink); }
+#infra-ia .ia-eyebrow { font-size:11px; letter-spacing:1.6px; color:var(--ia-accent); margin-bottom:6px; }
+#infra-ia .ia-period-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end; }
+#infra-ia .ia-period-actions .ia-period { flex:1 1 175px; min-width:0; }
+#infra-ia .ia-period-actions .ia-period input,#infra-ia .ia-period-actions&gt;button { height:40px; }
+#infra-ia .ia-period-actions&gt;button { flex:0 0 auto; }
+#infra-ia .ia-heading:has(.ia-period-actions) { align-items:flex-end; }
+#infra-ia .ia-heading&gt;.ia-period-actions { flex:0 1 390px; }
+#infra-ia .ia-row.ia-between:has(&gt;.ia-period-actions) { align-items:flex-end; gap:16px; }
+#infra-ia .ia-row.ia-between:has(&gt;.ia-period-actions)&gt;h2 { padding-bottom:8px; }
+#infra-ia .ia-kpi strong { font-size:27px; overflow-wrap:anywhere; }
+#infra-ia #ia-form-error:empty { display:none; }
+#infra-ia .ia-heading .ia-muted { font-size:12px; }
+@media(max-width:900px) { #infra-ia { grid-template-columns:180px minmax(0,1fr); } #infra-ia .ia-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } #infra-ia .ia-grid { grid-template-columns:1fr; } #infra-ia .ia-result-grid { grid-template-columns:1fr; } }
+@media(max-width:720px) { #infra-ia { grid-template-columns:minmax(0,1fr); } #infra-ia .ia-sidebar { padding:18px; border-right:0; border-bottom:1px solid var(--ia-line); gap:14px; } #infra-ia .ia-workspace-label,#infra-ia .ia-module-list,#infra-ia .ia-sidebar-bottom,#infra-ia .ia-sidebar .ia-nav-label { display:none; } #infra-ia .ia-sidebar nav { flex-direction:row; flex-wrap:wrap; gap:6px; } #infra-ia .ia-sidebar nav button { width:auto; flex:1; justify-content:center; padding:10px 8px; } #infra-ia .ia-top { min-height:62px; } }
+@media(max-width:440px) { #infra-ia .ia-period-actions { width:100%; } #infra-ia .ia-period-actions&gt;button { flex:1 1 100%; } #infra-ia .ia-period-actions .ia-period { flex-basis:100%; } }
+&lt;/style&gt;
+&lt;div id=&quot;infra-ia&quot; aria-label=&quot;Protótipo do painel de iniciativas de IA&quot;&gt;
+  &lt;aside class=&quot;ia-sidebar&quot; aria-label=&quot;Plataforma Atlas&quot;&gt;
+    &lt;div class=&quot;ia-brand&quot;&gt;&lt;span class=&quot;ia-mark&quot;&gt;◈&lt;/span&gt;atlas &lt;small&gt;/ labs&lt;/small&gt;&lt;/div&gt;
+    &lt;div class=&quot;ia-workspace-label&quot;&gt;&lt;i data-lucide=&quot;building-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;div&gt;&lt;strong&gt;Engenharia&lt;/strong&gt;&lt;small&gt;Infraestrutura e projetos&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;ia-module-list&quot;&gt;&lt;p class=&quot;ia-nav-label&quot;&gt;PLATAFORMA&lt;/p&gt;&lt;span class=&quot;ia-module&quot;&gt;&lt;i data-lucide=&quot;bot&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Agentes&lt;/span&gt;&lt;span class=&quot;ia-module&quot;&gt;&lt;i data-lucide=&quot;folders&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Repositórios Atlas&lt;/span&gt;&lt;span class=&quot;ia-module&quot;&gt;&lt;i data-lucide=&quot;hexagon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Catálogo Backstage&lt;/span&gt;&lt;span class=&quot;ia-module active&quot;&gt;&lt;i data-lucide=&quot;sparkles&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Iniciativas de IA&lt;/span&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;p class=&quot;ia-nav-label&quot;&gt;INICIATIVAS DE IA&lt;/p&gt;&lt;nav aria-label=&quot;Navegação principal&quot;&gt;&lt;button data-view=&quot;list&quot; aria-current=&quot;page&quot;&gt;&lt;i data-lucide=&quot;list&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Iniciativas&lt;/button&gt;&lt;button data-view=&quot;results&quot;&gt;&lt;i data-lucide=&quot;chart-no-axes-combined&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Indicadores&lt;/button&gt;&lt;button data-view=&quot;settings&quot;&gt;&lt;i data-lucide=&quot;sliders-horizontal&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Configurações&lt;/button&gt;&lt;/nav&gt;&lt;/div&gt;
+    &lt;div class=&quot;ia-sidebar-bottom&quot;&gt;Atlas ecosystem&lt;br&gt;&lt;span&gt;Iniciativas, adoção e resultados.&lt;/span&gt;&lt;/div&gt;
+  &lt;/aside&gt;
+  &lt;div class=&quot;ia-workspace&quot;&gt;
+  &lt;header class=&quot;ia-top&quot;&gt;
+    &lt;div class=&quot;ia-crumb&quot;&gt;Plataforma &lt;span&gt;/&lt;/span&gt;&lt;strong&gt;Iniciativas de IA&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;ia-row&quot;&gt;&lt;span class=&quot;ia-badge ia-amber&quot;&gt;Demonstração&lt;/span&gt;&lt;button id=&quot;ia-theme&quot;&gt;&lt;i data-lucide=&quot;sun-moon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Tema&lt;/button&gt;&lt;button id=&quot;ia-present&quot;&gt;&lt;i data-lucide=&quot;presentation&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Apresentar&lt;/button&gt;&lt;/div&gt;
+  &lt;/header&gt;
+  &lt;main id=&quot;ia-content&quot;&gt;&lt;/main&gt;
+  &lt;footer class=&quot;ia-footer&quot;&gt;&lt;span&gt;Atlas · Iniciativas de IA · dados fictícios&lt;/span&gt;&lt;span id=&quot;ia-feedback&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;Alterações válidas somente nesta demonstração&lt;/span&gt;&lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(() =&gt; {
+const root=document.getElementById(&#x27;infra-ia&#x27;), content=root.querySelector(&#x27;#ia-content&#x27;);
+const esc=v=&gt;String(v??&#x27;&#x27;).replace(/[&amp;&lt;&gt;&quot;&#x27;]/g,c=&gt;({&#x27;&amp;&#x27;:&#x27;&amp;amp;&#x27;,&#x27;&lt;&#x27;:&#x27;&amp;lt;&#x27;,&#x27;&gt;&#x27;:&#x27;&amp;gt;&#x27;,&#x27;&quot;&#x27;:&#x27;&amp;quot;&#x27;,&quot;&#x27;&quot;:&#x27;&amp;#39;&#x27;}[c]));
+const fmt=v=&gt;new Intl.NumberFormat(&#x27;pt-BR&#x27;,{maximumFractionDigits:1}).format(v);
+const money=v=&gt;new Intl.NumberFormat(&#x27;pt-BR&#x27;,{style:&#x27;currency&#x27;,currency:&#x27;BRL&#x27;,maximumFractionDigits:0}).format(v);
+const statuses=[&#x27;Ideia&#x27;,&#x27;Em avaliação&#x27;,&#x27;Em desenvolvimento&#x27;,&#x27;Em uso&#x27;,&#x27;Pausada&#x27;,&#x27;Encerrada&#x27;];
+let areas=[&#x27;DevOps&#x27;,&#x27;Redes&#x27;,&#x27;Cloud&#x27;,&#x27;Atlas&#x27;].map(name=&gt;({name,active:true}));
+let kinds=[&#x27;Agente&#x27;,&#x27;MCP&#x27;,&#x27;Skill&#x27;,&#x27;Assistente&#x27;,&#x27;Assistente agêntico&#x27;,&#x27;Workflow com IA&#x27;].map(name=&gt;({name,active:true}));
+let kindFilter=&#x27;&#x27;;
+let extraFields=[];
+const metric=(v,q=&#x27;Medido&#x27;)=&gt;({value:v,quality:q});
+const m=(hours,saving,cost,tokens,q=&#x27;Medido&#x27;)=&gt;({hours:metric(hours,q),saving:metric(saving,q),cost:metric(cost,&#x27;Medido&#x27;),tokens:metric(tokens,&#x27;Medido&#x27;),evidence:q===&#x27;Medido&#x27;?&#x27;Amostra de execuções e apontamento manual do mês. Dados ilustrativos.&#x27;:&#x27;Estimativa a validar com as primeiras execuções. Dados ilustrativos.&#x27;});
+let items=[
+ {id:1,name:&#x27;Triagem inteligente de incidentes&#x27;,areas:[&#x27;DevOps&#x27;,&#x27;Redes&#x27;],status:&#x27;Em uso&#x27;,owner:&#x27;Equipe de operações&#x27;,description:&#x27;Classifica alertas e sugere o próximo passo para o time de plantão.&#x27;,architecture:&#x27;Alertas de monitoramento → classificação por IA → consulta aos runbooks → sugestão revisada pelo analista.&#x27;,model:&#x27;Modelo corporativo de linguagem&#x27;,links:[{type:&#x27;Confluence&#x27;,title:&#x27;Runbook e desenho da solução&#x27;,url:&#x27;https://example.com/runbook&#x27;},{type:&#x27;Painel&#x27;,title:&#x27;Indicadores da triagem&#x27;,url:&#x27;https://example.com/triagem&#x27;},{type:&#x27;Repositório do projeto&#x27;,title:&#x27;Serviço de triagem&#x27;,url:&#x27;https://example.com/triagem-repo&#x27;},{type:&#x27;Repositório IaC&#x27;,title:&#x27;Infraestrutura da solução&#x27;,url:&#x27;https://example.com/triagem-iac&#x27;}],metrics:{&#x27;2026-09&#x27;:m(42,0,180,1800000),&#x27;2026-08&#x27;:m(30,0,150,1400000)},custom:{},updated:&#x27;24/09/2026&#x27;},
+ {id:2,name:&#x27;Revisão assistida de Terraform&#x27;,areas:[&#x27;Cloud&#x27;,&#x27;DevOps&#x27;],status:&#x27;Em uso&#x27;,owner:&#x27;Engenharia de cloud&#x27;,description:&#x27;Apoia a revisão de mudanças de infraestrutura antes do deploy.&#x27;,architecture:&#x27;Pull request → análise do plano Terraform → revisão com IA → comentário para validação humana.&#x27;,model:&#x27;Modelo corporativo de código&#x27;,links:[],metrics:{&#x27;2026-09&#x27;:m(28,1200,240,2200000,&#x27;Estimado&#x27;),&#x27;2026-08&#x27;:m(16,600,160,1300000,&#x27;Estimado&#x27;)},custom:{},updated:&#x27;23/09/2026&#x27;},
+ {id:3,name:&#x27;Assistente de conhecimento Atlas&#x27;,areas:[&#x27;Atlas&#x27;],status:&#x27;Em desenvolvimento&#x27;,owner:&#x27;Equipe Atlas&#x27;,description:&#x27;Encontra orientações e referências nos documentos da plataforma.&#x27;,architecture:&#x27;Pergunta → busca nos documentos autorizados → resposta com referências.&#x27;,model:&#x27;A definir&#x27;,links:[],metrics:{},custom:{},updated:&#x27;22/09/2026&#x27;},
+ {id:4,name:&#x27;Análise de capacidade cloud&#x27;,areas:[&#x27;Cloud&#x27;],status:&#x27;Em uso&#x27;,owner:&#x27;Operações de cloud&#x27;,description:&#x27;Identifica recursos ociosos e apoia recomendações de ajuste.&#x27;,architecture:&#x27;Inventário e métricas → análise → recomendação com justificativa → aprovação do time.&#x27;,model:&#x27;Modelo corporativo de linguagem&#x27;,links:[],metrics:{&#x27;2026-09&#x27;:m(16,3200,110,800000),&#x27;2026-08&#x27;:m(12,2400,95,650000)},custom:{},updated:&#x27;24/09/2026&#x27;},
+ {id:5,name:&#x27;Diagnóstico assistido de conectividade&#x27;,areas:[&#x27;Redes&#x27;,&#x27;Cloud&#x27;],status:&#x27;Em avaliação&#x27;,owner:&#x27;Engenharia de redes&#x27;,description:&#x27;Relaciona eventos de rede para apoiar a investigação de falhas.&#x27;,architecture:&#x27;Proposta em avaliação.&#x27;,model:&#x27;A definir&#x27;,links:[],metrics:{},custom:{},updated:&#x27;20/09/2026&#x27;},
+ {id:6,name:&#x27;Documentação de mudanças com IA&#x27;,areas:[&#x27;DevOps&#x27;,&#x27;Atlas&#x27;],status:&#x27;Ideia&#x27;,owner:&#x27;A definir&#x27;,description:&#x27;Gera uma primeira versão da documentação a partir das mudanças aprovadas.&#x27;,architecture:&#x27;Ainda não definida.&#x27;,model:&#x27;A definir&#x27;,links:[],metrics:{},custom:{},updated:&#x27;19/09/2026&#x27;}
+];
+items.forEach((item,index)=&gt;item.kind=[&#x27;Agente&#x27;,&#x27;Skill&#x27;,&#x27;Assistente&#x27;,&#x27;Workflow com IA&#x27;,&#x27;Assistente agêntico&#x27;,&#x27;&#x27;][index]);
+const metricKeys=[&#x27;hours&#x27;,&#x27;saving&#x27;,&#x27;cost&#x27;,&#x27;tokens&#x27;];
+const columns={kind:{label:&#x27;Tipo&#x27;,show:true},status:{label:&#x27;Status&#x27;,show:true},owner:{label:&#x27;Responsável&#x27;,show:true},hours:{label:&#x27;Tempo poupado&#x27;,show:true},saving:{label:&#x27;Redução de gasto&#x27;,show:true},cost:{label:&#x27;Custo de operação&#x27;,show:true},tokens:{label:&#x27;Tokens&#x27;,show:false}};
+let view=&#x27;list&#x27;, selected=null, period=&#x27;2026-09&#x27;, query=&#x27;&#x27;, area=&#x27;&#x27;, status=&#x27;&#x27;, quality=&#x27;Medido&#x27;, presenting=false, confirmDelete=null;
+const measureDrafts=new Map();
+const draftKey=()=&gt;`${selected}:${period}`;
+const month=()=&gt;{const label=new Intl.DateTimeFormat(&#x27;pt-BR&#x27;,{month:&#x27;long&#x27;,year:&#x27;numeric&#x27;}).format(new Date(`${period}-01T12:00:00`));return label.charAt(0).toUpperCase()+label.slice(1);};
+function readMeasureForm(form){const data=new FormData(form),record={evidence:String(data.get(&#x27;evidence&#x27;)||&#x27;&#x27;).trim()};metricKeys.forEach(key=&gt;{const raw=data.get(key);record[key]={value:raw===&#x27;&#x27;?null:Number(raw),quality:data.get(key+&#x27;-quality&#x27;)};});return record;}
+const icon=name=&gt;`&lt;i data-lucide=&quot;${name}&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;`;
+const note=text=&gt;root.querySelector(&#x27;#ia-feedback&#x27;).textContent=text;
+const option=(v,current,label=v)=&gt;`&lt;option value=&quot;${esc(v)}&quot; ${v===current?&#x27;selected&#x27;:&#x27;&#x27;}&gt;${esc(label)}&lt;/option&gt;`;
+const statusBadge=s=&gt;`&lt;span class=&quot;ia-badge ${s===&#x27;Em uso&#x27;?&#x27;ia-good&#x27;:s===&#x27;Ideia&#x27;||s===&#x27;Em avaliação&#x27;?&#x27;ia-amber&#x27;:&#x27;&#x27;}&quot;&gt;${esc(s)}&lt;/span&gt;`;
+function filtered(){return items.filter(i=&gt;(!query||(i.name+&#x27; &#x27;+i.description+&#x27; &#x27;+i.owner).toLocaleLowerCase(&#x27;pt-BR&#x27;).includes(query.toLocaleLowerCase(&#x27;pt-BR&#x27;)))&amp;&amp;(!area||i.areas.includes(area))&amp;&amp;(!status||i.status===status)&amp;&amp;(!kindFilter||(kindFilter===&#x27;__untyped__&#x27;?!i.kind:i.kind===kindFilter)));}
+function metricValue(i,k){return i.metrics[period]?.[k]??{value:null,quality:&#x27;Estimado&#x27;};}
+function metricLabel(k,v){return k===&#x27;hours&#x27;?`${fmt(v)} h`:k===&#x27;tokens&#x27;?fmt(v):money(v);}
+function qualifies(x){return x.value!==null&amp;&amp;Number.isFinite(x.value)&amp;&amp;(quality===&#x27;Todos&#x27;||x.quality===quality);}
+function totals(list,k){const values=list.map(i=&gt;metricValue(i,k)).filter(qualifies);return {sum:values.reduce((s,x)=&gt;s+x.value,0),count:values.length};}
+function selector(){return `&lt;label class=&quot;ia-period&quot;&gt;${view===&#x27;measure&#x27;?&#x27;Mês do registro&#x27;:&#x27;Período&#x27;}&lt;input id=&quot;ia-period&quot; type=&quot;month&quot; min=&quot;1900-01&quot; max=&quot;9999-12&quot; required value=&quot;${period}&quot;&gt;&lt;/label&gt;`;}
+function filters(){return `&lt;div class=&quot;ia-tools&quot;&gt;&lt;label&gt;Buscar iniciativas&lt;input id=&quot;ia-query&quot; value=&quot;${esc(query)}&quot; placeholder=&quot;Nome, descrição ou responsável&quot;&gt;&lt;/label&gt;&lt;label&gt;Área&lt;select id=&quot;ia-area&quot;&gt;${option(&#x27;&#x27;,area,&#x27;Todas as áreas&#x27;)}${areas.map(a=&gt;option(a.name,area,a.name+(a.active?&#x27;&#x27;:&#x27; · arquivada&#x27;))).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Tipo&lt;select id=&quot;ia-kind-filter&quot;&gt;${option(&#x27;&#x27;,kindFilter,&#x27;Todos os tipos&#x27;)}${option(&#x27;__untyped__&#x27;,kindFilter,&#x27;Sem tipo&#x27;)}${kinds.map(k=&gt;option(k.name,kindFilter,k.name+(k.active?&#x27;&#x27;:&#x27; · arquivado&#x27;))).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Status&lt;select id=&quot;ia-status&quot;&gt;${option(&#x27;&#x27;,status,&#x27;Todos os status&#x27;)}${statuses.map(s=&gt;option(s,status)).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;`;}
+function qualityControl(){return `&lt;div class=&quot;ia-row ia-between&quot;&gt;&lt;label class=&quot;ia-row&quot; style=&quot;flex-direction:row;align-items:center&quot;&gt;Indicadores&lt;select id=&quot;ia-quality&quot; style=&quot;width:auto&quot;&gt;${option(&#x27;Medido&#x27;,quality,&#x27;Somente medidos&#x27;)}${option(&#x27;Estimado&#x27;,quality,&#x27;Somente estimados&#x27;)}${option(&#x27;Todos&#x27;,quality,&#x27;Medidos + estimados&#x27;)}&lt;/select&gt;&lt;/label&gt;&lt;small&gt;${quality===&#x27;Todos&#x27;?&#x27;Totais combinam medições e estimativas&#x27;:&#x27;Valores não informados ficam fora dos totais&#x27;}&lt;/small&gt;&lt;/div&gt;`;}
+function kpis(list){const h=totals(list,&#x27;hours&#x27;),s=totals(list,&#x27;saving&#x27;),c=totals(list,&#x27;cost&#x27;);return `&lt;div class=&quot;ia-kpis&quot;&gt;&lt;div class=&quot;ia-kpi&quot;&gt;&lt;small&gt;Iniciativas em uso&lt;/small&gt;&lt;strong&gt;${list.filter(i=&gt;i.status===&#x27;Em uso&#x27;).length}&lt;span style=&quot;font-size:14px;color:var(--ia-muted)&quot;&gt; / ${list.length}&lt;/span&gt;&lt;/strong&gt;&lt;small&gt;No recorte selecionado&lt;/small&gt;&lt;/div&gt;${[[h,&#x27;Tempo poupado&#x27;,&#x27;hours&#x27;],[s,&#x27;Redução de gasto&#x27;,&#x27;saving&#x27;],[c,&#x27;Custo de operação&#x27;,&#x27;cost&#x27;]].map(([t,label,k])=&gt;`&lt;div class=&quot;ia-kpi&quot;&gt;&lt;small&gt;${label}&lt;/small&gt;&lt;strong&gt;${t.count?metricLabel(k,t.sum):&#x27;—&#x27;}&lt;/strong&gt;&lt;small&gt;${t.count} de ${list.length} iniciativas · ${quality===&#x27;Todos&#x27;?&#x27;combinado&#x27;:quality.toLowerCase()}&lt;/small&gt;&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;`;}
+function table(list,indicators=false){
+ const keys=Object.keys(columns).filter(k=&gt;columns[k].show&amp;&amp;(indicators?metricKeys.includes(k):!metricKeys.includes(k)));
+ const custom=indicators?[]:extraFields.filter(f=&gt;f.show);
+ return `&lt;div class=&quot;ia-table-wrap&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Iniciativa / áreas&lt;/th&gt;${keys.map(k=&gt;`&lt;th class=&quot;${metricKeys.includes(k)?&#x27;ia-num&#x27;:&#x27;&#x27;}&quot;&gt;${columns[k].label}&lt;/th&gt;`).join(&#x27;&#x27;)}${custom.map(f=&gt;`&lt;th&gt;${esc(f.name)}&lt;/th&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${list.map(i=&gt;`&lt;tr&gt;&lt;td&gt;&lt;button class=&quot;ia-name&quot; data-open=&quot;${i.id}&quot;&gt;${esc(i.name)}&lt;/button&gt;&lt;small class=&quot;ia-desc&quot; ${design.descriptions&amp;&amp;!indicators?&#x27;&#x27;:&#x27;hidden&#x27;}&gt;${esc(i.description)}&lt;/small&gt;&lt;div class=&quot;ia-areas&quot;&gt;${i.areas.map(a=&gt;`&lt;span class=&quot;ia-badge&quot;&gt;${esc(a)}&lt;/span&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;/td&gt;${keys.map(k=&gt;{if(k===&#x27;kind&#x27;)return `&lt;td&gt;${i.kind?`&lt;span class=&quot;ia-badge&quot;&gt;${esc(i.kind)}&lt;/span&gt;`:&#x27;&lt;small&gt;Sem tipo&lt;/small&gt;&#x27;}&lt;/td&gt;`;if(k===&#x27;owner&#x27;)return `&lt;td&gt;${esc(i.owner||&#x27;Não informado&#x27;)}&lt;/td&gt;`;if(k===&#x27;status&#x27;)return `&lt;td&gt;${statusBadge(i.status)}&lt;/td&gt;`;const v=metricValue(i,k);return `&lt;td class=&quot;ia-num&quot;&gt;${qualifies(v)?`${metricLabel(k,v.value)}&lt;small&gt;${v.quality}&lt;/small&gt;`:v.value===null?&#x27;&lt;small&gt;Não informado&lt;/small&gt;&#x27;:&#x27;&lt;small&gt;Fora do recorte&lt;/small&gt;&#x27;}&lt;/td&gt;`;}).join(&#x27;&#x27;)}${custom.map(f=&gt;`&lt;td&gt;${esc(i.custom[f.id]||&#x27;—&#x27;)}&lt;/td&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;`).join(&#x27;&#x27;)}&lt;/tbody&gt;&lt;/table&gt;${list.length?&#x27;&#x27;:&#x27;&lt;div class=&quot;ia-empty&quot;&gt;Nenhuma iniciativa encontrada para estes filtros.&lt;/div&gt;&#x27;}&lt;/div&gt;`;
+}
+const design={density:&#x27;Confortável&#x27;,descriptions:true};
+function render(){
+root.style.setProperty(&#x27;--ia-cell-pad&#x27;,design.density===&#x27;Compacta&#x27;?&#x27;10px&#x27;:&#x27;16px&#x27;);
+root.querySelectorAll(&#x27;[data-view]&#x27;).forEach(b=&gt;{b.setAttribute(&#x27;aria-current&#x27;,b.dataset.view===view?&#x27;page&#x27;:&#x27;false&#x27;);b.hidden=presenting&amp;&amp;b.dataset.view===&#x27;settings&#x27;;});
+root.querySelector(&#x27;#ia-present&#x27;).innerHTML=icon(presenting?&#x27;pencil&#x27;:&#x27;presentation&#x27;)+(presenting?&#x27;Voltar à edição&#x27;:&#x27;Apresentar&#x27;);
+if(view===&#x27;list&#x27;)renderList();else if(view===&#x27;results&#x27;)renderResults();else if(view===&#x27;settings&#x27;)renderSettings();else if(view===&#x27;detail&#x27;)renderDetail();else if(view===&#x27;edit&#x27;)renderEdit();else if(view===&#x27;measure&#x27;)renderMeasure();
+if(view===&#x27;edit&#x27;){
+ const value=current()?.kind||&#x27;&#x27;;
+ content.querySelector(&#x27;#ia-edit-form &gt; .ia-grid&#x27;).insertAdjacentHTML(&#x27;beforeend&#x27;,`&lt;label class=&quot;ia-full&quot;&gt;Tipo · opcional&lt;select name=&quot;initiative-kind&quot;&gt;${option(&#x27;&#x27;,value,&#x27;Sem tipo&#x27;)}${kinds.filter(k=&gt;k.active||k.name===value).map(k=&gt;option(k.name,value,k.name+(k.active?&#x27;&#x27;:&#x27; · arquivado&#x27;))).join(&#x27;&#x27;)}&lt;/select&gt;&lt;small&gt;Os tipos podem ser cadastrados em Configurações.&lt;/small&gt;&lt;/label&gt;`);
+}
+if(view===&#x27;detail&#x27;){const item=current();content.querySelector(&#x27;.ia-heading .ia-row&#x27;).insertAdjacentHTML(&#x27;beforeend&#x27;,`&lt;span class=&quot;ia-badge&quot;&gt;${esc(item.kind||&#x27;Sem tipo&#x27;)}&lt;/span&gt;`);}
+const periodLabel=content.querySelector(&#x27;.ia-period&#x27;);
+if(periodLabel){const actions=periodLabel.parentElement;if(actions.classList.contains(&#x27;ia-row&#x27;)){actions.classList.add(&#x27;ia-period-actions&#x27;);actions.classList.remove(&#x27;ia-row&#x27;);}}
+if([&#x27;list&#x27;,&#x27;results&#x27;,&#x27;settings&#x27;].includes(view)){const heading=content.querySelector(&#x27;h1&#x27;);if(heading)heading.insertAdjacentHTML(&#x27;beforebegin&#x27;,&#x27;&lt;p class=&quot;ia-eyebrow&quot;&gt;INFRAESTRUTURA E PROJETOS&lt;/p&gt;&#x27;);}
+const saveInitiative=content.querySelector(&#x27;#ia-edit-form button[type=&quot;submit&quot;]&#x27;);if(saveInitiative)saveInitiative.textContent=&#x27;Salvar iniciativa&#x27;;
+const saveMetrics=content.querySelector(&#x27;#ia-measure-form button[type=&quot;submit&quot;]&#x27;);if(saveMetrics)saveMetrics.textContent=&#x27;Salvar este mês&#x27;;
+if(view===&#x27;settings&#x27;){
+ const grid=content.querySelector(&#x27;.ia-grid&#x27;),columnPanel=grid.children[1];
+ columnPanel.classList.add(&#x27;ia-full&#x27;);
+ columnPanel.innerHTML=`&lt;h3&gt;Colunas das tabelas&lt;/h3&gt;&lt;div class=&quot;ia-grid&quot;&gt;${[[&#x27;Iniciativas&#x27;,false],[&#x27;Indicadores&#x27;,true]].map(([title,isMetric])=&gt;`&lt;fieldset&gt;&lt;legend&gt;${title}&lt;/legend&gt;&lt;div class=&quot;ia-stack&quot;&gt;${Object.entries(columns).filter(([key])=&gt;metricKeys.includes(key)===isMetric).map(([key,c])=&gt;`&lt;label class=&quot;ia-check&quot;&gt;&lt;input type=&quot;checkbox&quot; data-column=&quot;${key}&quot; ${c.show?&#x27;checked&#x27;:&#x27;&#x27;}&gt;${c.label}&lt;/label&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;/fieldset&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;small style=&quot;display:block;margin-top:16px&quot;&gt;Nome e áreas sempre visíveis. Ocultar uma coluna preserva os dados.&lt;/small&gt;`;
+ grid.children[0].insertAdjacentHTML(&#x27;afterend&#x27;,`&lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Tipos de iniciativa&lt;/h3&gt;${kinds.map((k,index)=&gt;{const used=items.some(i=&gt;i.kind===k.name);return `&lt;div class=&quot;ia-list-row&quot;&gt;&lt;span&gt;${esc(k.name)} ${k.active?&#x27;&#x27;:&#x27;&lt;small&gt;· arquivado&lt;/small&gt;&#x27;}&lt;/span&gt;&lt;button class=&quot;ia-quiet&quot; data-kind-action=&quot;${index}&quot;&gt;${!k.active?&#x27;Reativar&#x27;:used?&#x27;Arquivar&#x27;:&#x27;Remover&#x27;}&lt;/button&gt;&lt;/div&gt;`;}).join(&#x27;&#x27;)}&lt;form id=&quot;ia-kind-form&quot; class=&quot;ia-row&quot; style=&quot;margin-top:16px&quot;&gt;&lt;label style=&quot;flex:1&quot;&gt;Novo tipo&lt;input name=&quot;kind&quot; required maxlength=&quot;50&quot; placeholder=&quot;Ex.: Ferramenta de IA&quot;&gt;&lt;/label&gt;&lt;button type=&quot;submit&quot; style=&quot;align-self:end&quot;&gt;Adicionar&lt;/button&gt;&lt;/form&gt;&lt;small style=&quot;display:block;margin-top:12px&quot;&gt;Campo opcional. Tipos em uso são arquivados, preservando os cadastros existentes.&lt;/small&gt;&lt;/section&gt;`);
+}
+if(view===&#x27;settings&#x27;){const storage=content.querySelector(&#x27;.ia-grid &gt; section:last-child&#x27;);storage.innerHTML=`&lt;div class=&quot;ia-row ia-between&quot;&gt;&lt;h3 style=&quot;margin:0&quot;&gt;Salvamento pela página&lt;/h3&gt;&lt;span class=&quot;ia-badge ia-amber&quot;&gt;Fluxo proposto&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ia-row&quot; style=&quot;margin-top:16px&quot;&gt;&lt;span class=&quot;ia-badge&quot;&gt;Editar&lt;/span&gt;&lt;span&gt;→&lt;/span&gt;&lt;span class=&quot;ia-badge&quot;&gt;Salvar&lt;/span&gt;&lt;span&gt;→&lt;/span&gt;&lt;span class=&quot;ia-badge ia-good&quot;&gt;Arquivo atualizado&lt;/span&gt;&lt;/div&gt;&lt;small style=&quot;display:block;margin-top:14px&quot;&gt;Base: iniciativas.json · sem baixar e substituir manualmente · gravação real prevista para a implementação.&lt;/small&gt;`;}
+globalThis.lucide?.createIcons({attrs:{width:16,height:16}});
+}
+function renderList(){const list=filtered();content.innerHTML=`&lt;div class=&quot;ia-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;Iniciativas de IA&lt;/h1&gt;&lt;p class=&quot;ia-muted&quot;&gt;Organize as iniciativas por área, tipo e estágio.&lt;/p&gt;&lt;/div&gt;${presenting?&#x27;&#x27;:`&lt;button class=&quot;ia-primary&quot; id=&quot;ia-new&quot;&gt;${icon(&#x27;plus&#x27;)}Nova iniciativa&lt;/button&gt;`}&lt;/div&gt;${filters()}&lt;section class=&quot;ia-panel&quot; style=&quot;padding:0&quot;&gt;&lt;div class=&quot;ia-row ia-between&quot; style=&quot;padding:17px 20px 7px&quot;&gt;&lt;h2&gt;Iniciativas &lt;span class=&quot;ia-badge&quot;&gt;${list.length}&lt;/span&gt;&lt;/h2&gt;${presenting?&#x27;&#x27;:`&lt;button class=&quot;ia-quiet&quot; id=&quot;ia-columns&quot;&gt;${icon(&#x27;columns-3&#x27;)}Colunas&lt;/button&gt;`}&lt;/div&gt;${table(list)}&lt;/section&gt;`;}
+function renderResults(){
+ const list=filtered();
+ content.innerHTML=`&lt;div class=&quot;ia-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;Indicadores&lt;/h1&gt;&lt;p class=&quot;ia-muted&quot;&gt;Acompanhe tempo poupado, redução de gasto e custos por mês.&lt;/p&gt;&lt;/div&gt;${selector()}&lt;/div&gt;${filters()}${qualityControl()}${kpis(list)}
+ &lt;section class=&quot;ia-panel&quot; style=&quot;padding:0;margin-bottom:20px&quot;&gt;&lt;div class=&quot;ia-row ia-between&quot; style=&quot;padding:17px 20px 12px&quot;&gt;&lt;h2&gt;Indicadores por iniciativa&lt;/h2&gt;&lt;small&gt;${month()}&lt;/small&gt;&lt;/div&gt;${table(list,true)}&lt;/section&gt;
+ &lt;div class=&quot;ia-result-grid&quot;&gt;&lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Estágio das iniciativas&lt;/h3&gt;${statuses.map(s=&gt;{const n=list.filter(i=&gt;i.status===s).length;return `&lt;div style=&quot;margin-top:14px&quot;&gt;&lt;div class=&quot;ia-row ia-between&quot;&gt;&lt;span&gt;${s}&lt;/span&gt;&lt;span&gt;${n}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ia-track&quot;&gt;&lt;span style=&quot;width:${list.length?n/list.length*100:0}%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;`}).join(&#x27;&#x27;)}&lt;/section&gt;
+ &lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Participação por área&lt;/h3&gt;${areas.map(a=&gt;{const n=list.filter(i=&gt;i.areas.includes(a.name)).length;return n?`&lt;div class=&quot;ia-list-row&quot;&gt;&lt;span&gt;${esc(a.name)}&lt;/span&gt;&lt;span&gt;${n} iniciativas&lt;/span&gt;&lt;/div&gt;`:&#x27;&#x27;}).join(&#x27;&#x27;)}&lt;small style=&quot;display:block;margin-top:16px&quot;&gt;Uma iniciativa pode aparecer em mais de uma área. O total geral conta cada iniciativa uma vez.&lt;/small&gt;&lt;/section&gt;
+ &lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Preenchimento do mês&lt;/h3&gt;${metricKeys.map(k=&gt;{const values=list.map(i=&gt;metricValue(i,k)).filter(x=&gt;x.value!==null&amp;&amp;Number.isFinite(x.value));const measured=values.filter(x=&gt;x.quality===&#x27;Medido&#x27;).length;return `&lt;div class=&quot;ia-list-row&quot;&gt;&lt;div&gt;&lt;span&gt;${columns[k].label}&lt;/span&gt;&lt;small style=&quot;display:block&quot;&gt;${measured} medidos · ${values.length-measured} estimados&lt;/small&gt;&lt;/div&gt;&lt;span&gt;${values.length} de ${list.length}&lt;/span&gt;&lt;/div&gt;`}).join(&#x27;&#x27;)}&lt;small style=&quot;display:block;margin-top:16px&quot;&gt;Iniciativas que informaram cada valor neste mês, incluindo zero e estimativas. Respeita os filtros de área, tipo, status e busca; independe do filtro de qualidade.&lt;/small&gt;&lt;/section&gt;&lt;/div&gt;`;
+}
+function current(){return items.find(i=&gt;i.id===selected);}
+function back(label=&#x27;Voltar ao portfólio&#x27;){return `&lt;button class=&quot;ia-quiet&quot; id=&quot;ia-back&quot; style=&quot;margin-bottom:16px;padding-left:0&quot;&gt;${icon(&#x27;arrow-left&#x27;)}${label}&lt;/button&gt;`;}
+function renderDetail(){const i=current();if(!i){view=&#x27;list&#x27;;render();return;}const record=i.metrics[period];content.innerHTML=`${back()}&lt;div class=&quot;ia-heading&quot;&gt;&lt;div&gt;&lt;div class=&quot;ia-row&quot; style=&quot;margin-bottom:10px&quot;&gt;${statusBadge(i.status)}${i.areas.map(a=&gt;`&lt;span class=&quot;ia-badge&quot;&gt;${esc(a)}&lt;/span&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;h1&gt;${esc(i.name)}&lt;/h1&gt;&lt;p class=&quot;ia-muted&quot;&gt;${esc(i.owner||&#x27;Responsável não informado&#x27;)} · atualizado em ${esc(i.updated)}&lt;/p&gt;&lt;/div&gt;${presenting?&#x27;&#x27;:`&lt;button id=&quot;ia-edit&quot;&gt;${icon(&#x27;pencil&#x27;)}Editar iniciativa&lt;/button&gt;`}&lt;/div&gt;&lt;div class=&quot;ia-grid&quot;&gt;&lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Problema e solução&lt;/h3&gt;&lt;p class=&quot;ia-copy&quot;&gt;${esc(i.description)}&lt;/p&gt;&lt;hr class=&quot;ia-rule&quot;&gt;&lt;h3&gt;Arquitetura&lt;/h3&gt;&lt;p class=&quot;ia-copy&quot;&gt;${esc(i.architecture||&#x27;Ainda não informada&#x27;)}&lt;/p&gt;&lt;small style=&quot;display:block;margin-top:16px&quot;&gt;Modelo / provedor: ${esc(i.model||&#x27;Não informado&#x27;)}&lt;/small&gt;&lt;/section&gt;&lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Documentação e recursos&lt;/h3&gt;${i.links.length?i.links.map(l=&gt;`&lt;div class=&quot;ia-list-row&quot;&gt;&lt;div&gt;&lt;small&gt;${esc(l.type)}&lt;/small&gt;&lt;div&gt;&lt;a class=&quot;ia-link&quot; href=&quot;${esc(l.url)}&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;${esc(l.title||l.type)} ↗&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;):&#x27;&lt;p class=&quot;ia-muted&quot;&gt;Nenhum link cadastrado.&lt;/p&gt;&#x27;}${i.links.length?&#x27;&lt;small style=&quot;display:block;margin-top:14px&quot;&gt;Links fictícios para example.com.&lt;/small&gt;&#x27;:&#x27;&#x27;}&lt;/section&gt;&lt;section class=&quot;ia-panel ia-full&quot;&gt;&lt;div class=&quot;ia-row ia-between&quot;&gt;&lt;h2&gt;Registro mensal&lt;/h2&gt;&lt;div class=&quot;ia-row&quot;&gt;${selector()}${presenting?&#x27;&#x27;:`&lt;button class=&quot;ia-primary&quot; id=&quot;ia-measure&quot;&gt;${icon(&#x27;plus&#x27;)}${record?&#x27;Editar registro&#x27;:&#x27;Registrar indicadores&#x27;}&lt;/button&gt;`}&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ia-kpis&quot;&gt;${[&#x27;hours&#x27;,&#x27;saving&#x27;,&#x27;cost&#x27;,&#x27;tokens&#x27;].map(k=&gt;{const x=metricValue(i,k);return `&lt;div class=&quot;ia-kpi&quot; style=&quot;background:var(--ia-bg)&quot;&gt;&lt;small&gt;${columns[k].label}${k===&#x27;cost&#x27;?&#x27; · IA + infra&#x27;:&#x27;&#x27;}&lt;/small&gt;&lt;strong&gt;${x.value===null?&#x27;—&#x27;:metricLabel(k,x.value)}&lt;/strong&gt;&lt;span class=&quot;ia-badge ${x.value===null?&#x27;&#x27;:x.quality===&#x27;Medido&#x27;?&#x27;ia-good&#x27;:&#x27;ia-amber&#x27;}&quot;&gt;${x.value===null?&#x27;Não informado&#x27;:x.quality}&lt;/span&gt;&lt;/div&gt;`}).join(&#x27;&#x27;)}&lt;/div&gt;&lt;h3&gt;Evidência / premissas&lt;/h3&gt;&lt;p class=&quot;ia-copy ia-muted&quot;&gt;${esc(record?.evidence||&#x27;Ainda não há registro para este mês.&#x27;)}&lt;/p&gt;&lt;/section&gt;${extraFields.length?`&lt;section class=&quot;ia-panel ia-full&quot;&gt;&lt;h3&gt;Informações adicionais&lt;/h3&gt;${extraFields.map(f=&gt;`&lt;div class=&quot;ia-list-row&quot;&gt;&lt;span&gt;${esc(f.name)}&lt;/span&gt;&lt;span&gt;${esc(i.custom[f.id]||&#x27;Não informado&#x27;)}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;/section&gt;`:&#x27;&#x27;}&lt;/div&gt;`;}
+function renderEdit(){const i=current()||{name:&#x27;&#x27;,areas:[],status:&#x27;Ideia&#x27;,owner:&#x27;&#x27;,description:&#x27;&#x27;,architecture:&#x27;&#x27;,model:&#x27;&#x27;,links:[],custom:{}};content.innerHTML=`${back()}&lt;div class=&quot;ia-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;${selected?&#x27;Editar iniciativa&#x27;:&#x27;Nova iniciativa&#x27;}&lt;/h1&gt;&lt;p class=&quot;ia-muted&quot;&gt;Comece pelo essencial. Os indicadores podem ser registrados depois.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;form id=&quot;ia-edit-form&quot; class=&quot;ia-panel ia-stack&quot;&gt;&lt;div class=&quot;ia-grid&quot;&gt;&lt;label class=&quot;ia-full&quot;&gt;Nome *&lt;input name=&quot;name&quot; required maxlength=&quot;120&quot; value=&quot;${esc(i.name)}&quot; placeholder=&quot;Ex.: Assistente de diagnóstico de redes&quot;&gt;&lt;/label&gt;&lt;label class=&quot;ia-full&quot;&gt;Descrição *&lt;textarea name=&quot;description&quot; required placeholder=&quot;Qual problema resolve e como a IA ajuda?&quot;&gt;${esc(i.description)}&lt;/textarea&gt;&lt;/label&gt;&lt;fieldset class=&quot;ia-full&quot;&gt;&lt;legend&gt;Áreas envolvidas *&lt;/legend&gt;&lt;div class=&quot;ia-row&quot;&gt;${areas.filter(a=&gt;a.active||i.areas.includes(a.name)).map(a=&gt;`&lt;label class=&quot;ia-check&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;areas&quot; value=&quot;${esc(a.name)}&quot; ${i.areas.includes(a.name)?&#x27;checked&#x27;:&#x27;&#x27;}&gt;${esc(a.name)}${a.active?&#x27;&#x27;:&#x27; (arquivada)&#x27;}&lt;/label&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;/fieldset&gt;&lt;label&gt;Status&lt;select name=&quot;status&quot;&gt;${statuses.map(s=&gt;option(s,i.status)).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Responsável&lt;input name=&quot;owner&quot; value=&quot;${esc(i.owner)}&quot; placeholder=&quot;Pessoa ou equipe&quot;&gt;&lt;/label&gt;&lt;/div&gt;&lt;details&gt;&lt;summary&gt;Arquitetura e modelo&lt;/summary&gt;&lt;div class=&quot;ia-grid&quot;&gt;&lt;label class=&quot;ia-full&quot;&gt;Arquitetura&lt;textarea name=&quot;architecture&quot; placeholder=&quot;Componentes e fluxo principal&quot;&gt;${esc(i.architecture)}&lt;/textarea&gt;&lt;/label&gt;&lt;label class=&quot;ia-full&quot;&gt;Modelo / provedor&lt;input name=&quot;model&quot; value=&quot;${esc(i.model)}&quot; placeholder=&quot;Pode ser preenchido depois&quot;&gt;&lt;/label&gt;&lt;/div&gt;&lt;/details&gt;&lt;details ${i.links.length?&#x27;open&#x27;:&#x27;&#x27;}&gt;&lt;summary&gt;Documentação e links&lt;/summary&gt;&lt;div id=&quot;ia-link-fields&quot; class=&quot;ia-stack&quot;&gt;${i.links.map(linkFields).join(&#x27;&#x27;)}&lt;/div&gt;&lt;button type=&quot;button&quot; id=&quot;ia-add-link&quot; style=&quot;margin-top:12px&quot;&gt;${icon(&#x27;plus&#x27;)}Adicionar link&lt;/button&gt;&lt;/details&gt;${extraFields.length?`&lt;details open&gt;&lt;summary&gt;Campos personalizados&lt;/summary&gt;&lt;div class=&quot;ia-grid&quot;&gt;${extraFields.map(f=&gt;`&lt;label&gt;${esc(f.name)}&lt;input name=&quot;custom-${f.id}&quot; type=&quot;${f.type}&quot; ${f.type===&#x27;number&#x27;?&#x27;step=&quot;any&quot;&#x27;:&#x27;&#x27;} value=&quot;${esc(i.custom[f.id]||&#x27;&#x27;)}&quot;&gt;&lt;/label&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;/details&gt;`:&#x27;&#x27;}&lt;p id=&quot;ia-form-error&quot; class=&quot;ia-error&quot; role=&quot;alert&quot;&gt;&lt;/p&gt;&lt;div class=&quot;ia-row&quot;&gt;&lt;button class=&quot;ia-primary&quot; type=&quot;submit&quot;&gt;Salvar no protótipo&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;ia-cancel&quot;&gt;Cancelar&lt;/button&gt;&lt;/div&gt;&lt;/form&gt;`;}
+function linkFields(l={type:&#x27;Confluence&#x27;,title:&#x27;&#x27;,url:&#x27;&#x27;}){return `&lt;div class=&quot;ia-link-fields ia-grid&quot;&gt;&lt;label&gt;Tipo&lt;select name=&quot;link-type&quot;&gt;${[&#x27;Confluence&#x27;,&#x27;Arquitetura&#x27;,&#x27;Painel&#x27;,&#x27;Repositório do projeto&#x27;,&#x27;Repositório IaC&#x27;,&#x27;Outro&#x27;].map(t=&gt;option(t,l.type)).join(&#x27;&#x27;)}&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Título&lt;input name=&quot;link-title&quot; value=&quot;${esc(l.title)}&quot; placeholder=&quot;Nome do recurso&quot;&gt;&lt;/label&gt;&lt;label&gt;Endereço&lt;input type=&quot;url&quot; name=&quot;link-url&quot; required value=&quot;${esc(l.url)}&quot; placeholder=&quot;https://...&quot;&gt;&lt;/label&gt;&lt;div class=&quot;ia-row&quot;&gt;&lt;button type=&quot;button&quot; data-remove-link&gt;Remover link&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;`;}
+function renderMeasure(){
+ const i=current(),saved=i.metrics[period],draft=measureDrafts.get(draftKey()),record=draft||saved;
+ content.innerHTML=`${back(&#x27;Voltar à iniciativa&#x27;)}&lt;div class=&quot;ia-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;Registrar indicadores&lt;/h1&gt;&lt;p class=&quot;ia-muted&quot;&gt;${esc(i.name)}&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+ &lt;form id=&quot;ia-measure-form&quot; class=&quot;ia-panel ia-stack&quot;&gt;
+ &lt;div class=&quot;ia-row ia-between&quot; style=&quot;align-items:flex-end&quot;&gt;${selector()}&lt;span class=&quot;ia-badge ${saved?&#x27;ia-good&#x27;:&#x27;ia-amber&#x27;}&quot;&gt;${draft?&#x27;Rascunho deste mês&#x27;:saved?&#x27;Registro existente&#x27;:&#x27;Novo registro&#x27;}&lt;/span&gt;&lt;/div&gt;
+ &lt;small&gt;${month()} · ${saved?&#x27;Ao salvar, os valores deste mês serão atualizados.&#x27;:&#x27;Ainda não há indicadores salvos para este mês.&#x27;}&lt;/small&gt;
+ &lt;div class=&quot;ia-grid&quot;&gt;${[[&#x27;hours&#x27;,&#x27;Tempo poupado (horas/mês)&#x27;],[&#x27;saving&#x27;,&#x27;Redução de gasto (R$/mês)&#x27;],[&#x27;cost&#x27;,&#x27;Custo de operação: IA + infra (R$/mês)&#x27;],[&#x27;tokens&#x27;,&#x27;Tokens consumidos no mês&#x27;]].map(([k,label])=&gt;{const x=record?.[k]||{value:null,quality:&#x27;Estimado&#x27;};return `&lt;div class=&quot;ia-metric&quot;&gt;&lt;label&gt;${label}&lt;input type=&quot;number&quot; min=&quot;0&quot; ${k===&#x27;tokens&#x27;?&#x27;step=&quot;1&quot;&#x27;:&#x27;step=&quot;0.1&quot;&#x27;} name=&quot;${k}&quot; value=&quot;${x.value??&#x27;&#x27;}&quot; placeholder=&quot;Não informado&quot;&gt;&lt;/label&gt;&lt;label&gt;Qualidade&lt;select name=&quot;${k}-quality&quot;&gt;${option(&#x27;Estimado&#x27;,x.quality)}${option(&#x27;Medido&#x27;,x.quality)}&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;`;}).join(&#x27;&#x27;)}
+ &lt;label class=&quot;ia-full&quot;&gt;Evidências e premissas&lt;textarea name=&quot;evidence&quot; placeholder=&quot;Ex.: 100 execuções × 25 minutos poupados; custo informado na fatura.&quot;&gt;${esc(record?.evidence||&#x27;&#x27;)}&lt;/textarea&gt;&lt;/label&gt;&lt;/div&gt;
+ &lt;small&gt;Em branco = não informado. Zero = valor conhecido igual a zero. Horas poupadas não são convertidas automaticamente em dinheiro.&lt;/small&gt;
+ &lt;small&gt;Ao trocar de mês, o rascunho fica preservado nesta demonstração. Salve cada mês separadamente.&lt;/small&gt;
+ &lt;div class=&quot;ia-row&quot;&gt;&lt;button type=&quot;submit&quot; class=&quot;ia-primary&quot;&gt;Salvar este mês&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;ia-cancel-measure&quot;&gt;Cancelar&lt;/button&gt;&lt;/div&gt;&lt;/form&gt;`;
+}
+function renderSettings(){content.innerHTML=`&lt;div class=&quot;ia-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;Configurações&lt;/h1&gt;&lt;p class=&quot;ia-muted&quot;&gt;Adapte o catálogo à organização da sua área.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ia-grid&quot;&gt;&lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Áreas&lt;/h3&gt;${areas.map((a,idx)=&gt;{const used=items.some(i=&gt;i.areas.includes(a.name));return `&lt;div class=&quot;ia-list-row&quot;&gt;&lt;span&gt;${esc(a.name)} ${a.active?&#x27;&#x27;:&#x27;&lt;small&gt;· arquivada&lt;/small&gt;&#x27;}&lt;/span&gt;&lt;button class=&quot;ia-quiet&quot; data-area-action=&quot;${idx}&quot;&gt;${!a.active?&#x27;Reativar&#x27;:used?&#x27;Arquivar&#x27;:&#x27;Remover&#x27;}&lt;/button&gt;&lt;/div&gt;`}).join(&#x27;&#x27;)}&lt;form id=&quot;ia-area-form&quot; class=&quot;ia-row&quot; style=&quot;margin-top:16px&quot;&gt;&lt;label style=&quot;flex:1&quot;&gt;Nova área&lt;input name=&quot;area&quot; required maxlength=&quot;50&quot; placeholder=&quot;Ex.: Segurança&quot;&gt;&lt;/label&gt;&lt;button type=&quot;submit&quot; style=&quot;align-self:end&quot;&gt;Adicionar&lt;/button&gt;&lt;/form&gt;&lt;small style=&quot;display:block;margin-top:12px&quot;&gt;Áreas em uso são arquivadas e continuam nos registros existentes.&lt;/small&gt;&lt;/section&gt;&lt;section class=&quot;ia-panel&quot;&gt;&lt;h3&gt;Colunas da tabela&lt;/h3&gt;&lt;div class=&quot;ia-stack&quot;&gt;${Object.entries(columns).map(([k,c])=&gt;`&lt;label class=&quot;ia-check&quot;&gt;&lt;input type=&quot;checkbox&quot; data-column=&quot;${k}&quot; ${c.show?&#x27;checked&#x27;:&#x27;&#x27;}&gt;${c.label}&lt;/label&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;&lt;small style=&quot;display:block;margin-top:16px&quot;&gt;Nome e áreas sempre visíveis. Ocultar uma coluna preserva os dados.&lt;/small&gt;&lt;/section&gt;&lt;section class=&quot;ia-panel ia-full&quot;&gt;&lt;h3&gt;Campos personalizados&lt;/h3&gt;${extraFields.length?extraFields.map(f=&gt;`&lt;div class=&quot;ia-list-row&quot;&gt;&lt;label class=&quot;ia-check&quot;&gt;&lt;input type=&quot;checkbox&quot; data-custom-show=&quot;${f.id}&quot; ${f.show?&#x27;checked&#x27;:&#x27;&#x27;}&gt;${esc(f.name)} &lt;small&gt;${esc({text:&#x27;Texto&#x27;,number:&#x27;Número&#x27;,url:&#x27;Link&#x27;,date:&#x27;Data&#x27;}[f.type])}&lt;/small&gt;&lt;/label&gt;&lt;div class=&quot;ia-row&quot;&gt;${confirmDelete===f.id?`&lt;small&gt;Excluir os valores deste campo?&lt;/small&gt;&lt;button data-delete-field=&quot;${f.id}&quot;&gt;Confirmar exclusão&lt;/button&gt;&lt;button id=&quot;ia-cancel-delete&quot;&gt;Cancelar&lt;/button&gt;`:`&lt;button class=&quot;ia-quiet&quot; data-confirm-field=&quot;${f.id}&quot;&gt;Excluir campo&lt;/button&gt;`}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;):&#x27;&lt;p class=&quot;ia-muted&quot;&gt;Nenhum campo adicional.&lt;/p&gt;&#x27;}&lt;form id=&quot;ia-field-form&quot; class=&quot;ia-tools&quot; style=&quot;margin:18px 0 0&quot;&gt;&lt;label&gt;Nome do campo&lt;input name=&quot;field&quot; required maxlength=&quot;60&quot; placeholder=&quot;Ex.: Patrocinador&quot;&gt;&lt;/label&gt;&lt;label&gt;Tipo&lt;select name=&quot;type&quot;&gt;&lt;option value=&quot;text&quot;&gt;Texto&lt;/option&gt;&lt;option value=&quot;number&quot;&gt;Número&lt;/option&gt;&lt;option value=&quot;url&quot;&gt;Link&lt;/option&gt;&lt;option value=&quot;date&quot;&gt;Data&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;button type=&quot;submit&quot;&gt;Adicionar campo&lt;/button&gt;&lt;/form&gt;&lt;/section&gt;&lt;section class=&quot;ia-panel ia-full&quot;&gt;&lt;div class=&quot;ia-row ia-between&quot;&gt;&lt;h3 style=&quot;margin:0&quot;&gt;Arquivo de dados&lt;/h3&gt;&lt;span class=&quot;ia-badge ia-amber&quot;&gt;Fluxo proposto&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ia-row&quot; style=&quot;margin-top:16px&quot;&gt;&lt;span class=&quot;ia-badge&quot;&gt;Abrir arquivo&lt;/span&gt;&lt;span&gt;→&lt;/span&gt;&lt;span class=&quot;ia-badge&quot;&gt;Editar iniciativas&lt;/span&gt;&lt;span&gt;→&lt;/span&gt;&lt;span class=&quot;ia-badge&quot;&gt;Baixar arquivo atualizado&lt;/span&gt;&lt;/div&gt;&lt;small style=&quot;display:block;margin-top:14px&quot;&gt;Base proposta: iniciativas.json · atualização por um editor de cada vez · publicação manual da versão para consulta.&lt;/small&gt;&lt;/section&gt;&lt;/div&gt;`;}
+function go(v){view=v;render();}
+root.addEventListener(&#x27;click&#x27;,e=&gt;{
+const b=e.target.closest(&#x27;button&#x27;);if(!b)return;
+if(b.id===&#x27;ia-theme&#x27;){const dark=root.dataset.previewTheme?root.dataset.previewTheme===&#x27;dark&#x27;:getComputedStyle(root).colorScheme===&#x27;dark&#x27;;const next=dark?&#x27;light&#x27;:&#x27;dark&#x27;;root.dataset.previewTheme=next;root.style.colorScheme=next;b.innerHTML=icon(next===&#x27;dark&#x27;?&#x27;moon&#x27;:&#x27;sun&#x27;)+(next===&#x27;dark&#x27;?&#x27;Tema escuro&#x27;:&#x27;Tema claro&#x27;);globalThis.lucide?.createIcons({attrs:{width:16,height:16}});return;}
+if(b.dataset.view){go(b.dataset.view);return;}
+if(b.dataset.open){selected=Number(b.dataset.open);go(&#x27;detail&#x27;);return;}
+if(b.id===&#x27;ia-present&#x27;){presenting=!presenting;if([&#x27;settings&#x27;,&#x27;edit&#x27;,&#x27;measure&#x27;].includes(view))view=&#x27;list&#x27;;render();note(presenting?&#x27;Modo de apresentação · consulta sem edição&#x27;:&#x27;Modo de edição · alterações somente na demonstração&#x27;);return;}
+if(b.id===&#x27;ia-new&#x27;){selected=null;go(&#x27;edit&#x27;);}
+if(b.id===&#x27;ia-columns&#x27;)go(&#x27;settings&#x27;);
+if(b.id===&#x27;ia-back&#x27;)go(view===&#x27;measure&#x27;?&#x27;detail&#x27;:&#x27;list&#x27;);
+if(b.id===&#x27;ia-edit&#x27;)go(&#x27;edit&#x27;);
+if(b.id===&#x27;ia-measure&#x27;)go(&#x27;measure&#x27;);
+if(b.id===&#x27;ia-cancel&#x27;)go(selected?&#x27;detail&#x27;:&#x27;list&#x27;);
+if(b.id===&#x27;ia-cancel-measure&#x27;){measureDrafts.delete(draftKey());go(&#x27;detail&#x27;);}
+if(b.id===&#x27;ia-add-link&#x27;){root.querySelector(&#x27;#ia-link-fields&#x27;).insertAdjacentHTML(&#x27;beforeend&#x27;,linkFields());}
+if(b.hasAttribute(&#x27;data-remove-link&#x27;))b.closest(&#x27;.ia-link-fields&#x27;).remove();
+if(b.hasAttribute(&#x27;data-area-action&#x27;)){const idx=Number(b.dataset.areaAction),a=areas[idx];if(!a.active)a.active=true;else if(items.some(i=&gt;i.areas.includes(a.name)))a.active=false;else{areas.splice(idx,1);if(area===a.name)area=&#x27;&#x27;;}render();note(&#x27;Áreas atualizadas na demonstração.&#x27;);}
+if(b.hasAttribute(&#x27;data-kind-action&#x27;)){const idx=Number(b.dataset.kindAction),kind=kinds[idx];if(!kind.active)kind.active=true;else if(items.some(i=&gt;i.kind===kind.name))kind.active=false;else{kinds.splice(idx,1);if(kindFilter===kind.name)kindFilter=&#x27;&#x27;;}render();note(&#x27;Tipos atualizados na demonstração.&#x27;);}
+if(b.dataset.confirmField){confirmDelete=b.dataset.confirmField;render();}
+if(b.id===&#x27;ia-cancel-delete&#x27;){confirmDelete=null;render();}
+if(b.dataset.deleteField){const id=b.dataset.deleteField;extraFields=extraFields.filter(f=&gt;f.id!==id);items.forEach(i=&gt;delete i.custom[id]);confirmDelete=null;render();note(&#x27;Campo e valores removidos da demonstração.&#x27;);}
+});
+root.addEventListener(&#x27;change&#x27;,e=&gt;{
+const t=e.target;
+if(t.id===&#x27;ia-period&#x27;){
+ const next=t.value;
+ if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(next)||!t.checkValidity()){t.value=period;note(&#x27;Escolha um mês e ano válidos.&#x27;);return;}
+ if(next===period)return;
+ const form=root.querySelector(&#x27;#ia-measure-form&#x27;);
+ if(form){if(!form.reportValidity()){t.value=period;return;}measureDrafts.set(draftKey(),readMeasureForm(form));}
+ period=next;render();
+ if(view===&#x27;measure&#x27;)note(`Período do registro: ${month()}. Salvar atualiza apenas este mês.`);
+}
+if(t.id===&#x27;ia-area&#x27;){area=t.value;render();}
+if(t.id===&#x27;ia-kind-filter&#x27;){kindFilter=t.value;render();}
+if(t.id===&#x27;ia-status&#x27;){status=t.value;render();}
+if(t.id===&#x27;ia-quality&#x27;){quality=t.value;render();}
+if(t.dataset.column){columns[t.dataset.column].show=t.checked;note(&#x27;Colunas atualizadas.&#x27;);}
+if(t.dataset.customShow){extraFields.find(f=&gt;f.id===t.dataset.customShow).show=t.checked;note(&#x27;Colunas atualizadas.&#x27;);}
+});
+root.addEventListener(&#x27;input&#x27;,e=&gt;{if(e.target.id===&#x27;ia-query&#x27;){const start=e.target.selectionStart,end=e.target.selectionEnd;query=e.target.value;render();const input=root.querySelector(&#x27;#ia-query&#x27;);input.focus();input.setSelectionRange(start,end);}});
+root.addEventListener(&#x27;submit&#x27;,e=&gt;{
+e.preventDefault();const form=e.target,f=new FormData(form);
+if(form.id===&#x27;ia-area-form&#x27;){const name=f.get(&#x27;area&#x27;).trim();if(!name)return;if(areas.some(a=&gt;a.name.toLowerCase()===name.toLowerCase())){note(&#x27;Essa área já está cadastrada.&#x27;);return;}areas.push({name,active:true});render();note(&#x27;Área adicionada à demonstração.&#x27;);}
+if(form.id===&#x27;ia-kind-form&#x27;){const name=f.get(&#x27;kind&#x27;).trim();if(!name)return;if(kinds.some(k=&gt;k.name.toLocaleLowerCase(&#x27;pt-BR&#x27;)===name.toLocaleLowerCase(&#x27;pt-BR&#x27;))){note(&#x27;Esse tipo já está cadastrado.&#x27;);return;}kinds.push({name,active:true});render();note(&#x27;Tipo adicionado à demonstração.&#x27;);}
+if(form.id===&#x27;ia-field-form&#x27;){const name=f.get(&#x27;field&#x27;).trim();if(!name)return;if(extraFields.some(x=&gt;x.name.toLowerCase()===name.toLowerCase())){note(&#x27;Esse campo já existe.&#x27;);return;}extraFields.push({id:&#x27;f&#x27;+Date.now(),name,type:f.get(&#x27;type&#x27;),show:true});render();note(&#x27;Campo disponível nos cadastros e na tabela.&#x27;);}
+if(form.id===&#x27;ia-edit-form&#x27;){
+ const selectedAreas=f.getAll(&#x27;areas&#x27;),name=f.get(&#x27;name&#x27;).trim(),description=f.get(&#x27;description&#x27;).trim();
+ if(!selectedAreas.length||!name||!description){root.querySelector(&#x27;#ia-form-error&#x27;).textContent=&#x27;Preencha nome, descrição e pelo menos uma área.&#x27;;return;}
+ const links=[...form.querySelectorAll(&#x27;.ia-link-fields&#x27;)].map(row=&gt;({type:row.querySelector(&#x27;[name=&quot;link-type&quot;]&#x27;).value,title:row.querySelector(&#x27;[name=&quot;link-title&quot;]&#x27;).value.trim(),url:row.querySelector(&#x27;[name=&quot;link-url&quot;]&#x27;).value.trim()}));
+ if(links.some(l=&gt;!/^https?:\/\//i.test(l.url))){root.querySelector(&#x27;#ia-form-error&#x27;).textContent=&#x27;Use links iniciados por http:// ou https://.&#x27;;return;}
+ let i=current();if(!i){i={id:Date.now(),metrics:{},custom:{}};items.push(i);selected=i.id;}
+ Object.assign(i,{name,description,areas:selectedAreas,kind:String(f.get(&#x27;initiative-kind&#x27;)||&#x27;&#x27;),status:f.get(&#x27;status&#x27;),owner:f.get(&#x27;owner&#x27;).trim(),architecture:f.get(&#x27;architecture&#x27;).trim(),model:f.get(&#x27;model&#x27;).trim(),links,updated:&#x27;24/09/2026&#x27;});
+ extraFields.forEach(x=&gt;i.custom[x.id]=String(f.get(&#x27;custom-&#x27;+x.id)||&#x27;&#x27;));go(&#x27;detail&#x27;);note(&#x27;Iniciativa salva somente nesta demonstração.&#x27;);
+}
+if(form.id===&#x27;ia-measure-form&#x27;){current().metrics[period]=readMeasureForm(form);measureDrafts.delete(draftKey());current().updated=&#x27;24/09/2026&#x27;;go(&#x27;detail&#x27;);note(`Registro de ${month()} atualizado somente nesta demonstração.`);}
+});
+render();
+if(globalThis.Tweak){const tweaks=new Tweak({container:root,onChange:render});tweaks.addSelect(design,&#x27;density&#x27;,{label:&#x27;Espaçamento da tabela&#x27;,options:[&#x27;Confortável&#x27;,&#x27;Compacta&#x27;]});tweaks.addToggle(design,&#x27;descriptions&#x27;,{label:&#x27;Descrições na tabela&#x27;});}
+})();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerdown&quot;, handlePointer);
+    document.removeEventListener(&quot;pointercancel&quot;, handlePointer);
+    document.removeEventListener(&quot;click&quot;, handleTouchClick);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerdown&quot;, handlePointer);
+  document.addEventListener(&quot;pointercancel&quot;, handlePointer);
+  document.addEventListener(&quot;click&quot;, handleTouchClick);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-tabs&quot;&gt;
+(() =&gt; {
+  const selector = &#x27;.nav[role=&quot;tablist&quot;] [role=&quot;tab&quot;]&#x27;;
+  const disabled = &#x27;:disabled,[aria-disabled=&quot;true&quot;]&#x27;;
+  const selectTab = (selected) =&gt; {
+    const panelId = selected.getAttribute(&quot;aria-controls&quot;);
+    for (const tab of selected.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;)) {
+      const active = tab === selected;
+      tab.classList.toggle(&quot;active&quot;, active);
+      tab.setAttribute(&quot;aria-selected&quot;, String(active));
+      const id = tab.getAttribute(&quot;aria-controls&quot;);
+      const panel = id &amp;&amp; document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden &amp;&amp; selected.id) {
+          panel.setAttribute(&quot;aria-labelledby&quot;, selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) =&gt; {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === &quot;click&quot;) {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;),
+    ).filter((candidate) =&gt; !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === &quot;ArrowRight&quot; || event.key === &quot;ArrowDown&quot;) {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === &quot;ArrowLeft&quot; || event.key === &quot;ArrowUp&quot;) {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === &quot;Home&quot;) {
+      next = 0;
+    } else if (event.key === &quot;End&quot;) {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll(&#x27;.nav[role=&quot;tablist&quot;]&#x27;)) {
+    const selected =
+      list.querySelector(&#x27;[role=&quot;tab&quot;][aria-selected=&quot;true&quot;]&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;].active&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;]&#x27;);
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener(&quot;click&quot;, interact);
+  document.addEventListener(&quot;keydown&quot;, interact);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; {
+    document.removeEventListener(&quot;click&quot;, interact);
+    document.removeEventListener(&quot;keydown&quot;, interact);
+  }, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
