@@ -6,7 +6,8 @@ const fmt=v=>new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1}).format(v);
 const money=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:2}).format(v);
 const C=globalThis.InitiativesCore;
 const statuses=C.statuses,metricKeys=C.metricKeys;
-let state=C.initial(),lastSaved=structuredClone(state),areas=state.areas,kinds=state.kinds,extraFields=state.extraFields,items=state.items,columns=state.columns;
+let mode='demo',demoState=C.validate(globalThis.InitiativesDemo.create()),demoChanged=false;
+let state=structuredClone(demoState),lastSaved=structuredClone(state),areas=state.areas,kinds=state.kinds,extraFields=state.extraFields,items=state.items,columns=state.columns;
 let kindFilter='',ready=false,busy=false,formBaseline={};
 const today=()=>new Date().toLocaleDateString('pt-BR');
 const localMonth=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;};
@@ -16,8 +17,17 @@ function apply(data){state=C.validate(data);({areas,kinds,extraFields,items,colu
 function snapshot(){return {...state,areas,kinds,extraFields,items,columns};}
 function setBusy(value){busy=value;document.querySelectorAll('button,input,select,textarea').forEach(x=>x.disabled=value);}
 function notice(message,error=false){$('#ia-notice').textContent=message;$('#ia-notice').classList.toggle('error',error);}
+function updateModeUI(){const backend=mode==='backend';$('#ia-backend-toggle').checked=backend;$('#ia-mode-name').textContent=backend?'Backend local':'Demonstração';$('#ia-mode-hint').textContent=backend?'Alterações gravadas no arquivo JSON':'Exemplos fictícios · alterações nesta sessão';$('#ia-reload').textContent=backend?'Recarregar base':'Restaurar exemplos';$('#ia-footer-mode').textContent=backend?'Base local em JSON':'Demonstração local';}
 function formValues(form){const values={};if(form)for(const [name,value] of new FormData(form))(values[name]??=[]).push(value);return values;}
 async function load({preserve=false}={}){
+ if(mode==='demo'){
+   const form=root.querySelector('form');
+   if((demoChanged||form?.dataset.dirty==='true')&&!(await ask('Restaurar exemplos?', 'As alterações temporárias desta sessão serão descartadas.'))){$('#ia-backend-toggle').checked=false;return;}
+   setBusy(true);
+   try{demoState=C.validate(globalThis.InitiativesDemo.create());demoChanged=false;apply(demoState);ready=true;selected=null;view='list';render();notice('');note('Exemplos restaurados · alterações temporárias');}
+   finally{setBusy(false);}
+   return;
+ }
  const form=preserve?root.querySelector('form'):null,values=formValues(form);
  const changed=Object.keys({...formBaseline,...values}).filter(name=>JSON.stringify(values[name]||[])!==JSON.stringify(formBaseline[name]||[]));
  const links=form?[...form.querySelectorAll('.ia-link-fields')].map(row=>({type:row.querySelector('[name="link-type"]').value,title:row.querySelector('[name="link-title"]').value,url:row.querySelector('[name="link-url"]').value})):[];
@@ -30,16 +40,35 @@ async function load({preserve=false}={}){
      if(changed.length)target.dataset.dirty='true';
    }}
    notice(preserve?'Base recarregada. Revise seu formulário e salve novamente.':'');note('Base carregada · revisão '+state.revision);
- }catch(e){notice(ready?'Não foi possível atualizar a base. Seu formulário foi preservado.':'Inicie o serviço com npm run initiatives e abra http://127.0.0.1:4382/modules/initiatives/. Um servidor estático não grava o arquivo JSON.',true);if(!ready)content.innerHTML='<section class="ia-panel"><h1>Conectar à base</h1><p>Execute <code>npm run initiatives</code> na pasta da plataforma.</p><p>Depois abra o módulo pelo endereço do serviço local.</p></section>';}
+ }catch(e){notice('Não foi possível atualizar a base. A tela continua disponível; confirme se o serviço local está ativo.',true);note('Falha ao recarregar a base');}
  finally{setBusy(false);}
 }
 async function persist(){
- setBusy(true);note('Salvando no arquivo…');
- try{const proposal=C.validate(snapshot());const response=await fetch(endpoint,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(proposal)});const data=await response.json();if(!response.ok)throw Error(data.error||'Falha ao salvar.');apply(data);notice('');note('Salvo no arquivo · revisão '+state.revision+' · '+new Date(state.updatedAt).toLocaleTimeString('pt-BR'));return true;}
+ setBusy(true);note(mode==='backend'?'Salvando no arquivo…':'Atualizando demonstração…');
+ try{const proposal=C.validate(snapshot());let data;
+   if(mode==='backend'){const response=await fetch(endpoint,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(proposal)});data=await response.json();if(!response.ok)throw Error(data.error||'Falha ao salvar.');}
+   else data=C.revise(lastSaved,proposal);
+   apply(data);notice('');
+   if(mode==='backend')note('Salvo no arquivo · revisão '+state.revision+' · '+new Date(state.updatedAt).toLocaleTimeString('pt-BR'));
+   else{demoState=structuredClone(state);demoChanged=true;note('Alteração temporária · não gravada no backend');}
+   return true;
+ }
  catch(e){apply(lastSaved);note('Gravação não confirmada');notice(e.message+' Se necessário, use Recarregar base. Os campos em edição foram preservados.',true);return false;}
  finally{setBusy(false);}
 }
 function ask(title,text){return new Promise(resolve=>{const dialog=$('#ia-dialog');dialog.innerHTML=`<div class="dialog-content"><h2 id="ia-dialog-title">${esc(title)}</h2><p>${esc(text)}</p><div class="actions"><button class="btn" data-answer="cancel">Cancelar</button><button class="btn primary" data-answer="confirm">Confirmar</button></div></div>`;dialog.onclose=()=>resolve(dialog.returnValue==='confirm');dialog.querySelectorAll('[data-answer]').forEach(button=>button.onclick=()=>dialog.close(button.dataset.answer));dialog.returnValue='cancel';dialog.showModal();});}
+async function setBackendMode(enabled){
+ if(enabled===(mode==='backend'))return;
+ const form=root.querySelector('form'),formDirty=form?.dataset.dirty==='true';
+ if((formDirty||(enabled&&demoChanged))&&!(await ask(enabled?'Conectar ao backend?':'Voltar à demonstração?',enabled?'A base real será carregada; as alterações temporárias dos exemplos não serão mescladas.':'As alterações deste formulário ainda não salvas serão descartadas.'))){$('#ia-backend-toggle').checked=mode==='backend';return;}
+ if(!enabled){mode='demo';apply(demoState);selected=null;view='list';updateModeUI();render();notice('');note(demoChanged?'Demonstração · alterações temporárias desta sessão':'Demonstração carregada · dados fictícios');return;}
+ setBusy(true);note('Conectando ao backend local…');
+ try{
+   const response=await fetch(endpoint,{cache:'no-store'});if(!response.ok)throw Error('O serviço não confirmou a conexão.');
+   const data=C.validate(await response.json());mode='backend';apply(data);ready=true;selected=null;view='list';updateModeUI();render();notice('');note('Base conectada · revisão '+state.revision);
+ }catch(e){mode='demo';apply(demoState);ready=true;updateModeUI();render();note('Demonstração ativa · conexão não realizada');notice(location.protocol==='file:'?'Para usar o backend, inicie o serviço local e abra o módulo pelo endereço http://127.0.0.1:4382/modules/initiatives/. A demonstração segue funcionando sem servidor.':'Não foi possível conectar ao backend. Confira se o serviço local está ativo; a demonstração segue funcionando.',true);}
+ finally{setBusy(false);}
+}
 let view='list', selected=null, period=localMonth(), query='', area='', status='', quality='Medido', presenting=false, confirmDelete=null;
 const measureDrafts=new Map();
 const draftKey=()=>`${selected}:${period}`;
@@ -86,7 +115,7 @@ if(view==='settings'){
  columnPanel.innerHTML=`<h3>Colunas das tabelas</h3><div class="ia-grid">${[['Iniciativas',false],['Indicadores',true]].map(([title,isMetric])=>`<fieldset><legend>${title}</legend><div class="ia-stack">${Object.entries(columns).filter(([key])=>metricKeys.includes(key)===isMetric).map(([key,c])=>`<label class="ia-check"><input type="checkbox" data-column="${key}" ${c.show?'checked':''}>${c.label}</label>`).join('')}</div></fieldset>`).join('')}</div><small style="display:block;margin-top:16px">Nome e áreas sempre visíveis. Ocultar uma coluna preserva os dados.</small>`;
  grid.children[0].insertAdjacentHTML('afterend',`<section class="ia-panel"><h3>Tipos de iniciativa</h3>${kinds.map((k,index)=>{const used=items.some(i=>i.kind===k.name);return `<div class="ia-list-row"><span>${esc(k.name)} ${k.active?'':'<small>· arquivado</small>'}</span><button class="ia-quiet" data-kind-action="${index}">${!k.active?'Reativar':used?'Arquivar':'Remover'}</button></div>`;}).join('')}<form id="ia-kind-form" class="ia-row" style="margin-top:16px"><label style="flex:1">Novo tipo<input name="kind" required maxlength="50" placeholder="Ex.: Ferramenta de IA"></label><button type="submit" style="align-self:end">Adicionar</button></form><small style="display:block;margin-top:12px">Campo opcional. Tipos em uso são arquivados, preservando os cadastros existentes.</small></section>`);
 }
-if(view==='settings'){const storage=content.querySelector('.ia-grid > section:last-child');storage.innerHTML='<h3>Arquivo de dados</h3><p>Alterações são gravadas no arquivo JSON pelo serviço local.</p><small>Use Exportar dados para guardar uma cópia. A versão anterior também é preservada no arquivo .bak.</small>';}
+if(view==='settings'){const storage=content.querySelector('.ia-grid > section:last-child');storage.innerHTML=mode==='backend'?'<h3>Backend local conectado</h3><p>Alterações são gravadas no arquivo JSON pelo serviço local.</p><small>Use Exportar dados para guardar uma cópia. A versão anterior também é preservada no arquivo .bak.</small>':'<h3>Demonstração em memória</h3><p>Os exemplos e alterações desta sessão existem somente nesta aba.</p><small>Nenhum dado é enviado ao backend. Use o switch no topo para conectar uma base local persistente.</small>';}
 formBaseline=formValues(root.querySelector('form'));
 }
 function renderList(){const list=filtered();content.innerHTML=`<div class="ia-heading"><div><h1>Iniciativas de IA</h1><p class="ia-muted">Organize as iniciativas por área, tipo e estágio.</p></div>${presenting?'':`<button class="ia-primary" id="ia-new">${icon('plus')}Nova iniciativa</button>`}</div>${filters()}<section class="ia-panel" style="padding:0"><div class="ia-row ia-between" style="padding:17px 20px 7px"><h2>Iniciativas <span class="ia-badge">${list.length}</span></h2>${presenting?'':`<button class="ia-quiet" id="ia-columns">${icon('columns-3')}Colunas</button>`}</div>${table(list)}</section>`;}
@@ -143,8 +172,10 @@ if(b.id==='ia-cancel-delete'){confirmDelete=null;render();}
 if(b.dataset.deleteField){const id=b.dataset.deleteField;extraFields=extraFields.filter(f=>f.id!==id);items.forEach(i=>delete i.custom[id]);if(await persist()){confirmDelete=null;render();}}
 });
 root.addEventListener('change',async e=>{
-if(busy||!ready)return;
 const t=e.target;
+if(t.id==='ia-backend-toggle'){if(!busy&&ready)await setBackendMode(t.checked);return;}
+if(busy||!ready)return;
+if(t.closest('form'))t.closest('form').dataset.dirty='true';
 if(t.id==='ia-period'){
  const next=t.value;
  if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(next)||!t.checkValidity()){t.value=period;note('Escolha um mês e ano válidos.');return;}
@@ -161,7 +192,7 @@ if(t.id==='ia-quality'){quality=t.value;render();}
 if(t.dataset.column){columns[t.dataset.column].show=t.checked;if(!await persist())t.checked=columns[t.dataset.column].show;}
 if(t.dataset.customShow){extraFields.find(f=>f.id===t.dataset.customShow).show=t.checked;if(!await persist())t.checked=extraFields.find(f=>f.id===t.dataset.customShow).show;}
 });
-root.addEventListener('input',e=>{if(e.target.closest('#ia-edit-form'))e.target.closest('form').dataset.dirty='true';if(e.target.id==='ia-query'){const start=e.target.selectionStart,end=e.target.selectionEnd;query=e.target.value;render();const input=root.querySelector('#ia-query');input.focus();input.setSelectionRange(start,end);}});
+root.addEventListener('input',e=>{const form=e.target.closest('form');if(form)form.dataset.dirty='true';if(e.target.id==='ia-query'){const start=e.target.selectionStart,end=e.target.selectionEnd;query=e.target.value;render();const input=root.querySelector('#ia-query');input.focus();input.setSelectionRange(start,end);}});
 root.addEventListener('submit',async e=>{
 e.preventDefault();if(busy||!ready)return;const form=e.target,f=new FormData(form);
 if(form.id==='ia-area-form'){const name=f.get('area').trim();if(!name)return;if(areas.some(a=>a.name.toLowerCase()===name.toLowerCase())){note('Essa área já está cadastrada.');return;}areas.push({name,active:true});if(await persist())render();}
@@ -178,5 +209,6 @@ if(form.id==='ia-edit-form'){
 }
 if(form.id==='ia-measure-form'){if(!current()){notice('Iniciativa removida. Recarregue a base.',true);return;}current().metrics[period]=readMeasureForm(form);current().updated=today();if(await persist()){measureDrafts.delete(draftKey());view='detail';render();}}
 });
-load();
+function startDemo(){mode='demo';demoState=C.validate(globalThis.InitiativesDemo.create());apply(demoState);ready=true;updateModeUI();render();notice('');note('Demonstração carregada · dados fictícios');}
+startDemo();
 })();

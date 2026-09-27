@@ -4,19 +4,22 @@ Módulo local para cadastrar iniciativas e apresentar resultados à liderança. 
 
 ## Usar
 
-Na pasta da plataforma, com Node.js 18 ou superior:
+O módulo abre primeiro em **Demonstração**, com iniciativas fictícias e indicadores já preenchidos. Abra `index.html` diretamente ou sirva os arquivos com um servidor estático; não é preciso iniciar o serviço. Filtros, cadastros e indicadores funcionam nessa sessão, mas as alterações ficam apenas na memória da aba e são descartadas ao recarregar.
+
+Para salvar em JSON, inicie o serviço na pasta da plataforma, com Node.js 18 ou superior:
 
 ```sh
 npm run initiatives
 ```
 
-Abra **http://127.0.0.1:4382/modules/initiatives/**. Mantenha o terminal aberto durante o uso. O serviço também oferece a página inicial e os demais módulos do Atlas na mesma porta. Abrir o HTML diretamente ou usar um servidor estático mostra a orientação para iniciar o serviço, sem fingir que salvou dados.
+Abra **http://127.0.0.1:4382/modules/initiatives/**. Mantenha o terminal aberto durante o uso. O serviço também oferece a página inicial e os demais módulos do Atlas na mesma porta. Na página, ligue **Backend local** para carregar a base persistida. O serviço precisa estar no mesmo endereço que a interface; ao abrir via `file://`, o modo de demonstração continua disponível, mas a conexão ao backend pede para abrir o endereço do serviço.
 
-A primeira execução cria uma base **vazia** em `modules/initiatives/data/iniciativas.json`. Ela é o arquivo de dados real; cada ação de salvar grava ali. Essa pasta é ignorada pelo Git. Para outra localização, use `ATLAS_INITIATIVES_DATA=/caminho/iniciativas.json`; para outra porta, use `ATLAS_INITIATIVES_PORT=4383`.
+A primeira execução cria uma base **vazia** em `modules/initiatives/data/iniciativas.json`. Ela é o arquivo de dados real; cada ação de salvar grava ali. As fixtures da demonstração nunca são copiadas para essa base. Essa pasta é ignorada pelo Git. Para outra localização, use `ATLAS_INITIATIVES_DATA=/caminho/iniciativas.json`; para outra porta, use `ATLAS_INITIATIVES_PORT=4383`.
 
 ## Fluxos
 
 - **Iniciativas:** cadastro, edição e exclusão, busca e filtros por área, tipo e status. Cada iniciativa pode ter várias áreas e um tipo opcional. Arquitetura, responsável, modelo/provedor e links são opcionais.
+- **Demonstração / Backend local:** o switch começa desligado e carrega exemplos fictícios sem fazer requisições à API. Alterações ficam em memória e desaparecem ao recarregar. Ao ligar o backend, o módulo primeiro confirma a conexão e carrega a base real sem mesclar os exemplos; ao desligar, retorna à demonstração. Se a conexão falhar, os exemplos continuam visíveis.
 - **Indicadores:** selecione mês/ano para consultar horas poupadas, redução de gasto, custo de IA e infraestrutura e tokens. Os totais distinguem medido de estimado; valor vazio não equivale a zero. Iniciativas em uso e distribuição por estágio representam o status atual, não uma reconstrução histórica.
 - **Registro mensal:** abra uma iniciativa, clique em Registrar indicadores/Editar registro e escolha o mês. Salvar atualiza somente o período selecionado. Rascunhos de outros meses permanecem na memória da aba, não no arquivo; salve cada mês antes de fechá-la.
 - **Configurações:** áreas, tipos, colunas e campos extras de texto, número, data e link. Categorias em uso são arquivadas; as sem uso podem ser removidas. Arquivar preserva o vínculo das iniciativas existentes. Excluir um campo remove também seus valores, após confirmação.
@@ -28,7 +31,7 @@ Os tipos iniciais são Agente, MCP, Skill, Assistente, Assistente agêntico e Wo
 
 O servidor valida todo o documento, verifica a revisão e usa troca atômica de arquivo. Antes de cada gravação, mantém a versão anterior em `iniciativas.json.bak`. Se outra aba salvar primeiro, a segunda recebe um conflito e conserva os campos em edição. Use **Recarregar base**, revise o formulário preservado e salve novamente. Os campos que você alterou são preservados; os demais recebem a versão atual da base. Se ambos editaram o mesmo campo, revise seu valor antes de salvar.
 
-**Exportar dados** baixa o último estado confirmado pelo servidor. Para transportar os dados entre computadores, pare o serviço, copie o JSON e inicie o serviço apontando para ele. Dados e backups são excluídos da exportação de código do módulo. Não substitua manualmente o JSON enquanto houver editores ativos.
+**Exportar dados** baixa o estado atual do modo ativo. Na demonstração, o arquivo pode incluir alterações feitas naquela sessão; no backend, baixa o último estado confirmado pelo servidor. Para transportar dados persistidos entre computadores, pare o serviço, copie o JSON e inicie o serviço apontando para ele. Dados e backups são excluídos da exportação de código do módulo. Não substitua manualmente o JSON enquanto houver editores ativos.
 
 Se uma interrupção deixar `iniciativas.json.lock`, pare todas as instâncias do serviço antes de remover esse arquivo de bloqueio. Se a base estiver corrompida, ela não será sobrescrita automaticamente: com o serviço parado, preserve uma cópia e restaure o `.bak` verificado.
 
