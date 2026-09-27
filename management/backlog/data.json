@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 31,
-  "updatedAt": "2026-09-27T03:41:07.866Z",
+  "revision": 36,
+  "updatedAt": "2026-09-27T03:49:41.918Z",
   "items": [
     {
       "id": "ATL-001",
@@ -503,20 +503,20 @@
       "title": "Módulo Infrastructure Discovery do IDP",
       "module": "cross",
       "description": "Criar um módulo independente no Atlas IDP para descobrir recursos cloud, explicar ownership por camada e orientar adoção Atlas. Inclui Drift via GitHub Actions, report do plan, histórico e schedules por repositório.",
-      "plan": "Adicionar Infrastructure Discovery como módulo portável em atlas-platform/modules/infrastructure-discovery, registrado em atlas.config.js e compatível com shared/theme, shared/navigation, exportador e testes da plataforma. A Fase A entrega mock local navegável com Overview, Inventory, Coverage, Resource Detail, Findings, Drift (Execução/Histórico/Schedules) e Adoption. Representar ownership por Origin, Infrastructure, Configuration, Delivery, Runtime e Catalog; classificar Atlas, Hybrid, External Terraform, Other IaC, Pipeline, Manual, Unknown e Ownership Conflict. Discovery funciona sem state externo; Federated State Discovery é opcional. Drift apresenta seleção repo→ambiente→grupo→recurso, plan summary do GitHub, diff por atributo, referência do run e cron por repo; falta de baseline do workflow é Not evaluated, nunca ausência de drift. Em workloads híbridos, comparar somente atributos sob controle IaC e separar mudanças de delivery. Cron é alterado por proposta de PR; o schedule vigente permanece até merge. Adoption mostra seleção por camada, import/handover e preview Backstage sem executar ações externas no mock. Documentar contratos futuros como propostas; credenciais, workflows, PRs, apply e conexões reais ficam fora da Fase A.",
-      "acceptance": "O novo módulo tem item próprio no menu Atlas e mantém os módulos existentes independentes, portáveis e exportáveis. O mock usa fixtures marcadas como demonstrativas e navega entre Overview, Inventory, Coverage, detalhe, Findings, Drift e Adoption. Filtros, cascata repo→HINT/HEXT/DEV/PROD→grupo→recurso, seleção de workload e modais funcionam localmente. originBy: Atlas é evidência, não prova isolada de ownership. Lambda/ECS/API Gateway exibem owners distintos por componente/camada. O report do plan mostra criar/alterar/destruir, diffs por atributo e run GitHub. Baseline indisponível produz Not evaluated sem contagens zero; deploy pipeline não é confundido com drift IaC. Schedules mostram cron atual e proposto, PR simulada pendente e cron ativo até merge. Adoption não executa import/apply; Backstage é preview. Não há chamadas AWS/GitHub/Backstage, workflow real, PR real ou credenciais. Documentação, examples, testes do core e export do módulo são incluídos.",
+      "plan": "Completar a navegação do módulo Infrastructure Discovery com páginas próprias e rotas locais para Overview, Inventory, Resource Detail, Coverage, Findings, Drift (Execução/Histórico/Schedules), Adoption e Sources/Settings. Reutilizar fixtures atuais e preservar tema, acessibilidade, independência e exportação do módulo. Discovery segue independente de state externo; baseline ausente permanece Not evaluated. Toda interação é demonstrativa, sem chamadas cloud/GitHub/Backstage nem ações de import/apply.",
+      "acceptance": "Cada área tem página e navegação interna próprias, com URL/hash direto: Overview mostra resumo e findings; Inventory contém busca/filtros e lista; Resource Detail abre do item selecionado e apresenta identidade, componentes e ownership pelas seis camadas; Coverage mostra estado e lacunas de fontes; Findings lista conflitos/unknowns; Drift preserva cascata repo→ambiente→grupo→recurso, relatório/histórico/schedules; Adoption mostra plano revisável e preview Backstage; Sources/Settings explica fontes e escopo sem conexão real. Estado selecionado permanece ao alternar telas. Tema claro/escuro, navegação responsiva e links diretos funcionam. Exportação continua independente e suíte do projeto passa.",
       "hypothesis": "",
       "hypothesisRequired": false,
       "hypothesisResult": "pending",
-      "implementation": "Fase A criada: módulo registrado no menu Atlas; mock local com Discovery/Inventory, detalhe e ownership por camada, Cobertura, Findings, Drift (Execução/Histórico/Schedules) e Adoção; fixtures, core, README e docs. Sem chamadas externas, workflows, PR, import ou apply.",
-      "verification": "Testes do core 5/5; check-links OK; suíte tools/test.mjs 50/50; node --check app.js/core.js; export isolado aprovado. Revisão visual no navegador bloqueada pela política ao abrir arquivo local.",
-      "validationResult": "approved",
-      "commit": "655156bcdabf4f3a290f1e6d37279ee2407b20f6",
+      "implementation": "Telas organizadas e separadas em oito rotas locais: Overview, Inventory, Resource Detail, Coverage, Findings, Drift, Adoption e Sources/Settings. Busca/filtros, navegação por hash, abertura do detalhe pela linha selecionada, preferências locais e restauração da demo adicionadas. Tema responsivo e dependências compartilhadas preservados.",
+      "verification": "Validação local aprovada: auditoria HTML confirma IDs únicos e 8 rotas ligadas a views; node --check app.js/core.js; check-links OK; testes do core 5/5; tools/test.mjs 50/50, incluindo exportação independente. Nenhuma chamada externa foi adicionada.",
+      "validationResult": "pending",
+      "commit": "",
       "owner": "Codex",
       "deferred": false,
-      "status": "done",
+      "status": "validation",
       "createdAt": "2026-09-22T03:10:34.739Z",
-      "updatedAt": "2026-09-27T03:41:07.866Z",
+      "updatedAt": "2026-09-27T03:49:41.918Z",
       "history": [
         {
           "at": "2026-09-22T03:10:34.739Z",
@@ -648,13 +648,89 @@
             "subject": "ATL-013: implementa módulo Infrastructure Discovery",
             "checkedAt": "2026-09-27T03:41:08.793Z"
           }
+        },
+        {
+          "at": "2026-09-27T03:44:21.742Z",
+          "actor": "Codex",
+          "from": "done",
+          "to": "refine",
+          "changes": {
+            "plan": {
+              "from": "Adicionar Infrastructure Discovery como módulo portável em atlas-platform/modules/infrastructure-discovery, registrado em atlas.config.js e compatível com shared/theme, shared/navigation, exportador e testes da plataforma. A Fase A entrega mock local navegável com Overview, Inventory, Coverage, Resource Detail, Findings, Drift (Execução/Histórico/Schedules) e Adoption. Representar ownership por Origin, Infrastructure, Configuration, Delivery, Runtime e Catalog; classificar Atlas, Hybrid, External Terraform, Other IaC, Pipeline, Manual, Unknown e Ownership Conflict. Discovery funciona sem state externo; Federated State Discovery é opcional. Drift apresenta seleção repo→ambiente→grupo→recurso, plan summary do GitHub, diff por atributo, referência do run e cron por repo; falta de baseline do workflow é Not evaluated, nunca ausência de drift. Em workloads híbridos, comparar somente atributos sob controle IaC e separar mudanças de delivery. Cron é alterado por proposta de PR; o schedule vigente permanece até merge. Adoption mostra seleção por camada, import/handover e preview Backstage sem executar ações externas no mock. Documentar contratos futuros como propostas; credenciais, workflows, PRs, apply e conexões reais ficam fora da Fase A.",
+              "to": "Completar a navegação do módulo Infrastructure Discovery com páginas próprias e rotas locais para Overview, Inventory, Resource Detail, Coverage, Findings, Drift (Execução/Histórico/Schedules), Adoption e Sources/Settings. Reutilizar fixtures atuais e preservar tema, acessibilidade, independência e exportação do módulo. Discovery segue independente de state externo; baseline ausente permanece Not evaluated. Toda interação é demonstrativa, sem chamadas cloud/GitHub/Backstage nem ações de import/apply."
+            },
+            "acceptance": {
+              "from": "O novo módulo tem item próprio no menu Atlas e mantém os módulos existentes independentes, portáveis e exportáveis. O mock usa fixtures marcadas como demonstrativas e navega entre Overview, Inventory, Coverage, detalhe, Findings, Drift e Adoption. Filtros, cascata repo→HINT/HEXT/DEV/PROD→grupo→recurso, seleção de workload e modais funcionam localmente. originBy: Atlas é evidência, não prova isolada de ownership. Lambda/ECS/API Gateway exibem owners distintos por componente/camada. O report do plan mostra criar/alterar/destruir, diffs por atributo e run GitHub. Baseline indisponível produz Not evaluated sem contagens zero; deploy pipeline não é confundido com drift IaC. Schedules mostram cron atual e proposto, PR simulada pendente e cron ativo até merge. Adoption não executa import/apply; Backstage é preview. Não há chamadas AWS/GitHub/Backstage, workflow real, PR real ou credenciais. Documentação, examples, testes do core e export do módulo são incluídos.",
+              "to": "Cada área tem página e navegação interna próprias, com URL/hash direto: Overview mostra resumo e findings; Inventory contém busca/filtros e lista; Resource Detail abre do item selecionado e apresenta identidade, componentes e ownership pelas seis camadas; Coverage mostra estado e lacunas de fontes; Findings lista conflitos/unknowns; Drift preserva cascata repo→ambiente→grupo→recurso, relatório/histórico/schedules; Adoption mostra plano revisável e preview Backstage; Sources/Settings explica fontes e escopo sem conexão real. Estado selecionado permanece ao alternar telas. Tema claro/escuro, navegação responsiva e links diretos funcionam. Exportação continua independente e suíte do projeto passa."
+            },
+            "validationResult": {
+              "from": "approved",
+              "to": "pending"
+            },
+            "commit": {
+              "from": "655156bcdabf4f3a290f1e6d37279ee2407b20f6",
+              "to": ""
+            },
+            "status": {
+              "from": "done",
+              "to": "refine"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:44:32.782Z",
+          "actor": "Codex",
+          "from": "refine",
+          "to": "todo",
+          "changes": {
+            "status": {
+              "from": "refine",
+              "to": "todo"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:44:33.016Z",
+          "actor": "Codex",
+          "from": "todo",
+          "to": "doing",
+          "changes": {
+            "implementation": {
+              "from": "Fase A criada: módulo registrado no menu Atlas; mock local com Discovery/Inventory, detalhe e ownership por camada, Cobertura, Findings, Drift (Execução/Histórico/Schedules) e Adoção; fixtures, core, README e docs. Sem chamadas externas, workflows, PR, import ou apply.",
+              "to": "Retomada para completar telas independentes e rotas locais de Overview, Inventory, Resource Detail e Sources/Settings, preservar estado entre telas, alinhar navegação responsiva e testar novamente exportação/suíte."
+            },
+            "status": {
+              "from": "todo",
+              "to": "doing"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:49:41.918Z",
+          "actor": "Codex",
+          "from": "doing",
+          "to": "validation",
+          "changes": {
+            "implementation": {
+              "from": "Retomada para completar telas independentes e rotas locais de Overview, Inventory, Resource Detail e Sources/Settings, preservar estado entre telas, alinhar navegação responsiva e testar novamente exportação/suíte.",
+              "to": "Telas organizadas e separadas em oito rotas locais: Overview, Inventory, Resource Detail, Coverage, Findings, Drift, Adoption e Sources/Settings. Busca/filtros, navegação por hash, abertura do detalhe pela linha selecionada, preferências locais e restauração da demo adicionadas. Tema responsivo e dependências compartilhadas preservados."
+            },
+            "verification": {
+              "from": "Testes do core 5/5; check-links OK; suíte tools/test.mjs 50/50; node --check app.js/core.js; export isolado aprovado. Revisão visual no navegador bloqueada pela política ao abrir arquivo local.",
+              "to": "Validação local aprovada: auditoria HTML confirma IDs únicos e 8 rotas ligadas a views; node --check app.js/core.js; check-links OK; testes do core 5/5; tools/test.mjs 50/50, incluindo exportação independente. Nenhuma chamada externa foi adicionada."
+            },
+            "status": {
+              "from": "doing",
+              "to": "validation"
+            }
+          },
+          "commitEvidence": null
         }
       ],
-      "commitEvidence": {
-        "hash": "655156bcdabf4f3a290f1e6d37279ee2407b20f6",
-        "subject": "ATL-013: implementa módulo Infrastructure Discovery",
-        "checkedAt": "2026-09-27T03:41:08.793Z"
-      }
+      "commitEvidence": null
     },
     {
       "id": "ATL-014",

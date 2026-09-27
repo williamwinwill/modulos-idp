@@ -3,16 +3,18 @@
       const root = document.getElementById("atlas-discovery-mock");
       const search = root.querySelector("#resource-search");
       const rows = [...root.querySelectorAll("#resource-rows tr")];
+      const regionFilter = root.querySelector("#filter-region");
+      const catalogFilter = root.querySelector("#filter-catalog");
       const panel = root.querySelector("#detail-panel");
       const modal = root.querySelector("#adoption-modal");
       const detailName = root.querySelector("#detail-name");
       const detailSub = root.querySelector("#detail-sub");
       const detailClass = root.querySelector("#detail-class");
       const resultCount = root.querySelector("#result-count");
-      const discoveryView = root.querySelector("#discovery-view");
-      const driftView = root.querySelector("#drift-view");
-      const extraViews = Object.fromEntries(["coverage", "findings", "adoption"].map(name => [name, root.querySelector(`#${name}-view`)]));
+      const pageNames = ["overview", "inventory", "resource-detail", "coverage", "findings", "drift", "adoption", "sources"];
+      const views = Object.fromEntries(pageNames.map(name => [name, root.querySelector(`#${name}-view`)]));
       let activeClass = null;
+      let selectedResourceId = "payments";
       function badgeClass(value) {
         if (value === "Atlas") return "badge b-atlas";
         if (value === "Ownership Conflict") return "badge b-conflict";
@@ -24,22 +26,31 @@
         const q = search.value.trim().toLowerCase();
         let visible = 0;
         rows.forEach((row) => {
-          const match = row.dataset.name.includes(q) && (!activeClass || row.dataset.class === activeClass);
+          const matchesSearch = row.dataset.name.includes(q);
+          const matchesClass = !activeClass || row.dataset.class === activeClass;
+          const matchesRegion = !regionFilter.value || row.dataset.region === regionFilter.value;
+          const matchesCatalog = !catalogFilter.value || row.dataset.catalog === catalogFilter.value;
+          const match = matchesSearch && matchesClass && matchesRegion && matchesCatalog;
           row.classList.toggle("hidden-row", !match);
+          row.setAttribute("aria-hidden", String(!match));
           if (match) visible += 1;
         });
-        resultCount.textContent = `· ${activeClass || "todos"} · ${visible} exibidos nesta página`;
+        resultCount.textContent = `· ${activeClass || "todas as classes"} · ${visible} recursos`;
       }
       root.querySelectorAll(".class-tile").forEach((tile) => tile.addEventListener("click", () => {
-        root.querySelectorAll(".class-tile").forEach((item) => item.classList.remove("active"));
+        root.querySelectorAll(".class-tile").forEach((item) => { item.classList.remove("active"); item.setAttribute("aria-pressed", "false"); });
         tile.classList.add("active");
+        tile.setAttribute("aria-pressed", "true");
         activeClass = tile.dataset.class;
         filterRows();
       }));
       search.addEventListener("input", filterRows);
+      regionFilter.addEventListener("change", filterRows);
+      catalogFilter.addEventListener("change", filterRows);
       rows.forEach((row) => row.addEventListener("click", () => {
         rows.forEach((item) => item.classList.remove("selected"));
         row.classList.add("selected");
+        selectedResourceId = row.dataset.id;
         const names = {
           payments: ["payments-api-prod", "Lambda · us-east-1 · conta prod-payments", "Hybrid", ["Atlas · tag `originBy`", "Terraform · Atlas", "GitHub Actions", "GitHub Actions", "Time Payments"], ["IAM role · payments-api-role|Atlas", "Lambda · função + alias|Pipeline", "CloudWatch · log group|Atlas"], "Component · payments/payments-api"],
           orders: ["orders-worker", "ECS service · us-east-1 · conta prod-orders", "Hybrid", ["Pipeline · evento recente", "Terraform · state orders-prod", "Deploy pipeline", "GitHub Actions", "Time Orders"], ["ECS service + task definition|Hybrid", "Execution role|Terraform", "Container image|Pipeline"], "Component · orders/orders-worker"],
@@ -62,8 +73,12 @@
           return `<div class="component"><span>${label}</span><span class="${badgeClass(kind)}">${category}</span></div>`;
         }).join("");
         root.querySelectorAll(".layer-value")[5].innerHTML = `<div class="catalog"><i class="catalog-mark">B</i><span>${selected[5]}</span></div>`;
+        navigate("resource-detail");
       }));
-      root.querySelector("#adopt-btn").addEventListener("click", () => showView("adoption"));
+      rows.forEach((row) => row.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); row.click(); }
+      }));
+      root.querySelector("#adopt-btn").addEventListener("click", () => navigate("adoption"));
       root.querySelector("#adopt-view-btn").addEventListener("click", () => modal.classList.add("open"));
       root.querySelector("#cancel-modal").addEventListener("click", () => modal.classList.remove("open"));
       root.querySelector("#continue-modal").addEventListener("click", (event) => {
@@ -76,17 +91,20 @@
         button.textContent = "Discovery em execução…";
         window.setTimeout(() => { button.textContent = "✓ Scan concluído"; }, 1100);
       });
-      root.querySelector("#filter-btn").addEventListener("click", (event) => { event.currentTarget.textContent = event.currentTarget.textContent.includes("2") ? "☷ Filtros · conta + tipo" : "☷ Filtros 2"; });
-
       const navButtons = [...root.querySelectorAll("[data-view-target]")];
       function showView(name) {
-        discoveryView.hidden = name !== "discovery";
-        driftView.hidden = name !== "drift";
-        Object.entries(extraViews).forEach(([key, view]) => { view.hidden = key !== name; });
+        if (!views[name]) name = "overview";
+        Object.entries(views).forEach(([key, view]) => { view.hidden = key !== name; });
         navButtons.forEach((button) => { const active = button.dataset.viewTarget === name; button.classList.toggle("active", active); if (active) button.setAttribute("aria-current", "page"); else button.removeAttribute("aria-current"); });
       }
-      navButtons.forEach((button) => button.addEventListener("click", () => showView(button.dataset.viewTarget)));
-      function viewFromHash() { const name = location.hash.slice(1); if (["discovery", "drift", ...Object.keys(extraViews)].includes(name)) showView(name); }
+      function navigate(name) {
+        if (!views[name]) return;
+        showView(name);
+        if (location.hash !== `#${name}`) location.hash = name;
+      }
+      navButtons.forEach((button) => button.addEventListener("click", () => navigate(button.dataset.viewTarget)));
+      root.querySelectorAll("[data-route]").forEach(link => link.addEventListener("click", event => { event.preventDefault(); navigate(link.dataset.route); }));
+      function viewFromHash() { const name = location.hash.slice(1); showView(views[name] ? name : "overview"); }
       window.addEventListener("hashchange", viewFromHash);
       viewFromHash();
       root.querySelector("#open-drift-from-resource").addEventListener("click", () => {
@@ -94,7 +112,7 @@
         populateDriftEnvironments("PROD", "micro", "payments-api-prod");
         setDriftScope();
         showDriftTab("exec");
-        showView("drift");
+        navigate("drift");
       });
 
       const inventory = {
@@ -275,7 +293,23 @@
         event.currentTarget.textContent = "PR simulada registrada ✓";
         root.querySelector("#cron-status").textContent = `Simulação: proposta para ${scheduleTarget}. O schedule atual (${cronData(scheduleTarget)}) continua vigente até merge.`;
       });
-      root.querySelectorAll("[data-view-target]").forEach(button => button.addEventListener("click", () => { location.hash = button.dataset.viewTarget; }));
+      root.querySelector("#investigate-btn").addEventListener("click", () => navigate("findings"));
+      root.querySelector("#settings-provider").addEventListener("change", () => { root.querySelector("#settings-status").textContent = "Preferência local atualizada."; });
+      root.querySelector("#settings-region").addEventListener("change", () => { root.querySelector("#settings-status").textContent = "Região demonstrativa atualizada."; });
+      root.querySelector("#settings-federated").addEventListener("change", event => { root.querySelector("#settings-status").textContent = event.currentTarget.checked ? "State federado indicado como opcional (sem conexão)." : "State federado oculto."; });
+      root.querySelector("#reset-demo").addEventListener("click", () => {
+        search.value = ""; regionFilter.value = ""; catalogFilter.value = ""; activeClass = null;
+        root.querySelectorAll(".class-tile").forEach(tile => tile.classList.remove("active"));
+        rows.forEach(row => row.classList.remove("selected"));
+        selectedResourceId = "payments";
+        const first = rows.find(row => row.dataset.id === selectedResourceId) || rows[0];
+        first.classList.add("selected"); first.click();
+        root.querySelector("#settings-federated").checked = false;
+        root.querySelector("#settings-region").selectedIndex = 0;
+        filterRows();
+        root.querySelector("#settings-status").textContent = "Demonstração restaurada. Nenhum estado externo foi alterado.";
+        navigate("overview");
+      });
       root.querySelector("#run-discovery").setAttribute("aria-label", "Simular scan local de discovery");
       const state = { density: "Confortável" };
       if (globalThis.Tweak) {
