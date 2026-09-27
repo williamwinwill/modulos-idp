@@ -11,7 +11,8 @@
       { id: 'agents', title: 'Agentes', path: 'modules/agents/index.html', icon: '▦', shared: ['theme', 'navigation'] },
       { id: 'repositories', title: 'Repositórios Atlas', path: 'modules/repositories/index.html', icon: '▱', shared: ['theme', 'navigation', 'ui', 'graph'] },
       { id: 'backstage', title: 'Catálogo Backstage', path: 'modules/backstage/index.html', icon: '⬡', shared: ['theme', 'navigation', 'ui', 'graph'] },
-      { id: 'initiatives', title: 'Iniciativas de IA', path: 'modules/initiatives/index.html', icon: '✧', shared: ['theme', 'navigation', 'ui'] }
+      { id: 'initiatives', title: 'Iniciativas de IA', path: 'modules/initiatives/index.html', icon: '✧', shared: ['theme', 'navigation', 'ui'] },
+      { id: 'apms', title: 'APMs', path: 'modules/apms/mock.html', icon: '⬡', shared: ['theme', 'navigation', 'ui'] }
     ]
   };
 });

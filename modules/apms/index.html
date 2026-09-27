@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>APMs · Atlas IDP</title>
+  <link rel="stylesheet" href="../../shared/theme/theme.css">
+  <link rel="stylesheet" href="../../shared/ui/catalog.css">
+  <link rel="stylesheet" href="../../shared/navigation/style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="module.css">
+  <script src="../../shared/theme/theme.js"></script>
+  <script src="../../atlas.config.js"></script>
+  <script defer src="../../shared/navigation/navigation.js"></script>
+</head>
+<body>
+  <aside class="sidebar" data-platform-sidebar>
+    <a class="brand" href="../../index.html"><span class="brand-mark">◈</span> atlas <small>/ labs</small></a>
+    <div class="workspace"><span>⬡</span><div><strong>APMs</strong><small>Catálogo de pacotes</small></div></div>
+    <div data-atlas-navigation="apms"></div>
+    <p class="nav-label">APMS</p>
+    <nav aria-label="Módulo APM">
+      <a class="active" href="index.html" aria-current="page">⌂ <span>Menu APMs</span></a>
+      <a href="mock.html">◈ <span>Mock funcional</span></a>
+    </nav>
+    <div class="sidebar-bottom"><p>O mock usa dados locais<br>e não altera o repositório.</p></div>
+  </aside>
+  <header>
+    <div class="crumb">Plataforma <span>/</span><strong>APMs</strong></div>
+    <div class="header-right"><span class="badge amber">Demonstração local</span><button class="theme-toggle" data-theme-toggle>Alternar tema</button></div>
+  </header>
+  <main>
+    <section class="page-head">
+      <div><p class="eyebrow">MÓDULO ATLAS</p><h1>Pacotes APM</h1><p class="muted">Consulte os pacotes de demonstração ou abra o mock para compor e editar um APM.</p></div>
+    </section>
+    <section class="apm-module-grid" aria-label="Opções do módulo">
+      <a class="apm-module-card" href="mock.html">
+        <span class="apm-module-icon" aria-hidden="true">◈</span>
+        <span class="badge blue">MOCK INTERATIVO</span>
+        <h2>Mock funcional</h2>
+        <p>Explore o catálogo, filtre pacotes, consulte skills, crie APMs e edite composições.</p>
+        <span class="apm-module-link">Abrir mock <span aria-hidden="true">→</span></span>
+      </a>
+      <article class="apm-module-note">
+        <span class="badge">ESCOPO</span>
+        <h2>Demonstração isolada</h2>
+        <p>As mudanças são guardadas neste navegador. Nenhuma API é chamada e nenhum arquivo do Atlas é alterado pelo mock.</p>
+        <ul><li>Busca e filtros por squad ou frente</li><li>Composição de skills e targets</li><li>Criação e edição com persistência local</li></ul>
+      </article>
+    </section>
+    <footer><span>Atlas / APMs · Módulo independente</span><span>Dados fictícios para demonstração</span></footer>
+  </main>
+</body>
+</html>
