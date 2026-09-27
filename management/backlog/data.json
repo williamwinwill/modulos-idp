@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 30,
-  "updatedAt": "2026-09-27T03:38:18.354Z",
+  "revision": 31,
+  "updatedAt": "2026-09-27T03:41:07.866Z",
   "items": [
     {
       "id": "ATL-001",
@@ -510,13 +510,13 @@
       "hypothesisResult": "pending",
       "implementation": "Fase A criada: módulo registrado no menu Atlas; mock local com Discovery/Inventory, detalhe e ownership por camada, Cobertura, Findings, Drift (Execução/Histórico/Schedules) e Adoção; fixtures, core, README e docs. Sem chamadas externas, workflows, PR, import ou apply.",
       "verification": "Testes do core 5/5; check-links OK; suíte tools/test.mjs 50/50; node --check app.js/core.js; export isolado aprovado. Revisão visual no navegador bloqueada pela política ao abrir arquivo local.",
-      "validationResult": "pending",
-      "commit": "",
+      "validationResult": "approved",
+      "commit": "655156bcdabf4f3a290f1e6d37279ee2407b20f6",
       "owner": "Codex",
       "deferred": false,
-      "status": "validation",
+      "status": "done",
       "createdAt": "2026-09-22T03:10:34.739Z",
-      "updatedAt": "2026-09-27T03:38:18.354Z",
+      "updatedAt": "2026-09-27T03:41:07.866Z",
       "history": [
         {
           "at": "2026-09-22T03:10:34.739Z",
@@ -623,9 +623,38 @@
             }
           },
           "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:41:07.866Z",
+          "actor": "Codex",
+          "from": "validation",
+          "to": "done",
+          "changes": {
+            "validationResult": {
+              "from": "pending",
+              "to": "approved"
+            },
+            "commit": {
+              "from": "",
+              "to": "655156bcdabf4f3a290f1e6d37279ee2407b20f6"
+            },
+            "status": {
+              "from": "validation",
+              "to": "done"
+            }
+          },
+          "commitEvidence": {
+            "hash": "655156bcdabf4f3a290f1e6d37279ee2407b20f6",
+            "subject": "ATL-013: implementa módulo Infrastructure Discovery",
+            "checkedAt": "2026-09-27T03:41:08.793Z"
+          }
         }
       ],
-      "commitEvidence": null
+      "commitEvidence": {
+        "hash": "655156bcdabf4f3a290f1e6d37279ee2407b20f6",
+        "subject": "ATL-013: implementa módulo Infrastructure Discovery",
+        "checkedAt": "2026-09-27T03:41:08.793Z"
+      }
     },
     {
       "id": "ATL-014",
