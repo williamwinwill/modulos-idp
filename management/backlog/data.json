@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 36,
-  "updatedAt": "2026-09-27T03:49:41.918Z",
+  "revision": 37,
+  "updatedAt": "2026-09-27T03:50:20.067Z",
   "items": [
     {
       "id": "ATL-001",
@@ -510,13 +510,13 @@
       "hypothesisResult": "pending",
       "implementation": "Telas organizadas e separadas em oito rotas locais: Overview, Inventory, Resource Detail, Coverage, Findings, Drift, Adoption e Sources/Settings. Busca/filtros, navegação por hash, abertura do detalhe pela linha selecionada, preferências locais e restauração da demo adicionadas. Tema responsivo e dependências compartilhadas preservados.",
       "verification": "Validação local aprovada: auditoria HTML confirma IDs únicos e 8 rotas ligadas a views; node --check app.js/core.js; check-links OK; testes do core 5/5; tools/test.mjs 50/50, incluindo exportação independente. Nenhuma chamada externa foi adicionada.",
-      "validationResult": "pending",
-      "commit": "",
+      "validationResult": "approved",
+      "commit": "347589c00613159a78da24a070ae266e2a72d8de",
       "owner": "Codex",
       "deferred": false,
-      "status": "validation",
+      "status": "done",
       "createdAt": "2026-09-22T03:10:34.739Z",
-      "updatedAt": "2026-09-27T03:49:41.918Z",
+      "updatedAt": "2026-09-27T03:50:20.067Z",
       "history": [
         {
           "at": "2026-09-22T03:10:34.739Z",
@@ -728,9 +728,38 @@
             }
           },
           "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:50:20.067Z",
+          "actor": "Codex",
+          "from": "validation",
+          "to": "done",
+          "changes": {
+            "validationResult": {
+              "from": "pending",
+              "to": "approved"
+            },
+            "commit": {
+              "from": "",
+              "to": "347589c00613159a78da24a070ae266e2a72d8de"
+            },
+            "status": {
+              "from": "validation",
+              "to": "done"
+            }
+          },
+          "commitEvidence": {
+            "hash": "347589c00613159a78da24a070ae266e2a72d8de",
+            "subject": "ATL-013: organiza telas de Infrastructure Discovery",
+            "checkedAt": "2026-09-27T03:50:20.173Z"
+          }
         }
       ],
-      "commitEvidence": null
+      "commitEvidence": {
+        "hash": "347589c00613159a78da24a070ae266e2a72d8de",
+        "subject": "ATL-013: organiza telas de Infrastructure Discovery",
+        "checkedAt": "2026-09-27T03:50:20.173Z"
+      }
     },
     {
       "id": "ATL-014",
