@@ -33,8 +33,8 @@ function verifyCommit(repo, ref, id, git = process.env.ATLAS_GIT || 'git') {
 }
 function ready(item) {
   assert(!item.deferred, 'Retire o adiamento antes de iniciar este item.');
-  assert(item.plan.trim() && item.acceptance.trim(), 'Para To do, registre o plano e os critérios de aceite.');
-  if (item.hypothesisRequired) assert(item.hypothesis.trim() && item.hypothesisResult === 'approved', 'Valide a hipótese exigida antes de entrar em To do.');
+  assert(item.plan.trim() && item.acceptance.trim(), 'Antes de iniciar, registre o plano e os critérios de aceite.');
+  if (item.hypothesisRequired) assert(item.hypothesis.trim() && item.hypothesisResult === 'approved', 'Valide a hipótese exigida antes de iniciar.');
 }
 function evolve(board, id, patch, actor, expectedRevision, checkCommit, now = new Date().toISOString()) {
   assert(board.revision === expectedRevision, 'O quadro foi atualizado. Recarregue os dados antes de salvar; seu texto continua no formulário.', 409);
@@ -63,7 +63,7 @@ function evolve(board, id, patch, actor, expectedRevision, checkCommit, now = ne
   if (changed.some(k => ['plan','acceptance','implementation'].includes(k)) && !Object.hasOwn(patch,'validationResult')) item.validationResult = 'pending';
   if (changed.includes('hypothesis') && !Object.hasOwn(patch,'hypothesisResult')) item.hypothesisResult = 'pending';
   if (['todo','doing','validation','done'].includes(item.status)) ready(item);
-  if (item.status === 'doing' && previous.status !== 'doing') assert(['todo','validation'].includes(previous.status), 'Doing começa em To do ou retorna de Validação.');
+  if (item.status === 'doing' && previous.status !== 'doing') assert(['backlog','refine','hypothesis','todo','validation'].includes(previous.status), 'Inicie a implementação a partir de uma etapa ativa, sem item adiado.');
   if (item.status === 'validation') {
     assert(['doing','validation'].includes(previous.status), 'A implementação precisa passar por Doing antes de Validação.');
     assert(item.implementation.trim() && item.verification.trim(), 'Registre o que foi implementado e os testes realizados.');

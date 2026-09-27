@@ -1,18 +1,352 @@
-[data-platform-sidebar]{overflow-y:auto}
-[data-platform-sidebar] .workspace{margin-top:24px;margin-bottom:22px}
-[data-atlas-navigation]{flex-shrink:0;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}
-.platform-caption{margin:0 12px 10px;color:var(--muted);font-size:10px;letter-spacing:1.6px;line-height:1.5}
-nav.platform-nav{display:flex;flex-direction:column;gap:4px;margin:0;overflow:visible}
-nav.platform-nav a{display:flex;align-items:center;justify-content:flex-start;gap:9px;margin:0;padding:11px 12px;border:1px solid transparent;border-radius:8px;color:var(--muted);font-size:12px;font-weight:550;line-height:1.4;white-space:normal;text-decoration:none}
-nav.platform-nav .platform-nav-icon{font-size:17px;width:18px;text-align:center;flex-shrink:0}
-nav.platform-nav a[aria-current=location]{background:var(--soft);color:var(--brand);border-color:color-mix(in srgb,var(--brand) 22%,var(--line))}
-[data-platform-sidebar]>.side-bottom,[data-platform-sidebar]>.sidebar-bottom{margin-top:auto;flex-shrink:0}
-@media(hover:hover){nav.platform-nav a:hover{background:var(--subtle);color:var(--text)}nav.platform-nav a[aria-current=location]:hover{background:var(--soft);color:var(--brand)}}
-@media(max-width:720px){
- [data-platform-sidebar]{overflow:visible}
- [data-atlas-navigation]{margin:16px 0 0;padding-bottom:12px}
- .platform-caption{display:none}
- nav.platform-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
- nav.platform-nav a{flex-direction:column;justify-content:center;gap:5px;text-align:center;padding:10px 5px;font-size:11px;min-height:65px}
- [data-platform-sidebar]>nav:not(.platform-nav){margin-top:10px}
+:root {
+  --atlas-sidebar-width: 242px;
+  --atlas-sidebar-bg: var(--surface);
+  --atlas-sidebar-link-height: 42px;
+}
+
+html body aside[data-platform-sidebar] {
+  position: fixed;
+  z-index: 20;
+  inset: 0 auto 0 0;
+  display: flex;
+  width: var(--atlas-sidebar-width);
+  min-width: var(--atlas-sidebar-width);
+  height: 100vh;
+  min-height: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 22px 12px 16px;
+  color: var(--text);
+  background: var(--atlas-sidebar-bg);
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+html body aside[data-platform-sidebar] > .brand {
+  display: flex;
+  min-height: 40px;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 24px;
+  padding: 0 8px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: 0;
+  line-height: 1;
+  text-decoration: none;
+}
+
+html body aside[data-platform-sidebar] .brand-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 850;
+  background: var(--primary-bg);
+  border: 0;
+  border-radius: 10px 4px 10px 4px;
+}
+
+html body aside[data-platform-sidebar] .brand-copy {
+  display: grid;
+  gap: 6px;
+  line-height: 1;
+}
+
+html body aside[data-platform-sidebar] .brand-copy strong {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+html body aside[data-platform-sidebar] .brand-copy small {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .28em;
+}
+
+html body aside[data-platform-sidebar] .workspace {
+  display: none;
+}
+
+html body aside[data-platform-sidebar] [data-atlas-navigation] {
+  flex: 0 0 auto;
+  margin: 0 0 18px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+html body aside[data-platform-sidebar] .platform-caption,
+html body aside[data-platform-sidebar] .nav-label,
+html body aside[data-platform-sidebar] .nav-caption {
+  display: block;
+  margin: 0 12px 9px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1.5;
+}
+
+html body aside[data-platform-sidebar] nav.platform-nav {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  overflow: visible;
+}
+
+html body aside[data-platform-sidebar] nav.platform-nav a {
+  display: flex;
+  min-height: var(--atlas-sidebar-link-height);
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: normal;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+html body aside[data-platform-sidebar] .platform-nav-icon {
+  display: grid;
+  width: 19px;
+  flex: 0 0 19px;
+  place-items: center;
+  color: var(--muted);
+  font-size: 16px;
+  text-align: center;
+}
+
+html body aside[data-platform-sidebar] nav.platform-nav a[aria-current="location"] {
+  color: var(--text);
+  background: var(--soft);
+  border-color: color-mix(in srgb, var(--brand) 20%, var(--line));
+}
+
+html body aside[data-platform-sidebar] nav.platform-nav a[aria-current="location"] .platform-nav-icon {
+  color: var(--brand);
+}
+
+html body aside[data-platform-sidebar] > nav:not(.platform-nav) {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 4px;
+  margin: 0;
+  overflow: visible;
+}
+
+html body aside[data-platform-sidebar] > nav:not(.platform-nav) a {
+  display: flex;
+  min-height: var(--atlas-sidebar-link-height);
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.35;
+  text-decoration: none;
+  border-radius: 9px;
+}
+
+html body aside[data-platform-sidebar] > nav:not(.platform-nav) a.active,
+html body aside[data-platform-sidebar] > nav:not(.platform-nav) a[aria-current="page"] {
+  color: var(--text);
+  background: var(--soft);
+}
+
+html body aside[data-platform-sidebar] > nav:not(.platform-nav) a:hover,
+html body aside[data-platform-sidebar] nav.platform-nav a:hover {
+  color: var(--text);
+  background: var(--subtle);
+}
+
+html body aside[data-platform-sidebar] > nav:not(.platform-nav) a.active:hover,
+html body aside[data-platform-sidebar] > nav:not(.platform-nav) a[aria-current="page"]:hover,
+html body aside[data-platform-sidebar] nav.platform-nav a[aria-current="location"]:hover {
+  background: var(--soft);
+}
+
+html body aside[data-platform-sidebar] > .side-bottom,
+html body aside[data-platform-sidebar] > .sidebar-bottom,
+html body aside[data-platform-sidebar] > .sidebar-footer {
+  display: block;
+  flex: 0 0 auto;
+  margin: auto 0 0;
+  padding: 16px 10px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+
+html body aside[data-platform-sidebar] .sidebar-footer p,
+html body aside[data-platform-sidebar] .sidebar-bottom p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+html body > header:not(.page-header),
+html body > main {
+  margin-left: var(--atlas-sidebar-width);
+}
+
+html body > .app-shell {
+  grid-template-columns: var(--atlas-sidebar-width) minmax(0, 1fr);
+}
+
+html body > .app-shell > .main-content {
+  margin-left: 0;
+}
+
+.home-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.home-module-grid a {
+  display: flex;
+  min-height: 110px;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.home-module-grid a:hover {
+  background: var(--soft);
+  border-color: var(--brand);
+}
+
+.home-module-grid .platform-nav-icon {
+  color: var(--brand);
+  font-size: 22px;
+}
+
+@media (max-width: 1100px) and (min-width: 721px) {
+  :root { --atlas-sidebar-width: 206px; }
+
+  html body aside[data-platform-sidebar] {
+    padding-inline: 10px;
+  }
+}
+
+@media (max-width: 720px) {
+  html body aside[data-platform-sidebar] {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    display: block;
+    overflow: visible;
+    padding: 12px 14px 10px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  html body aside[data-platform-sidebar] > .brand {
+    min-height: 36px;
+    margin: 0 0 10px;
+    padding: 0 2px;
+  }
+
+  html body aside[data-platform-sidebar] .brand-mark {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  html body aside[data-platform-sidebar] [data-atlas-navigation] {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  html body aside[data-platform-sidebar] .platform-caption,
+  html body aside[data-platform-sidebar] .nav-label,
+  html body aside[data-platform-sidebar] .nav-caption,
+  html body aside[data-platform-sidebar] > .side-bottom,
+  html body aside[data-platform-sidebar] > .sidebar-bottom,
+  html body aside[data-platform-sidebar] > .sidebar-footer {
+    display: none;
+  }
+
+  html body aside[data-platform-sidebar] nav.platform-nav,
+  html body aside[data-platform-sidebar] > nav:not(.platform-nav) {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1px 0 5px;
+    scrollbar-width: thin;
+  }
+
+  html body aside[data-platform-sidebar] nav.platform-nav a,
+  html body aside[data-platform-sidebar] > nav:not(.platform-nav) a {
+    min-height: 38px;
+    flex: 0 0 auto;
+    gap: 7px;
+    padding: 0 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  html body aside[data-platform-sidebar] .platform-nav-icon {
+    width: 16px;
+    flex-basis: 16px;
+    font-size: 14px;
+  }
+
+  html body > header:not(.page-header),
+  html body > main {
+    margin-left: 0;
+  }
+
+  html body > .app-shell {
+    display: block;
+  }
+
+  html body > .app-shell > .main-content {
+    width: 100%;
+    padding-inline: 16px;
+  }
+
+  .home-module-grid {
+    grid-template-columns: 1fr;
+  }
 }

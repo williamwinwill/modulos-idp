@@ -13,9 +13,9 @@ O controle dos três módulos fica em `management/backlog/`. Ele é gestão do p
 
 1. **Backlog:** ideias simples, sem exigir detalhamento. Novas propostas não autorizam implementação.
 2. **Refinar:** preparar o plano, dependências e critérios de aceite com o usuário. Investigar quando faltarem informações.
-3. **Validar hipótese:** opcional. Quando marcada como obrigatória, registrar hipótese e resultado aprovado antes de To do.
-4. **To do:** plano e aceite definidos; pronto para seleção. Implemente quando o usuário indicar um ID ou pedir para escolher um item pronto. Não iniciar itens adiados.
-5. **Doing:** atualizar ao começar de fato; registrar responsável e progresso no campo implementation ao atingir marcos relevantes. Mover um item na interface não dispara automaticamente um agente ou uma tarefa.
+3. **Validar hipótese:** opcional. Quando marcada como obrigatória, registrar hipótese e resultado aprovado antes de iniciar.
+4. **To do:** fila opcional de itens com plano e aceite definidos. Uma solicitação explícita do usuário para implementar um ID pode iniciar diretamente, sem passar por To do. Não iniciar itens adiados.
+5. **Doing:** atualizar ao começar de fato, diretamente a partir de uma etapa ativa quando houver solicitação explícita e plano/aceite registrados; registrar responsável e progresso no campo implementation ao atingir marcos relevantes. Mover um item na interface não dispara automaticamente um agente ou uma tarefa.
 6. **Validação:** registrar mudanças e verificações executadas. Aplicar os critérios de aceite; se houver ajustes, retornar a Doing. Não confundir testes de sintaxe com validação funcional.
 7. **Concluído:** somente após validação aprovada e commit real da entrega. Mensagem do commit deve incluir o ID do item, como `ATL-001: adiciona controle de backlog`. O servidor confere hash, existência no histórico de HEAD e vínculo pelo ID. Informar commit em texto não basta.
 

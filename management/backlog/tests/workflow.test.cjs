@@ -12,9 +12,8 @@ test('ideia simples, refinamento incompleto e preparação sem hipótese obrigat
   let board=idea();assert.equal(board.items[0].status,'backlog');
   board=step(board,{status:'refine'});
   assert.throws(()=>step(board,{status:'todo'}),/plano/);
-  assert.throws(()=>step(board,{status:'doing',plan:'Plano',acceptance:'Aceite'}),/Doing começa/);
-  board=step(board,{status:'todo',plan:'Plano',acceptance:'Aceite'});
-  assert.equal(board.items[0].status,'todo');assert.equal(board.items[0].history.length,3);
+  board=step(board,{status:'doing',plan:'Plano',acceptance:'Aceite'});
+  assert.equal(board.items[0].status,'doing');assert.equal(board.items[0].history.length,3);
 });
 test('hipótese obrigatória e adiamento impedem entrada no fluxo de entrega',()=>{
   let board=step(idea(),{status:'hypothesis',plan:'Plano',acceptance:'Aceite',hypothesisRequired:true,hypothesis:'Experimento'});

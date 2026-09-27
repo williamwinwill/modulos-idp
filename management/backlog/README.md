@@ -10,7 +10,7 @@ O HTML aberto diretamente por arquivo ou servido pelo servidor estático dos out
 
 ## Trabalhar juntos
 
-Crie uma ideia com título e módulo. No detalhe, refine o plano, decida se precisa de hipótese e escolha a próxima etapa. O botão Copiar pedido prepara uma mensagem para enviar ao Codex; não inicia processamento. Você também pode escrever aqui “implemente ATL-004” ou “escolha um item de To do”.
+Crie uma ideia com título e módulo. No detalhe, refine o plano, decida se precisa de hipótese e escolha a próxima etapa. O botão Copiar pedido prepara uma mensagem para enviar ao Codex; não inicia processamento. Você pode escrever “implemente ATL-004” em qualquer etapa ativa; uma solicitação explícita permite iniciar diretamente em Doing, sem passar por To do.
 
 Codex utiliza `tools/backlog.mjs`, que lê e atualiza os mesmos dados da interface. O quadro consulta atualizações a cada cinco segundos enquanto estiver visível. Responsável e estado Doing são registros de trabalho, não telemetria de um processo ou garantia de que um agente está conectado.
 
@@ -19,8 +19,8 @@ Os dados e o histórico ficam em `data.json`. Os `.md` de backlog permanecem ref
 ## Regras
 
 - Backlog exige somente título e módulo. A etapa Refinar aceita plano em construção.
-- To do exige plano, aceite e, se obrigatória, hipótese aprovada.
-- Doing começa em To do ou retorna de Validação para ajustes.
+- To do é uma fila opcional e exige plano, aceite e, se obrigatória, hipótese aprovada.
+- Doing pode começar diretamente de Backlog, Refinar, Validar hipótese ou To do após registrar plano, aceite e hipótese obrigatória; também retorna de Validação para ajustes.
 - Validação exige passagem por Doing, implementação descrita e verificações registradas.
 - Concluído exige validação aprovada e commit existente em HEAD, com o ID na mensagem. Não há release.
 - Um item concluído precisa ser reaberto em Backlog ou Refinar antes de alterações.

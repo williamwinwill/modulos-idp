@@ -1,9 +1,9 @@
 (() => {
   const stages = {
     backlog:['Backlog','Ideias que fazem sentido. Uma frase basta; os detalhes vêm depois.'],
-    refine:['Refinar','Construímos o plano juntos, com os detalhes que você trouxer e o que precisarmos investigar.'],
+    refine:['Refinar','Construímos o plano juntos; uma solicitação explícita permite iniciar sem passar por To do.'],
     hypothesis:['Validar hipótese','Etapa opcional para experimentar uma ideia antes de assumir a implementação.'],
-    todo:['To do','Plano e critérios de aceite definidos. Você pode escolher um item ou pedir que Codex escolha.'],
+    todo:['To do','Fila opcional de itens prontos. Uma solicitação explícita também pode iniciar a implementação diretamente.'],
     doing:['Doing','Implementação iniciada. Responsável, progresso registrado e histórico ficam visíveis aqui.'],
     validation:['Validação','Conferimos a implementação, as evidências e os critérios de aceite.'],
     done:['Concluído','Entrega validada e vinculada a um commit existente. Sem etapa de release por enquanto.']
@@ -49,7 +49,7 @@
   }
   function requestFor(item) {
     if(!item)return 'Salve a ideia para gerar um pedido com seu ID.';
-    const task={backlog:'Converse comigo sobre esta ideia e ajude a decidir se vamos refiná-la.',refine:'Refine comigo o plano e os critérios de aceite. Investigue o projeto quando necessário.',hypothesis:'Ajude a definir e validar a hipótese; registre as evidências e o resultado.',todo:'Implemente este item seguindo o plano e os critérios de aceite. Atualize para Doing ao iniciar, registre progresso e faça commit antes de concluir.',doing:'Consulte o progresso e continue a implementação deste item.',validation:'Valide a implementação e os critérios de aceite. Registre o resultado e conclua somente com commit verificado.',done:'Revise o resultado e o histórico desta entrega.'}[item.status];
+    const task={backlog:'Converse comigo sobre esta ideia ou, se eu pedir explicitamente para implementar o ID, registre plano e aceite e inicie diretamente em Doing.',refine:'Continue refinando o plano e os critérios de aceite. Se eu pedir para implementar o ID, finalize esses registros e inicie diretamente em Doing.',hypothesis:'Ajude a definir e validar a hipótese; registre as evidências e o resultado. Se eu pedir para implementar, não inicie até aprovar a hipótese obrigatória.',todo:'Implemente este item seguindo o plano e os critérios de aceite. Atualize para Doing ao iniciar, registre progresso e faça commit antes de concluir.',doing:'Consulte o progresso e continue a implementação deste item.',validation:'Valide a implementação e os critérios de aceite. Registre o resultado e conclua somente com commit verificado.',done:'Revise o resultado e o histórico desta entrega.'}[item.status];
     return `Trabalhe no item ${item.id} — ${item.title}, do controle de backlog do Atlas. ${task} Use o quadro compartilhado e as instruções em AGENTS.md.`;
   }
   function openItem(id) {
@@ -69,10 +69,11 @@
   }
   function transitionHelp() {
     const value=form.elements.status.value;
-    $('#transition-help').textContent=value==='done'?'Exige validação aprovada e commit da entrega, com o ID na mensagem.':value==='todo'?'Exige plano, critérios de aceite e hipótese aprovada, se obrigatória.':value==='doing'?'Disponível a partir de To do ou Validação. O registro não dispara Codex automaticamente.':value==='validation'?'Exige implementação em Doing e registro das verificações.':stages[value][1];
+    $('#transition-help').textContent=value==='done'?'Exige validação aprovada e commit da entrega, com o ID na mensagem.':value==='todo'?'Exige plano, critérios de aceite e hipótese aprovada, se obrigatória.':value==='doing'?'Uma solicitação explícita pode iniciar após registrar plano, aceite e hipótese obrigatória. O registro não dispara Codex automaticamente.':value==='validation'?'Exige implementação em Doing e registro das verificações.':stages[value][1];
     if(value==='done'||value==='validation')$('#delivery').open=true;
-    if(value==='todo'||value==='refine')$('#planning').open=true;
+    if(value==='todo'||value==='refine'||value==='doing')$('#planning').open=true;
     if(value==='hypothesis')$('#hypothesis-section').open=true;
+    if(value==='doing'&&form.elements.namedItem('hypothesisRequired').checked)$('#hypothesis-section').open=true;
   }
   async function save(event) {
     event.preventDefault();if(saving)return;
