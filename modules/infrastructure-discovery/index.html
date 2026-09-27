@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Inventário demonstrativo, ownership por camada, drift e adoção Atlas."><title>Infrastructure Discovery · Atlas</title><link rel="stylesheet" href="../../shared/theme/theme.css"><link rel="stylesheet" href="../../shared/navigation/style.css"><link rel="stylesheet" href="style.css"><script src="../../shared/theme/theme.js"></script><script src="../../atlas.config.js"></script><script defer src="../../shared/navigation/navigation.js"></script></head><body>
+<div id="atlas-discovery-mock">
+  <div class="shell">
+    <aside class="sidebar" aria-label="Navegação Atlas">
+      <a class="brand" href="../../index.html"><span class="brand-mark">A</span><span>atlas<span style="color:#94a8ff">.</span></span></a><div class="platform-links" data-atlas-navigation="infrastructure-discovery"></div>
+      <div class="workspace">Platform Engineering</div>
+      <div class="nav-item"><span class="nav-icon">⌂</span>Visão geral</div>
+      <button class="nav-item nav-button active" type="button" data-view-target="discovery"><span class="nav-icon">⌕</span>Discovery<span class="nav-count">1.284</span></button>
+      <button class="nav-item nav-button" type="button" data-view-target="drift"><span class="nav-icon">◌</span>Drift</button>
+      <button class="nav-item nav-button" type="button" data-view-target="coverage"><span class="nav-icon">◉</span>Cobertura</button>
+      <button class="nav-item nav-button" type="button" data-view-target="findings"><span class="nav-icon">⚑</span>Findings</button>
+      <button class="nav-item nav-button" type="button" data-view-target="adoption"><span class="nav-icon">◇</span>Adoção</button>
+      <div class="nav-item"><span class="nav-icon">◇</span>Planos de adoção<span class="nav-count">12</span></div>
+      <div class="nav-item"><span class="nav-icon">▦</span>Catálogo</div>
+      <div class="side-divider"></div>
+      <div class="workspace">Fontes conectadas</div>
+      <div class="source"><i class="source-dot"></i>AWS · 4 contas</div>
+      <div class="source"><i class="source-dot"></i>GitHub Actions</div>
+      <div class="source"><i class="source-dot" style="background:#8290a7"></i>Backstage</div>
+      <div class="side-divider"></div>
+      <div class="nav-item"><span class="nav-icon">⚙</span>Configurações</div>
+      <div class="side-footer">Atlas Platform<br><span style="color:#63728a">v2.8.1 · us-east-1</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">Plataforma <span style="color:#5c6980">/</span> <b>Infrastructure Discovery</b></div>
+        <div class="top-actions"><span class="demo-chip">DEMONSTRAÇÃO</span><span class="env">Inventário fictício</span><button class="theme-toggle" type="button" data-theme-toggle>Alternar tema</button></div>
+      </header>
+      <div class="content" id="discovery-view">
+        <div class="title-row">
+          <div><h1>Infrastructure Discovery</h1><div class="subtitle">Entenda o que existe, quem controla cada camada e o que pode ser adotado pelo Atlas.</div></div>
+          <div class="actions"><button type="button" class="btn quiet">↗ Exportar</button><button type="button" class="btn primary" id="run-discovery">⟳ Executar discovery</button></div>
+        </div>
+        <div class="runline"><span class="ok">●</span><span>Último scan concluído há 18 min</span><span class="sep">·</span><span>4 contas AWS</span><span class="sep">·</span><span>12 regiões</span><span class="sep">·</span><span>7 famílias cobertas</span><span class="sep">·</span><a href="#coverage" style="color:#9badff;text-decoration:none">Ver cobertura</a></div>
+        <section class="kpis" aria-label="Resumo do inventário">
+          <div class="kpi"><span class="kpi-mark">◈</span><div class="kpi-label">Recursos descobertos</div><div class="kpi-bottom"><span class="kpi-value">1.284</span><span class="kpi-hint">+32 nesta semana</span></div></div>
+          <div class="kpi"><span class="kpi-mark" style="color:var(--atlas-green)">✓</span><div class="kpi-label">Gerenciados pelo Atlas</div><div class="kpi-bottom"><span class="kpi-value">348</span><span class="kpi-hint">27% do inventário</span></div></div>
+          <div class="kpi"><span class="kpi-mark" style="color:var(--atlas-yellow)">◉</span><div class="kpi-label">Fora do Atlas</div><div class="kpi-bottom"><span class="kpi-value">936</span><span class="kpi-hint">demais classes do inventário</span></div></div>
+          <div class="kpi"><span class="kpi-mark" style="color:var(--atlas-red)">⚠</span><div class="kpi-label">Conflitos de ownership</div><div class="kpi-bottom"><span class="kpi-value">18</span><span class="kpi-hint">precisam de revisão</span></div></div>
+        </section>
+        <div class="section-head"><h2>Classificação de ownership</h2><a href="#classification">Como classificamos?</a></div>
+        <section class="class-grid" id="classification" aria-label="Filtrar por classificação">
+          <button class="class-tile" type="button" data-class="Atlas"><div class="class-name"><i class="class-dot" style="background:var(--atlas-green)"></i>Atlas</div><div class="class-count">348</div></button>
+          <button class="class-tile" type="button" data-class="Hybrid"><div class="class-name"><i class="class-dot" style="background:var(--atlas-purple)"></i>Hybrid</div><div class="class-count">126</div></button>
+          <button class="class-tile" type="button" data-class="External Terraform"><div class="class-name"><i class="class-dot" style="background:var(--atlas-cyan)"></i>External Terraform</div><div class="class-count">214</div></button>
+          <button class="class-tile" type="button" data-class="Other IaC"><div class="class-name"><i class="class-dot" style="background:#91a9ff"></i>Other IaC</div><div class="class-count">137</div></button>
+          <button class="class-tile" type="button" data-class="Pipeline"><div class="class-name"><i class="class-dot" style="background:var(--atlas-yellow)"></i>Pipeline</div><div class="class-count">201</div></button>
+          <button class="class-tile" type="button" data-class="Manual"><div class="class-name"><i class="class-dot" style="background:#eda875"></i>Manual</div><div class="class-count">96</div></button>
+          <button class="class-tile" type="button" data-class="Unknown"><div class="class-name"><i class="class-dot" style="background:#8290a7"></i>Unknown</div><div class="class-count">144</div></button>
+          <button class="class-tile" type="button" data-class="Ownership Conflict"><div class="class-name"><i class="class-dot" style="background:var(--atlas-red)"></i>Conflict</div><div class="class-count">18</div></button>
+        </section>
+        <section class="coverage" id="coverage">
+          <div class="coverage-icon">⌘</div><div class="coverage-copy"><b>Discovery funciona sem acesso a states externos.</b> As fixtures representam recursos cloud e ownership com as fontes disponíveis. States federados podem ampliar a cobertura de ownership.</div><a href="#coverage">Configurar Federated State Discovery →</a>
+        </section>
+        <div class="table-title"><h2>Recursos e workloads <small id="result-count">· 126 em Hybrid</small></h2><div class="table-tools"><input class="search" id="resource-search" type="search" placeholder="⌕  Buscar nome, ARN ou time" aria-label="Buscar recursos"><button class="filter-btn" id="filter-btn" type="button">☷ Filtros <span style="color:#8796ad">2</span></button></div></div>
+        <div class="table-layout">
+          <section class="table-wrap" aria-label="Resultados do discovery">
+            <table>
+              <thead><tr><th>Recurso / workload</th><th>Tipo</th><th>Ownership</th><th>Camadas</th><th>Backstage</th><th>Confiança</th></tr></thead>
+              <tbody id="resource-rows">
+                <tr class="selected" data-name="payments-api-prod lambda payments" data-class="Hybrid" data-id="payments"><td><div class="resource-name">payments-api-prod</div><div class="resource-type">payments / produção</div></td><td>Lambda</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">Terraform · GitHub Actions</div></td><td><span class="cell-quiet">Component ✓</span></td><td><span class="confidence high"><i></i>Alta</span></td></tr>
+                <tr data-name="orders-worker consumer orders" data-class="Hybrid" data-id="orders"><td><div class="resource-name">orders-worker</div><div class="resource-type">orders / produção</div></td><td>ECS service</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">Terraform · Deploy pipeline</div></td><td><span class="cell-quiet">Component ✓</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+                <tr data-name="edge-public-api gateway platform" data-class="Hybrid" data-id="edge"><td><div class="resource-name">edge-public-api</div><div class="resource-type">platform / produção</div></td><td>API Gateway</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">CloudFormation · Pipeline</div></td><td><span class="cell-quiet">Sem entidade</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+                <tr data-name="customer-ledger dynamodb finance" data-class="External Terraform" data-id="ledger"><td><div class="resource-name">customer-ledger</div><div class="resource-type">finance / produção</div></td><td>DynamoDB</td><td><span class="badge b-ext">External Terraform</span></td><td><div class="owner-pair">Terraform externo</div></td><td><span class="cell-quiet">Resource ✓</span></td><td><span class="confidence high"><i></i>Alta</span></td></tr>
+                <tr data-name="legacy-batch-runner ec2 data" data-class="Manual" data-id="legacy"><td><div class="resource-name">legacy-batch-runner</div><div class="resource-type">data-platform / produção</div></td><td>EC2</td><td><span class="badge b-manual">Manual</span></td><td><div class="owner-pair">Console AWS</div></td><td><span class="cell-quiet">Sem entidade</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+                <tr data-name="shared-network vpc platform" data-class="Ownership Conflict" data-id="network"><td><div class="resource-name">shared-network</div><div class="resource-type">platform / produção</div></td><td>VPC</td><td><span class="badge b-conflict">Conflict</span></td><td><div class="owner-pair">Atlas ↔ Terraform externo</div></td><td><span class="cell-quiet">Resource ⚠</span></td><td><span class="confidence low"><i></i>Revisar</span></td></tr>
+                <tr data-name="media-transform lambda assets" data-class="Hybrid" data-id="media"><td><div class="resource-name">media-transform</div><div class="resource-type">assets / produção</div></td><td>Lambda</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">Terraform · GitHub Actions</div></td><td><span class="cell-quiet">Sem entidade</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+              </tbody>
+            </table>
+            <div class="pager"><span>Mostrando 1–25 de 126 workloads</span><div class="pager-actions"><button type="button" aria-label="Página anterior">‹</button><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button" aria-label="Próxima página">›</button><span style="padding:4px 3px">25 / página</span></div></div>
+          </section>
+          <aside class="detail" id="detail-panel" aria-label="Detalhe do workload selecionado">
+            <div class="detail-head"><div class="detail-kicker">Workload selecionado</div><div class="detail-name" id="detail-name">payments-api-prod</div><div class="detail-sub" id="detail-sub">Lambda · us-east-1 · conta prod-payments</div></div>
+            <div class="detail-body">
+              <div class="detail-badges"><span class="badge b-hybrid" id="detail-class">Hybrid</span><span class="origin-tag">originBy: Atlas</span></div>
+              <div class="layer-title">Ownership por camada</div>
+              <div class="layer"><div class="layer-label">Origin</div><div class="layer-value"><strong>Atlas</strong><span class="ev">Tag encontrada · há 2 anos</span></div></div>
+              <div class="layer"><div class="layer-label">Infrastructure</div><div class="layer-value"><strong>Terraform · Atlas</strong><span class="ev">role + log group no state atlas-prod</span></div></div>
+              <div class="layer"><div class="layer-label">Configuration</div><div class="layer-value"><strong>GitHub Actions</strong><span class="ev">workflow deploy-lambda.yml · há 4 min</span></div></div>
+              <div class="layer"><div class="layer-label">Delivery</div><div class="layer-value"><strong>GitHub Actions</strong><span class="ev">payments-api / release.yml</span></div></div>
+              <div class="layer"><div class="layer-label">Runtime</div><div class="layer-value"><strong>Time Payments</strong><span class="ev">confirmado pelo catálogo</span></div></div>
+              <div class="layer"><div class="layer-label">Catalog</div><div class="layer-value"><div class="catalog"><i class="catalog-mark">B</i><span>Component · payments/payments-api</span></div></div></div>
+              <div class="layer-title">Componentes relacionados</div>
+              <div class="component-list"><div class="component"><span>IAM role · payments-api-role</span><span class="badge b-atlas">Atlas</span></div><div class="component"><span>Lambda · função + alias</span><span class="badge b-hybrid">Pipeline</span></div><div class="component"><span>CloudWatch · log group</span><span class="badge b-atlas">Atlas</span></div></div>
+              <div class="detail-actions"><button class="btn primary" type="button" id="adopt-btn">Criar plano de adoção</button><button class="btn" type="button" id="open-drift-from-resource">Ver drift deste workload</button><button class="btn" type="button" id="investigate-btn">Ver evidências completas</button></div>
+              <div class="mock-note">Dados demonstrativos · evidência atualizada há 4 min</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <div class="content drift-content" id="drift-view" hidden>
+        <div class="title-row">
+          <div><h1>Drift</h1><div class="subtitle">Execute o plan pelo GitHub Actions e acompanhe o report e os schedules no Atlas.</div></div>
+          <div class="actions"><span class="badge b-hybrid">GitHub Actions · integração simulada</span></div>
+        </div>
+        <div class="drift-tabs" role="tablist" aria-label="Seções de drift">
+          <button class="drift-tab" id="drift-tab-exec" type="button" role="tab" aria-controls="drift-panel-exec" aria-selected="true" data-drift-tab="exec">Execução</button>
+          <button class="drift-tab" id="drift-tab-history" type="button" role="tab" aria-controls="drift-panel-history" aria-selected="false" data-drift-tab="history">Histórico</button>
+          <button class="drift-tab" id="drift-tab-schedules" type="button" role="tab" aria-controls="drift-panel-schedules" aria-selected="false" data-drift-tab="schedules">Schedules</button>
+        </div>
+        <section id="drift-panel-exec" role="tabpanel" aria-labelledby="drift-tab-exec">
+          <div class="drift-panel">
+            <div class="drift-row"><h2 class="drift-heading">Nova execução</h2><span class="drift-muted">Somente plan · sem apply</span></div>
+            <div class="drift-grid">
+              <label class="drift-label">Repositório IaC<select id="drift-repo" class="drift-select"><option value="platform/iac-core">platform/iac-core</option><option value="platform/iac-data" selected>platform/iac-data</option><option value="platform/iac-services">platform/iac-services</option></select></label>
+              <label class="drift-label">Executar em<select id="drift-scope" class="drift-select"><option value="repo">Repositório inteiro</option><option value="env">Ambiente</option><option value="group">Grupo de recursos</option><option value="resource" selected>Recurso específico</option></select></label>
+              <label class="drift-label" id="drift-env-wrap">Ambiente<select id="drift-env" class="drift-select"><option>HINT</option><option>HEXT</option><option>DEV</option><option>PROD</option></select></label>
+              <label class="drift-label" id="drift-group-wrap">Grupo de recursos<select id="drift-group" class="drift-select"></select></label>
+              <label class="drift-label" id="drift-resource-wrap">Recurso<select id="drift-resource" class="drift-select"></select></label>
+            </div>
+            <div class="drift-note"><b>Discovery não depende de state externo.</b> O workflow GitHub precisa carregar o baseline para comparar; se não conseguir, o resultado será “Não avaliado”, nunca “sem drift”.</div>
+            <div class="drift-row"><div><div class="drift-path" id="drift-scope-path"></div><div class="drift-muted" style="margin-top:4px">Workflow: .github/workflows/drift.yml · branch main</div></div><button class="btn primary" id="drift-run" type="button">Executar plan no GitHub</button></div>
+            <div class="drift-status" id="drift-run-status" role="status" aria-live="polite"></div>
+          </div>
+          <div class="drift-panel">
+            <div class="drift-row"><h2 class="drift-heading">Baseline e ownership usados</h2><span class="badge b-atlas" id="drift-baseline-badge">Baseline disponível</span></div>
+            <div class="drift-ownership">
+              <div class="drift-owner"><span>Infrastructure · avaliado</span><strong id="drift-infra-owner">Terraform · Atlas</strong></div>
+              <div class="drift-owner"><span>Delivery · não comparado</span><strong id="drift-delivery-owner">GitHub Actions</strong></div>
+              <div class="drift-owner"><span>Baseline</span><strong id="drift-baseline-ref">state workspace finance-hint</strong></div>
+            </div>
+            <div class="drift-note" id="drift-boundary-note"><b>Workload híbrido:</b> comparação restrita aos atributos gerenciados pelo IaC. Código/artefato publicado pela esteira aparece em Delivery e não será tratado como drift IaC.</div>
+            <div class="drift-note warning" id="drift-no-baseline-note" hidden><b>Não avaliado:</b> não há baseline de state/configuração acessível para este escopo. Discovery continua válido; ausência de state não significa ausência de drift.</div>
+          </div>
+          <div class="drift-panel" id="drift-report">
+            <div class="drift-row"><div><div class="drift-muted">RESULTADO DO PLAN · <span id="drift-run-id">#1842</span></div><h2 class="drift-heading" style="margin-top:4px">Report de drift</h2></div><span class="badge b-manual" id="drift-result-badge">Drift detectado</span></div>
+            <div class="drift-path" id="drift-report-scope">platform/iac-data › HINT › rds › banco-x</div>
+            <div class="drift-muted" id="drift-report-meta" style="margin-top:4px">Manual · hoje, 10:42 BRT · plan concluído · commit 9ac31f2</div>
+            <div class="drift-stats" id="drift-report-stats"><div class="drift-stat"><span>Criar</span><b>0</b></div><div class="drift-stat"><span>Alterar</span><b>1</b></div><div class="drift-stat"><span>Destruir</span><b>0</b></div></div>
+            <div class="drift-muted">1 recurso com diferença · origem: summary do workflow GitHub</div>
+            <div class="drift-diff" id="drift-attribute-diff">~ aws_db_instance.banco_x
+  identifier = "banco-x"
+<span class="diff-change">~ backup_retention_period: 1 → 7</span>
+<span class="diff-change">~ deletion_protection: false → true</span></div>
+            <div class="drift-row" style="margin-top:10px"><span class="drift-muted">Valores observados → valores planejados · nenhum apply executado</span><button class="btn" id="drift-github-link" type="button">Ver execução no GitHub ↗</button></div>
+            <div class="drift-status" id="drift-github-status" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+        <section id="drift-panel-history" role="tabpanel" aria-labelledby="drift-tab-history" hidden>
+          <div class="drift-panel"><div class="drift-row"><h2 class="drift-heading">Execuções recentes</h2><span class="drift-muted">Horários no fuso America/Sao_Paulo</span></div>
+            <div class="table-responsive"><table class="drift-table"><thead><tr><th>Execução</th><th>Escopo</th><th>Gatilho</th><th>Resultado</th><th>GitHub</th></tr></thead><tbody id="drift-history-rows">
+              <tr><td>#1842<br><span class="drift-muted">Hoje · 10:42 · 1m 24s</span></td><td>iac-data › HINT › rds › banco-x</td><td>Manual · payments-api-prod</td><td><span class="badge b-manual">Drift detectado</span></td><td>9ac31f2 ↗</td></tr>
+              <tr><td>#1839<br><span class="drift-muted">Hoje · 06:00 · 52s</span></td><td>iac-core › repositório inteiro</td><td>Schedule</td><td><span class="badge b-atlas">Sem mudanças</span></td><td>7be82a1 ↗</td></tr>
+              <tr><td>#1827<br><span class="drift-muted">Ontem · 14:18 · 31s</span></td><td>iac-services › HEXT › micro</td><td>Manual</td><td><span class="badge b-conflict">Não avaliado · baseline</span></td><td>4cf1d92 ↗</td></tr>
+            </tbody></table></div>
+            <div class="drift-muted" style="margin-top:10px">Protótipo: histórico e links são dados de exemplo; a tela final deve carregar snapshots imutáveis do plan.</div>
+          </div>
+        </section>
+        <section id="drift-panel-schedules" role="tabpanel" aria-labelledby="drift-tab-schedules" hidden>
+          <div class="drift-panel"><div class="drift-row"><h2 class="drift-heading">Schedules por repositório</h2><span class="badge b-atlas">Lidos do workflow no GitHub</span></div><div class="drift-muted" style="margin:5px 0 10px">O cron vigente continua ativo até a PR ser aprovada e integrada.</div>
+            <div class="cron-row" data-schedule-repo="platform/iac-core"><div><div class="drift-heading">platform/iac-core</div><div class="drift-muted">Repositório inteiro</div></div><div><div class="cron-code">0 6 * * *</div><div class="drift-muted">Diário · 03:00 BRT</div></div><div class="drift-muted">Próxima: amanhã · 03:00</div><button class="btn" type="button" data-edit-cron="platform/iac-core">Alterar cron</button></div>
+            <div class="cron-row" data-schedule-repo="platform/iac-data"><div><div class="drift-heading">platform/iac-data</div><div class="drift-muted">PROD → rds</div></div><div><div class="cron-code">0 9 * * 1-5</div><div class="drift-muted">Seg–sex · 06:00 BRT</div></div><div class="drift-muted">Próxima: segunda · 06:00</div><button class="btn" type="button" data-edit-cron="platform/iac-data">Alterar cron</button></div>
+            <div class="cron-row" data-schedule-repo="platform/iac-services"><div><div class="drift-heading">platform/iac-services</div><div class="drift-muted">HEXT → micro</div></div><div><div class="cron-code">0 */6 * * *</div><div class="drift-muted">A cada 6h · UTC</div></div><div class="drift-muted">Próxima: 12:00 UTC</div><button class="btn" type="button" data-edit-cron="platform/iac-services">Alterar cron</button></div>
+            <div class="cron-editor" id="cron-editor" hidden><div class="drift-row"><h2 class="drift-heading">Propor alteração do cron</h2><button type="button" class="btn" id="cron-cancel">Fechar</button></div><div class="drift-muted" id="cron-repo" style="margin-top:5px"></div><label class="drift-label" style="margin-top:10px">Nova expressão cron · interpretada em UTC<input class="drift-input" id="cron-input" value="0 9 * * 1-5"></label><div class="cron-diff" id="cron-diff"></div><div class="drift-note">A proposta cria uma PR para <code>.github/workflows/drift.yml</code>. Até merge, a execução agendada continua usando a expressão vigente.</div><button class="btn primary" type="button" id="cron-pr">Criar PR (simulação)</button><div class="drift-status" id="cron-status" role="status" aria-live="polite"></div></div>
+            <div class="drift-muted" style="margin-top:10px">Mock interativo · nenhuma execução ou PR real será acionada por esta tela.</div>
+          </div>
+        </section>
+
+      <div class="content extra-view" id="coverage-view" hidden><div class="title-row"><div><h1>Cobertura de discovery</h1><div class="subtitle">Inventário consultado por fonte, conta, região e família de recurso.</div></div><span class="badge b-atlas">Dados demonstrativos</span></div><div class="coverage-grid"><article class="drift-panel"><h2 class="drift-heading">Fontes</h2><div class="coverage-source"><b>Cloud inventory</b><span class="badge b-atlas">Disponível · 4 contas</span><p>Consulta de recursos independente de states externos.</p></div><div class="coverage-source"><b>Atlas registry</b><span class="badge b-atlas">Parcial</span><p>Referências de módulos e states conhecidos.</p></div><div class="coverage-source"><b>Federated State Discovery</b><span class="badge b-conflict">Não configurado</span><p>Opcional. Ausência desta fonte não invalida o discovery.</p></div><div class="coverage-source"><b>Backstage catalog</b><span class="badge b-atlas">Parcial</span><p>Vínculos de catálogo apresentados como evidência.</p></div></article><article class="drift-panel"><h2 class="drift-heading">Escopo consultado</h2><div class="coverage-source"><b>AWS · produção</b><span>12 regiões · 7 famílias</span></div><div class="coverage-source"><b>Famílias</b><span>Compute · Network · Storage · Database · Identity · API · Observability</span></div><div class="drift-note"><b>Limite:</b> esta tela usa fixtures locais. Nenhuma conta cloud foi consultada.</div></article></div></div>
+      <div class="content extra-view" id="findings-view" hidden><div class="title-row"><div><h1>Findings</h1><div class="subtitle">Lacunas e conflitos que pedem investigação ou confirmação.</div></div><span class="badge b-conflict">7 itens demonstrativos</span></div><div class="drift-panel table-responsive"><table class="drift-table"><thead><tr><th>Finding</th><th>Recurso</th><th>Severidade</th><th>Evidência</th><th>Próxima ação</th></tr></thead><tbody><tr><td>Ownership conflict</td><td>shared-network</td><td><span class="badge b-conflict">Alta</span></td><td>originBy Atlas e state externo recente</td><td>Revisar autoridade por camada</td></tr><tr><td>Baseline indisponível</td><td>banco-y</td><td><span class="badge b-manual">Média</span></td><td>Workflow sem state acessível</td><td>Não avaliar drift</td></tr><tr><td>Catalog link ausente</td><td>edge-public-api</td><td><span class="badge b-hybrid">Baixa</span></td><td>Sem entidade correspondente</td><td>Pré-visualizar vínculo Backstage</td></tr><tr><td>Ownership desconhecido</td><td>legacy-batch-runner</td><td><span class="badge b-manual">Média</span></td><td>Fonte insuficiente</td><td>Confirmar owner</td></tr></tbody></table></div></div>
+      <div class="content extra-view" id="adoption-view" hidden><div class="title-row"><div><h1>Planos de adoção</h1><div class="subtitle">Prepare um handover revisável por camada, sem executar import ou apply.</div></div><button type="button" class="btn primary" id="adopt-view-btn">＋ Criar plano</button></div><div class="adoption-grid"><article class="drift-panel"><span class="badge b-hybrid">Rascunho demonstrativo</span><h2 class="drift-heading">payments-api-prod</h2><p class="drift-muted">Workload híbrido · Time Payments · Component: payments/payments-api</p><div class="layer"><div class="layer-label">Infrastructure</div><div class="layer-value"><strong>Atlas</strong><span class="ev">Import de role e log group revisável</span></div></div><div class="layer"><div class="layer-label">Delivery</div><div class="layer-value"><strong>GitHub Actions</strong><span class="ev">Permanece com o pipeline</span></div></div><div class="layer"><div class="layer-label">Catalog</div><div class="layer-value"><strong>Backstage preview</strong><span class="ev">Sem escrita externa</span></div></div><div class="drift-note">A adoção é separada do cadastro no catálogo. Owner e rollback precisam ser confirmados antes de qualquer handover.</div></article><article class="drift-panel"><h2 class="drift-heading">Sequência de revisão</h2><div class="coverage-source"><b>1 · Confirmar ownership</b><span>evidências e baseline</span></div><div class="coverage-source"><b>2 · Escolher camadas</b><span>Infrastructure · Configuration · Delivery · Catalog</span></div><div class="coverage-source"><b>3 · Revisar diff e dependências</b><span>prévia de import e entidade</span></div><div class="coverage-source"><b>4 · Handover explícito</b><span>aprovação e rollback</span></div></article></div></div>
+      </div>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="adoption-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal"><h3 id="modal-title">Novo plano de adoção</h3><p>Revise o escopo e as camadas antes de gerar um plano. Nenhuma alteração será aplicada nesta etapa.</p>
+      <div class="step"><i class="step-n">1</i><div><b>Confirmar o workload e as evidências</b><span>payments-api-prod · classificação Hybrid · confiança alta</span></div></div>
+      <div class="step"><i class="step-n">2</i><div><b>Escolher camadas para adotar</b><span>Infrastructure · Configuration · Delivery · Catalog</span></div></div>
+      <div class="step"><i class="step-n">3</i><div><b>Gerar diff revisável</b><span>Mapeamento para padrão Atlas, import e preview Backstage</span></div></div>
+      <div class="modal-foot"><button type="button" class="btn" id="cancel-modal">Voltar</button><button type="button" class="btn primary" id="continue-modal">Continuar para seleção</button></div>
+    </div>
+  </div>
+</div><script src="core.js"></script><script src="app.js"></script></body></html>

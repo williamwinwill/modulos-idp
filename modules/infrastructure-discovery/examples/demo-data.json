@@ -1,0 +1,15 @@
+{
+  "demo": true,
+  "asOf": "2026-09-27T09:00:00-03:00",
+  "sources": ["Cloud inventory", "Atlas registry", "GitHub Actions reports", "Backstage catalog"],
+  "workloads": [
+    {"id":"payments","name":"payments-api-prod","type":"Lambda","classification":"Hybrid","originBy":"Atlas","layers":[{"layer":"Origin","controller":"Atlas","evidence":"Tag originBy: Atlas; origem não prova ownership atual"},{"layer":"Infrastructure","controller":"Atlas Terraform","evidence":"IAM role e log group no state atlas-prod"},{"layer":"Configuration","controller":"GitHub Actions","evidence":"Workflow deploy-lambda.yml"},{"layer":"Delivery","controller":"GitHub Actions","evidence":"release.yml e alias da função"},{"layer":"Runtime","controller":"Time Payments","evidence":"Component Backstage"},{"layer":"Catalog","controller":"Backstage","evidence":"payments/payments-api"}],"components":[{"name":"IAM role","controller":"Atlas"},{"name":"Lambda function and alias","controller":"Pipeline"},{"name":"CloudWatch log group","controller":"Atlas"}]},
+    {"id":"orders","name":"orders-worker","type":"ECS service","classification":"Hybrid","layers":[{"layer":"Infrastructure","controller":"Terraform externo"},{"layer":"Delivery","controller":"GitHub Actions"}]},
+    {"id":"edge","name":"edge-public-api","type":"API Gateway","classification":"Hybrid","layers":[{"layer":"Infrastructure","controller":"CloudFormation"},{"layer":"Delivery","controller":"Pipeline"}]},
+    {"id":"ledger","name":"customer-ledger","type":"DynamoDB","classification":"External Terraform","layers":[{"layer":"Infrastructure","controller":"Terraform externo"}]},
+    {"id":"legacy","name":"legacy-batch-runner","type":"EC2","classification":"Manual","layers":[{"layer":"Infrastructure","controller":"Manual"}]},
+    {"id":"network","name":"shared-network","type":"VPC","classification":"Ownership Conflict","originBy":"Atlas","layers":[{"layer":"Infrastructure","controller":"Atlas"},{"layer":"Infrastructure","controller":"Terraform externo"}]},
+    {"id":"unknown","name":"unmapped-resource","type":"EC2","classification":"Unknown","layers":[]}
+  ],
+  "drift": {"baselineUnavailableStatus":"Not evaluated","baselineUnavailableCounts":null,"externalActionsEnabled":false}
+}

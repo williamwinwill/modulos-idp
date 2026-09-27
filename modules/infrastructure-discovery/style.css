@@ -1,0 +1,248 @@
+
+    #atlas-discovery-mock {
+      --atlas-bg: #0b1020;
+      --atlas-sidebar: #0e1426;
+      --atlas-panel: #121a2e;
+      --atlas-raised: #172139;
+      --atlas-line: #26324a;
+      --atlas-text: #edf2fb;
+      --atlas-muted: #94a3bc;
+      --atlas-soft: #b9c5d8;
+      --atlas-blue: #91a9ff;
+      --atlas-cyan: #72d6d0;
+      --atlas-purple: #c1a1ff;
+      --atlas-yellow: #f1c879;
+      --atlas-red: #ff8d9a;
+      --atlas-green: #80d7a9;
+      color: var(--atlas-text);
+      background: var(--atlas-bg);
+      border: 1px solid #26314a;
+      border-radius: 14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      overflow: hidden;
+      width: 100%;
+      box-shadow: 0 20px 60px #0006;
+    }
+    #atlas-discovery-mock * { box-sizing: border-box; }
+    #atlas-discovery-mock button, #atlas-discovery-mock input, #atlas-discovery-mock select { font: inherit; }
+    #atlas-discovery-mock button { color: inherit; cursor: pointer; }
+    #atlas-discovery-mock .shell { display: grid; grid-template-columns: 194px minmax(0, 1fr); min-height: 880px; }
+    #atlas-discovery-mock .sidebar { background: var(--atlas-sidebar); border-right: 1px solid var(--atlas-line); padding: 20px 12px; }
+    #atlas-discovery-mock .brand { align-items: center; display: flex; gap: 10px; font-size: 16px; font-weight: 650; letter-spacing: -.3px; padding: 1px 10px 25px; color:var(--atlas-text); text-decoration:none; }
+    #atlas-discovery-mock .brand-mark { align-items: center; background: linear-gradient(145deg,#819cff,#6bcac8); border-radius: 9px; color: #10182a; display:flex; font-size: 15px; font-weight: 800; height: 28px; justify-content:center; width: 28px; }
+    #atlas-discovery-mock .workspace { color: var(--atlas-muted); font-size: 10px; letter-spacing: .12em; padding: 4px 10px 8px; text-transform: uppercase; }
+    #atlas-discovery-mock .nav-item { align-items:center; border-radius:7px; color:#aab6ca; display:flex; gap:10px; margin:2px 0; padding:9px 10px; }
+    #atlas-discovery-mock .nav-item.active { background:#1a2540; color:#e5ecff; box-shadow:inset 2px 0 #89a4ff; }
+    #atlas-discovery-mock .nav-icon { color:#7e8da8; display:inline-flex; font-size:15px; justify-content:center; width:15px; }
+    #atlas-discovery-mock .nav-item.active .nav-icon { color:var(--atlas-blue); }
+    #atlas-discovery-mock .nav-count { background:#222e49; border-radius:9px; color:#aab9d2; font-size:10px; margin-left:auto; padding:1px 6px; }
+    #atlas-discovery-mock .side-divider { border-top:1px solid #202b40; margin:17px 8px; }
+    #atlas-discovery-mock .source { align-items:center; color:#a8b4c8; display:flex; font-size:11px; gap:8px; padding:7px 10px; }
+    #atlas-discovery-mock .source-dot { background:var(--atlas-green); border-radius:99px; height:6px; width:6px; }
+    #atlas-discovery-mock .side-footer { border-top:1px solid #202b40; color:#8190a8; font-size:11px; margin-top:28px; padding:15px 10px; }
+    #atlas-discovery-mock .main { min-width:0; }
+    #atlas-discovery-mock .topbar { align-items:center; border-bottom:1px solid var(--atlas-line); display:flex; gap:14px; justify-content:space-between; min-height:54px; padding:0 22px; }
+    #atlas-discovery-mock .crumb { color:var(--atlas-muted); font-size:12px; }
+    #atlas-discovery-mock .crumb b { color:#d9e2f2; font-weight:500; }
+    #atlas-discovery-mock .top-actions { align-items:center; color:#a7b3c8; display:flex; gap:14px; }
+    #atlas-discovery-mock .env { background:#18233a; border:1px solid #293750; border-radius:6px; color:#d6e0f0; padding:5px 9px; }
+    #atlas-discovery-mock .avatar { align-items:center; background:#334365; border-radius:50%; color:#edf2fb; display:flex; font-size:10px; height:25px; justify-content:center; width:25px; }
+    #atlas-discovery-mock .content { padding:20px 22px 26px; }
+    #atlas-discovery-mock .title-row { align-items:flex-start; display:flex; gap:15px; justify-content:space-between; }
+    #atlas-discovery-mock h1 { font-size:22px; font-weight:590; letter-spacing:-.55px; line-height:1.2; margin:0 0 5px; }
+    #atlas-discovery-mock .subtitle { color:var(--atlas-muted); font-size:12px; }
+    #atlas-discovery-mock .actions { align-items:center; display:flex; gap:8px; }
+    #atlas-discovery-mock .btn { background:#172139; border:1px solid #34415c; border-radius:6px; color:#dce5f5; padding:8px 11px; white-space:nowrap; }
+    #atlas-discovery-mock .btn:hover { background:#202d49; }
+    #atlas-discovery-mock .btn.primary { background:#819bfa; border-color:#819bfa; color:#111a2b; font-weight:600; }
+    #atlas-discovery-mock .btn.primary:hover { background:#9aafff; }
+    #atlas-discovery-mock .btn.quiet { background:transparent; border-color:transparent; color:#aebbd0; }
+    #atlas-discovery-mock .runline { align-items:center; color:#90a0b9; display:flex; font-size:11px; gap:7px; margin:12px 0 17px; }
+    #atlas-discovery-mock .runline .ok { color:var(--atlas-green); font-size:14px; }
+    #atlas-discovery-mock .runline .sep { color:#48556d; margin:0 3px; }
+    #atlas-discovery-mock .kpis { display:grid; gap:10px; grid-template-columns:repeat(4,minmax(0,1fr)); margin-bottom:14px; }
+    #atlas-discovery-mock .kpi { background:var(--atlas-panel); border:1px solid var(--atlas-line); border-radius:8px; min-height:78px; padding:12px 14px; }
+    #atlas-discovery-mock .kpi-label { color:#9baac1; font-size:11px; }
+    #atlas-discovery-mock .kpi-bottom { align-items:baseline; display:flex; gap:8px; margin-top:4px; }
+    #atlas-discovery-mock .kpi-value { font-size:21px; font-weight:590; letter-spacing:-.5px; }
+    #atlas-discovery-mock .kpi-hint { color:#7f8da5; font-size:10px; }
+    #atlas-discovery-mock .kpi-mark { color:var(--atlas-blue); float:right; font-size:14px; }
+    #atlas-discovery-mock .section-head { align-items:center; display:flex; justify-content:space-between; margin:18px 0 9px; }
+    #atlas-discovery-mock .section-head h2 { font-size:12px; font-weight:550; margin:0; }
+    #atlas-discovery-mock .section-head a { color:#9caeff; font-size:11px; text-decoration:none; }
+    #atlas-discovery-mock .class-grid { display:grid; gap:7px; grid-template-columns:repeat(8,minmax(0,1fr)); }
+    #atlas-discovery-mock .class-tile { background:#11192a; border:1px solid #27334a; border-radius:7px; min-width:0; padding:9px 9px 8px; }
+    #atlas-discovery-mock .class-tile.active { background:#192443; border-color:#637bb9; box-shadow:inset 0 0 0 1px #526ba8; }
+    #atlas-discovery-mock .class-name { align-items:center; color:#c0cadd; display:flex; font-size:10px; gap:5px; line-height:1.25; min-height:27px; }
+    #atlas-discovery-mock .class-dot { border-radius:50%; flex:0 0 6px; height:6px; }
+    #atlas-discovery-mock .class-count { font-size:17px; font-weight:570; margin-top:3px; }
+    #atlas-discovery-mock .coverage { align-items:center; background:#111a2d; border:1px solid #293651; border-radius:7px; color:#aebbd0; display:flex; gap:11px; margin:13px 0 17px; padding:10px 12px; }
+    #atlas-discovery-mock .coverage-icon { align-items:center; background:#202e4d; border-radius:6px; color:#9eb1ff; display:flex; flex:0 0 25px; height:25px; justify-content:center; }
+    #atlas-discovery-mock .coverage-copy { flex:1; font-size:11px; }
+    #atlas-discovery-mock .coverage-copy b { color:#e1e9f7; font-weight:550; }
+    #atlas-discovery-mock .coverage a { color:#a5b5ff; font-size:10px; text-decoration:none; white-space:nowrap; }
+    #atlas-discovery-mock .table-title { align-items:center; display:flex; justify-content:space-between; margin:4px 0 9px; }
+    #atlas-discovery-mock .table-title h2 { font-size:13px; font-weight:550; margin:0; }
+    #atlas-discovery-mock .table-title small { color:#8392aa; font-size:10px; margin-left:7px; }
+    #atlas-discovery-mock .table-tools { align-items:center; display:flex; gap:7px; }
+    #atlas-discovery-mock .search { background:#11192b; border:1px solid #303c54; border-radius:6px; color:#e3eaf6; min-width:170px; outline:none; padding:7px 9px; }
+    #atlas-discovery-mock .search::placeholder { color:#78869d; }
+    #atlas-discovery-mock .filter-btn { background:#151f34; border:1px solid #303c54; border-radius:6px; color:#b6c2d6; padding:7px 9px; }
+    #atlas-discovery-mock .table-layout { display:grid; gap:12px; grid-template-columns:minmax(0,1fr) 284px; }
+    #atlas-discovery-mock .table-wrap { background:#10182a; border:1px solid var(--atlas-line); border-radius:8px; min-width:0; overflow:hidden; }
+    #atlas-discovery-mock table { border-collapse:collapse; text-align:left; width:100%; }
+    #atlas-discovery-mock th { background:#141d31; color:#8291aa; font-size:9px; font-weight:550; letter-spacing:.06em; padding:9px 9px; text-transform:uppercase; white-space:nowrap; }
+    #atlas-discovery-mock td { border-top:1px solid #222e43; color:#bdc8da; font-size:10px; padding:10px 9px; vertical-align:middle; }
+    #atlas-discovery-mock tbody tr { cursor:pointer; }
+    #atlas-discovery-mock tbody tr:hover { background:#18233b; }
+    #atlas-discovery-mock tbody tr.selected { background:#192644; box-shadow:inset 2px 0 #8fa7ff; }
+    #atlas-discovery-mock .resource-name { color:#e6edf8; font-size:10px; font-weight:530; white-space:nowrap; }
+    #atlas-discovery-mock .resource-type { color:#7f8fa8; font-size:9px; margin-top:2px; }
+    #atlas-discovery-mock .cell-quiet { color:#8e9cb2; }
+    #atlas-discovery-mock .badge { border-radius:4px; display:inline-flex; font-size:9px; line-height:1.3; padding:3px 6px; white-space:nowrap; }
+    #atlas-discovery-mock .b-hybrid { background:#30284b; color:#d2b9ff; }
+    #atlas-discovery-mock .b-ext { background:#1d3041; color:#9bd3ec; }
+    #atlas-discovery-mock .b-manual { background:#3a3021; color:#efcf90; }
+    #atlas-discovery-mock .b-unknown { background:#273143; color:#bac5d5; }
+    #atlas-discovery-mock .b-conflict { background:#442730; color:#ffabb4; }
+    #atlas-discovery-mock .b-atlas { background:#20382f; color:#a3e2bc; }
+    #atlas-discovery-mock .owner-pair { color:#b4c0d2; line-height:1.5; }
+    #atlas-discovery-mock .confidence { align-items:center; display:flex; gap:5px; white-space:nowrap; }
+    #atlas-discovery-mock .confidence i { background:var(--atlas-yellow); border-radius:50%; height:5px; width:5px; }
+    #atlas-discovery-mock .confidence.high i { background:var(--atlas-green); }
+    #atlas-discovery-mock .confidence.low i { background:#8a98ad; }
+    #atlas-discovery-mock .pager { align-items:center; color:#8492a9; display:flex; font-size:10px; justify-content:space-between; padding:9px 11px; }
+    #atlas-discovery-mock .pager-actions { display:flex; gap:5px; }
+    #atlas-discovery-mock .pager button { background:#172138; border:1px solid #303c54; border-radius:4px; color:#aebbd0; padding:3px 7px; }
+    #atlas-discovery-mock .detail { background:#111a2d; border:1px solid #2b3850; border-radius:8px; min-width:0; }
+    #atlas-discovery-mock .detail-head { border-bottom:1px solid #263249; padding:12px 13px 10px; }
+    #atlas-discovery-mock .detail-kicker { color:#8292aa; font-size:9px; letter-spacing:.07em; text-transform:uppercase; }
+    #atlas-discovery-mock .detail-name { color:#edf2fb; font-size:13px; font-weight:570; margin:4px 0; overflow-wrap:anywhere; }
+    #atlas-discovery-mock .detail-sub { color:#8d9bb1; font-size:10px; }
+    #atlas-discovery-mock .detail-body { padding:10px 13px 13px; }
+    #atlas-discovery-mock .detail-badges { align-items:center; display:flex; flex-wrap:wrap; gap:5px; margin-bottom:9px; }
+    #atlas-discovery-mock .origin-tag { background:#253049; border:1px solid #34435f; border-radius:4px; color:#b9c6dd; font:9px ui-monospace,monospace; padding:3px 5px; }
+    #atlas-discovery-mock .layer-title { color:#8392a9; font-size:9px; letter-spacing:.06em; margin:12px 0 5px; text-transform:uppercase; }
+    #atlas-discovery-mock .layer { align-items:flex-start; border-bottom:1px solid #222e43; display:grid; gap:6px; grid-template-columns:68px minmax(0,1fr); padding:6px 0; }
+    #atlas-discovery-mock .layer-label { color:#8897ad; font-size:9px; }
+    #atlas-discovery-mock .layer-value { color:#d0d9e8; font-size:9px; line-height:1.45; }
+    #atlas-discovery-mock .layer-value strong { color:#ecf1f8; font-weight:520; }
+    #atlas-discovery-mock .ev { color:#8a99b0; display:block; font-size:8px; margin-top:2px; }
+    #atlas-discovery-mock .component-list { display:flex; flex-direction:column; gap:5px; }
+    #atlas-discovery-mock .component { align-items:center; background:#151f33; border:1px solid #25324a; border-radius:5px; color:#c0cbdd; display:flex; font-size:9px; justify-content:space-between; padding:6px 7px; }
+    #atlas-discovery-mock .catalog { align-items:center; color:#bbc6d7; display:flex; font-size:9px; gap:6px; }
+    #atlas-discovery-mock .catalog-mark { align-items:center; background:#202d48; border-radius:4px; color:#b8c8ff; display:flex; font-size:9px; height:19px; justify-content:center; width:19px; }
+    #atlas-discovery-mock .detail-actions { display:flex; flex-direction:column; gap:6px; margin-top:13px; }
+    #atlas-discovery-mock .detail-actions .btn { font-size:10px; padding:7px 8px; text-align:center; }
+    #atlas-discovery-mock .mock-note { color:#75839a; font-size:9px; margin-top:9px; text-align:center; }
+    #atlas-discovery-mock .nav-button { background:transparent; border:0; text-align:left; width:100%; }
+    #atlas-discovery-mock .drift-content { min-height:850px; }
+    #atlas-discovery-mock .drift-tabs { border-bottom:1px solid var(--atlas-line); display:flex; gap:22px; margin:20px 0 16px; }
+    #atlas-discovery-mock .drift-tab { background:transparent; border:0; border-bottom:2px solid transparent; color:#8f9db3; padding:0 1px 10px; }
+    #atlas-discovery-mock .drift-tab[aria-selected="true"] { border-bottom-color:#91a9ff; color:#b4c2ff; }
+    #atlas-discovery-mock .drift-panel { background:var(--atlas-panel); border:1px solid var(--atlas-line); border-radius:8px; margin:0 0 13px; padding:14px; }
+    #atlas-discovery-mock .drift-grid { display:grid; gap:11px; grid-template-columns:repeat(2,minmax(0,1fr)); margin:12px 0; }
+    #atlas-discovery-mock .drift-label { color:#93a1b7; display:flex; flex-direction:column; font-size:10px; gap:5px; min-width:0; }
+    #atlas-discovery-mock .drift-select, #atlas-discovery-mock .drift-input { background:#10182a; border:1px solid #303d56; border-radius:5px; color:#e0e8f5; min-width:0; padding:8px 9px; width:100%; }
+    #atlas-discovery-mock .drift-row { align-items:center; display:flex; flex-wrap:wrap; gap:9px; justify-content:space-between; }
+    #atlas-discovery-mock .drift-heading { color:#e6edf8; font-size:13px; font-weight:550; margin:0; }
+    #atlas-discovery-mock .drift-muted { color:#8998af; font-size:10px; }
+    #atlas-discovery-mock .drift-note { background:#17233a; border:1px solid #2b3b5b; border-radius:6px; color:#afbdd2; font-size:10px; line-height:1.5; margin:10px 0; padding:9px 10px; }
+    #atlas-discovery-mock .drift-note b { color:#e1e9f7; font-weight:550; }
+    #atlas-discovery-mock .drift-note.warning { background:#332b20; border-color:#57432a; color:#e6c98f; }
+    #atlas-discovery-mock .drift-path { color:#b9c7dc; font-size:10px; margin-top:8px; overflow-wrap:anywhere; }
+    #atlas-discovery-mock .drift-ownership { display:grid; gap:7px; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:11px; }
+    #atlas-discovery-mock .drift-owner { background:#111a2d; border:1px solid #25314a; border-radius:5px; padding:8px; }
+    #atlas-discovery-mock .drift-owner span { color:#8392a9; display:block; font-size:9px; }
+    #atlas-discovery-mock .drift-owner strong { color:#d6e0ee; display:block; font-size:10px; font-weight:520; margin-top:3px; }
+    #atlas-discovery-mock .drift-stats { display:grid; gap:8px; grid-template-columns:repeat(3,minmax(0,1fr)); margin:12px 0; }
+    #atlas-discovery-mock .drift-stat { background:#10182a; border-radius:6px; padding:9px 10px; }
+    #atlas-discovery-mock .drift-stat span { color:#8f9db2; display:block; font-size:9px; }
+    #atlas-discovery-mock .drift-stat b { color:#e7edf7; display:block; font-size:17px; font-weight:550; margin-top:2px; }
+    #atlas-discovery-mock .drift-diff { background:#0e1523; border-radius:5px; color:#c5d0e0; font:10px/1.65 ui-monospace,SFMono-Regular,monospace; margin-top:8px; overflow-wrap:anywhere; padding:10px; white-space:pre-wrap; }
+    #atlas-discovery-mock .diff-change { color:#efcb82; }
+    #atlas-discovery-mock .drift-table { border-collapse:collapse; width:100%; }
+    #atlas-discovery-mock .table-responsive { overflow-x:auto; }
+    #atlas-discovery-mock .drift-table th, #atlas-discovery-mock .drift-table td { border-bottom:1px solid #263249; font-size:10px; padding:9px 7px; text-align:left; vertical-align:top; }
+    #atlas-discovery-mock .drift-table th { color:#8392a9; font-size:9px; font-weight:500; text-transform:uppercase; }
+    #atlas-discovery-mock .cron-row { align-items:center; border-top:1px solid #27334a; display:grid; gap:11px; grid-template-columns:minmax(135px,1.3fr) minmax(105px,.8fr) minmax(120px,1fr) auto; padding:10px 0; }
+    #atlas-discovery-mock .cron-code { color:#dce5f3; font:10px ui-monospace,monospace; }
+    #atlas-discovery-mock .cron-pending { color:#f0cd87; font-size:9px; margin-top:4px; }
+    #atlas-discovery-mock .cron-editor { border-top:1px solid #2a3851; margin-top:12px; padding-top:12px; }
+    #atlas-discovery-mock .cron-diff { background:#0e1523; border-radius:5px; color:#aebdd3; font:10px/1.7 ui-monospace,monospace; margin:8px 0; padding:9px; white-space:pre-wrap; }
+    #atlas-discovery-mock .drift-status { color:#a7b6cc; font-size:10px; margin-top:8px; min-height:14px; }
+    #atlas-discovery-mock .drift-status[aria-live] { line-height:1.45; }
+    #atlas-discovery-mock .hidden-row { display:none; }
+    #atlas-discovery-mock.compact td { padding-bottom:6px; padding-top:6px; }
+    #atlas-discovery-mock .modal-backdrop { align-items:center; background:#050811bb; display:none; inset:0; justify-content:center; padding:16px; position:fixed; z-index:1000; }
+    #atlas-discovery-mock .modal-backdrop.open { display:flex; }
+    #atlas-discovery-mock .modal { background:#121b30; border:1px solid #374561; border-radius:10px; box-shadow:0 20px 70px #0009; max-width:500px; padding:20px; width:100%; }
+    #atlas-discovery-mock .modal h3 { font-size:16px; font-weight:570; margin:0 0 5px; }
+    #atlas-discovery-mock .modal p { color:#a0aec3; font-size:11px; margin:0 0 14px; }
+    #atlas-discovery-mock .step { align-items:flex-start; border-top:1px solid #27334a; display:flex; gap:10px; padding:10px 0; }
+    #atlas-discovery-mock .step-n { align-items:center; background:#253453; border-radius:50%; color:#dce6ff; display:flex; flex:0 0 21px; font-size:10px; height:21px; justify-content:center; }
+    #atlas-discovery-mock .step b { color:#e2e9f5; display:block; font-size:11px; font-weight:520; }
+    #atlas-discovery-mock .step span { color:#8d9bb1; display:block; font-size:10px; margin-top:2px; }
+    #atlas-discovery-mock .modal-foot { display:flex; justify-content:flex-end; gap:8px; margin-top:9px; }
+    @media (max-width: 1120px) {
+      #atlas-discovery-mock .class-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+      #atlas-discovery-mock .table-layout { grid-template-columns:minmax(0,1fr); }
+      #atlas-discovery-mock .detail { display:grid; grid-template-columns:1fr 1fr; }
+      #atlas-discovery-mock .detail-head { border-bottom:0; border-right:1px solid #263249; }
+      #atlas-discovery-mock .detail-body { display:grid; grid-template-columns:1fr 1fr; column-gap:12px; }
+      #atlas-discovery-mock .detail-body > .detail-badges, #atlas-discovery-mock .detail-body > .layer-title:first-of-type, #atlas-discovery-mock .detail-body > .layer:nth-of-type(-n+6), #atlas-discovery-mock .detail-body > .detail-actions, #atlas-discovery-mock .detail-body > .mock-note { grid-column:1/-1; }
+    }
+    @media (max-width: 760px) {
+      #atlas-discovery-mock .shell { grid-template-columns:1fr; }
+      #atlas-discovery-mock .sidebar { border-bottom:1px solid var(--atlas-line); border-right:0; padding:8px; }
+      #atlas-discovery-mock .brand { padding:3px 7px 8px; }
+      #atlas-discovery-mock .workspace, #atlas-discovery-mock .side-divider, #atlas-discovery-mock .source, #atlas-discovery-mock .side-footer { display:none; }
+      #atlas-discovery-mock .nav-item { display:inline-flex; font-size:10px; margin:0; padding:7px; }
+      #atlas-discovery-mock .nav-item:nth-of-type(n+5) { display:inline-flex; }
+      #atlas-discovery-mock .nav-icon { display:none; }
+      #atlas-discovery-mock .topbar { padding:0 12px; }
+      #atlas-discovery-mock .content { padding:16px 12px; }
+      #atlas-discovery-mock .title-row { flex-direction:column; }
+      #atlas-discovery-mock .actions { flex-wrap:wrap; }
+      #atlas-discovery-mock .kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      #atlas-discovery-mock .class-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      #atlas-discovery-mock .coverage { align-items:flex-start; }
+      #atlas-discovery-mock .coverage a { white-space:normal; }
+      #atlas-discovery-mock .table-tools { flex-wrap:wrap; }
+      #atlas-discovery-mock .search { min-width:0; width:100%; }
+      #atlas-discovery-mock .table-wrap { overflow-x:auto; }
+      #atlas-discovery-mock table { min-width:730px; }
+      #atlas-discovery-mock .detail { display:block; }
+      #atlas-discovery-mock .detail-head { border-bottom:1px solid #263249; border-right:0; }
+      #atlas-discovery-mock .detail-body { display:block; }
+      #atlas-discovery-mock .drift-ownership { grid-template-columns:1fr; }
+      #atlas-discovery-mock .cron-row { grid-template-columns:1fr 1fr; }
+      #atlas-discovery-mock .drift-grid { grid-template-columns:1fr; }
+    }
+
+
+/* O mock mantém a identidade visual local e responde ao tema compartilhado do Atlas. */
+#atlas-discovery-mock { min-height:100vh; border:0; border-radius:0; width:100%; }
+#atlas-discovery-mock .platform-links { margin:0 0 14px; }
+#atlas-discovery-mock .platform-caption { color:var(--atlas-muted); }
+#atlas-discovery-mock nav.platform-nav a { color:var(--atlas-muted); }
+#atlas-discovery-mock nav.platform-nav a[aria-current=location] { color:var(--atlas-text); background:var(--atlas-panel); border-color:var(--atlas-line); }
+#atlas-discovery-mock .coverage-grid, #atlas-discovery-mock .adoption-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:18px; }
+#atlas-discovery-mock .coverage-source { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:7px; padding:12px 0; border-bottom:1px solid var(--atlas-line); color:var(--atlas-soft); }
+#atlas-discovery-mock .coverage-source p { flex-basis:100%; margin:0; color:var(--atlas-muted); }
+#atlas-discovery-mock .extra-view .title-row { margin-bottom:14px; }
+#atlas-discovery-mock .demo-chip { border:1px solid var(--atlas-line); border-radius:5px; padding:4px 7px; color:var(--atlas-yellow); font-size:10px; letter-spacing:.08em; }
+#atlas-discovery-mock .theme-toggle { padding:6px 9px; font-size:11px; }
+:root[data-theme="light"] #atlas-discovery-mock { --atlas-bg:#f3f5f9; --atlas-sidebar:#fff; --atlas-panel:#fff; --atlas-raised:#eef2f7; --atlas-line:#d7dee8; --atlas-text:#202735; --atlas-muted:#566276; --atlas-soft:#3f4b5e; --atlas-blue:#6047c5; --atlas-cyan:#187b7c; --atlas-purple:#6948a7; --atlas-yellow:#865b12; --atlas-red:#ac3d3b; --atlas-green:#18724f; color-scheme:light; box-shadow:0 10px 35px #26365412; }
+:root[data-theme="light"] #atlas-discovery-mock .sidebar { background:#fff; border-color:var(--atlas-line); }
+:root[data-theme="light"] #atlas-discovery-mock .nav-item { color:#566276; }
+:root[data-theme="light"] #atlas-discovery-mock .nav-item.active { background:#f0ecfc; color:#39287e; box-shadow:inset 2px 0 #6047c5; }
+:root[data-theme="light"] #atlas-discovery-mock .nav-count, :root[data-theme="light"] #atlas-discovery-mock .kpi, :root[data-theme="light"] #atlas-discovery-mock .class-tile { background:#fff; border-color:#d7dee8; color:#202735; }
+:root[data-theme="light"] #atlas-discovery-mock .class-tile.active { background:#f0ecfc; border-color:#6047c5; }
+:root[data-theme="light"] #atlas-discovery-mock .detail, :root[data-theme="light"] #atlas-discovery-mock .detail-head, :root[data-theme="light"] #atlas-discovery-mock .detail-body, :root[data-theme="light"] #atlas-discovery-mock .drift-panel { background:#fff; color:#202735; border-color:#d7dee8; }
+:root[data-theme="light"] #atlas-discovery-mock .resource-name, :root[data-theme="light"] #atlas-discovery-mock .detail-name, :root[data-theme="light"] #atlas-discovery-mock .drift-heading { color:#202735; }
+:root[data-theme="light"] #atlas-discovery-mock input, :root[data-theme="light"] #atlas-discovery-mock select { background:#fff; color:#202735; border-color:#a6b2c5; }
+:root[data-theme="light"] #atlas-discovery-mock .btn:not(.primary), :root[data-theme="light"] #atlas-discovery-mock .filter-btn { background:#fff; color:#202735; border-color:#a6b2c5; }
+@media(max-width:760px){ #atlas-discovery-mock .coverage-grid, #atlas-discovery-mock .adoption-grid { grid-template-columns:1fr; } #atlas-discovery-mock .platform-links nav.platform-nav { grid-template-columns:repeat(2,minmax(0,1fr)); } }

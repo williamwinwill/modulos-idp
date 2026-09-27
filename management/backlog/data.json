@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 11,
-  "updatedAt": "2026-09-25T01:39:06.319Z",
+  "revision": 30,
+  "updatedAt": "2026-09-27T03:38:18.354Z",
   "items": [
     {
       "id": "ATL-001",
@@ -500,23 +500,23 @@
     },
     {
       "id": "ATL-013",
-      "title": "Comparar arquitetura declarada e observada",
+      "title": "Módulo Infrastructure Discovery do IDP",
       "module": "cross",
-      "description": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
-      "plan": "",
-      "acceptance": "",
+      "description": "Criar um módulo independente no Atlas IDP para descobrir recursos cloud, explicar ownership por camada e orientar adoção Atlas. Inclui Drift via GitHub Actions, report do plan, histórico e schedules por repositório.",
+      "plan": "Adicionar Infrastructure Discovery como módulo portável em atlas-platform/modules/infrastructure-discovery, registrado em atlas.config.js e compatível com shared/theme, shared/navigation, exportador e testes da plataforma. A Fase A entrega mock local navegável com Overview, Inventory, Coverage, Resource Detail, Findings, Drift (Execução/Histórico/Schedules) e Adoption. Representar ownership por Origin, Infrastructure, Configuration, Delivery, Runtime e Catalog; classificar Atlas, Hybrid, External Terraform, Other IaC, Pipeline, Manual, Unknown e Ownership Conflict. Discovery funciona sem state externo; Federated State Discovery é opcional. Drift apresenta seleção repo→ambiente→grupo→recurso, plan summary do GitHub, diff por atributo, referência do run e cron por repo; falta de baseline do workflow é Not evaluated, nunca ausência de drift. Em workloads híbridos, comparar somente atributos sob controle IaC e separar mudanças de delivery. Cron é alterado por proposta de PR; o schedule vigente permanece até merge. Adoption mostra seleção por camada, import/handover e preview Backstage sem executar ações externas no mock. Documentar contratos futuros como propostas; credenciais, workflows, PRs, apply e conexões reais ficam fora da Fase A.",
+      "acceptance": "O novo módulo tem item próprio no menu Atlas e mantém os módulos existentes independentes, portáveis e exportáveis. O mock usa fixtures marcadas como demonstrativas e navega entre Overview, Inventory, Coverage, detalhe, Findings, Drift e Adoption. Filtros, cascata repo→HINT/HEXT/DEV/PROD→grupo→recurso, seleção de workload e modais funcionam localmente. originBy: Atlas é evidência, não prova isolada de ownership. Lambda/ECS/API Gateway exibem owners distintos por componente/camada. O report do plan mostra criar/alterar/destruir, diffs por atributo e run GitHub. Baseline indisponível produz Not evaluated sem contagens zero; deploy pipeline não é confundido com drift IaC. Schedules mostram cron atual e proposto, PR simulada pendente e cron ativo até merge. Adoption não executa import/apply; Backstage é preview. Não há chamadas AWS/GitHub/Backstage, workflow real, PR real ou credenciais. Documentação, examples, testes do core e export do módulo são incluídos.",
       "hypothesis": "",
       "hypothesisRequired": false,
       "hypothesisResult": "pending",
-      "implementation": "",
-      "verification": "",
+      "implementation": "Fase A criada: módulo registrado no menu Atlas; mock local com Discovery/Inventory, detalhe e ownership por camada, Cobertura, Findings, Drift (Execução/Histórico/Schedules) e Adoção; fixtures, core, README e docs. Sem chamadas externas, workflows, PR, import ou apply.",
+      "verification": "Testes do core 5/5; check-links OK; suíte tools/test.mjs 50/50; node --check app.js/core.js; export isolado aprovado. Revisão visual no navegador bloqueada pela política ao abrir arquivo local.",
       "validationResult": "pending",
       "commit": "",
-      "owner": "",
+      "owner": "Codex",
       "deferred": false,
-      "status": "backlog",
+      "status": "validation",
       "createdAt": "2026-09-22T03:10:34.739Z",
-      "updatedAt": "2026-09-22T03:10:34.739Z",
+      "updatedAt": "2026-09-27T03:38:18.354Z",
       "history": [
         {
           "at": "2026-09-22T03:10:34.739Z",
@@ -530,6 +530,99 @@
             }
           },
           "note": "Ideia importada; não indica trabalho em execução."
+        },
+        {
+          "at": "2026-09-27T02:31:56.209Z",
+          "actor": "Codex",
+          "from": "backlog",
+          "to": "backlog",
+          "changes": {
+            "title": {
+              "from": "Comparar arquitetura declarada e observada",
+              "to": "Módulo Infrastructure Discovery do IDP"
+            },
+            "description": {
+              "from": "Ideia registrada nos backlogs existentes; escopo e prioridade ainda serão refinados.",
+              "to": "Criar um módulo independente no Atlas IDP para descobrir recursos cloud, explicar ownership por camada e orientar adoção Atlas. Inclui Drift via GitHub Actions, report do plan, histórico e schedules por repositório."
+            },
+            "plan": {
+              "from": "",
+              "to": "Adicionar Infrastructure Discovery como módulo portável em atlas-platform/modules/infrastructure-discovery, registrado em atlas.config.js e compatível com shared/theme, shared/navigation, exportador e testes da plataforma. A Fase A entrega mock local navegável com Overview, Inventory, Coverage, Resource Detail, Findings, Drift (Execução/Histórico/Schedules) e Adoption. Representar ownership por Origin, Infrastructure, Configuration, Delivery, Runtime e Catalog; classificar Atlas, Hybrid, External Terraform, Other IaC, Pipeline, Manual, Unknown e Ownership Conflict. Discovery funciona sem state externo; Federated State Discovery é opcional. Drift apresenta seleção repo→ambiente→grupo→recurso, plan summary do GitHub, diff por atributo, referência do run e cron por repo; falta de baseline do workflow é Not evaluated, nunca ausência de drift. Em workloads híbridos, comparar somente atributos sob controle IaC e separar mudanças de delivery. Cron é alterado por proposta de PR; o schedule vigente permanece até merge. Adoption mostra seleção por camada, import/handover e preview Backstage sem executar ações externas no mock. Documentar contratos futuros como propostas; credenciais, workflows, PRs, apply e conexões reais ficam fora da Fase A."
+            },
+            "acceptance": {
+              "from": "",
+              "to": "O novo módulo tem item próprio no menu Atlas e mantém os módulos existentes independentes, portáveis e exportáveis. O mock usa fixtures marcadas como demonstrativas e navega entre Overview, Inventory, Coverage, detalhe, Findings, Drift e Adoption. Filtros, cascata repo→HINT/HEXT/DEV/PROD→grupo→recurso, seleção de workload e modais funcionam localmente. originBy: Atlas é evidência, não prova isolada de ownership. Lambda/ECS/API Gateway exibem owners distintos por componente/camada. O report do plan mostra criar/alterar/destruir, diffs por atributo e run GitHub. Baseline indisponível produz Not evaluated sem contagens zero; deploy pipeline não é confundido com drift IaC. Schedules mostram cron atual e proposto, PR simulada pendente e cron ativo até merge. Adoption não executa import/apply; Backstage é preview. Não há chamadas AWS/GitHub/Backstage, workflow real, PR real ou credenciais. Documentação, examples, testes do core e export do módulo são incluídos."
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T02:32:06.472Z",
+          "actor": "Codex",
+          "from": "backlog",
+          "to": "refine",
+          "changes": {
+            "status": {
+              "from": "backlog",
+              "to": "refine"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:31:07.983Z",
+          "actor": "Codex",
+          "from": "refine",
+          "to": "todo",
+          "changes": {
+            "status": {
+              "from": "refine",
+              "to": "todo"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:31:22.803Z",
+          "actor": "Codex",
+          "from": "todo",
+          "to": "doing",
+          "changes": {
+            "implementation": {
+              "from": "",
+              "to": "Iniciada a Fase A: shell independente do módulo, navegação Atlas, mock local com fixtures, ownership/drift/adoption demonstrativos, documentação e integração ao exportador."
+            },
+            "owner": {
+              "from": "",
+              "to": "Codex"
+            },
+            "status": {
+              "from": "todo",
+              "to": "doing"
+            }
+          },
+          "commitEvidence": null
+        },
+        {
+          "at": "2026-09-27T03:38:18.354Z",
+          "actor": "Codex",
+          "from": "doing",
+          "to": "validation",
+          "changes": {
+            "implementation": {
+              "from": "Iniciada a Fase A: shell independente do módulo, navegação Atlas, mock local com fixtures, ownership/drift/adoption demonstrativos, documentação e integração ao exportador.",
+              "to": "Fase A criada: módulo registrado no menu Atlas; mock local com Discovery/Inventory, detalhe e ownership por camada, Cobertura, Findings, Drift (Execução/Histórico/Schedules) e Adoção; fixtures, core, README e docs. Sem chamadas externas, workflows, PR, import ou apply."
+            },
+            "verification": {
+              "from": "",
+              "to": "Testes do core 5/5; check-links OK; suíte tools/test.mjs 50/50; node --check app.js/core.js; export isolado aprovado. Revisão visual no navegador bloqueada pela política ao abrir arquivo local."
+            },
+            "status": {
+              "from": "doing",
+              "to": "validation"
+            }
+          },
+          "commitEvidence": null
         }
       ],
       "commitEvidence": null

@@ -1,0 +1,668 @@
+<div id="atlas-discovery-mock">
+  <style>
+    #atlas-discovery-mock {
+      --atlas-bg: #0b1020;
+      --atlas-sidebar: #0e1426;
+      --atlas-panel: #121a2e;
+      --atlas-raised: #172139;
+      --atlas-line: #26324a;
+      --atlas-text: #edf2fb;
+      --atlas-muted: #94a3bc;
+      --atlas-soft: #b9c5d8;
+      --atlas-blue: #91a9ff;
+      --atlas-cyan: #72d6d0;
+      --atlas-purple: #c1a1ff;
+      --atlas-yellow: #f1c879;
+      --atlas-red: #ff8d9a;
+      --atlas-green: #80d7a9;
+      color: var(--atlas-text);
+      background: var(--atlas-bg);
+      border: 1px solid #26314a;
+      border-radius: 14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      overflow: hidden;
+      width: 100%;
+      box-shadow: 0 20px 60px #0006;
+    }
+    #atlas-discovery-mock * { box-sizing: border-box; }
+    #atlas-discovery-mock button, #atlas-discovery-mock input, #atlas-discovery-mock select { font: inherit; }
+    #atlas-discovery-mock button { color: inherit; cursor: pointer; }
+    #atlas-discovery-mock .shell { display: grid; grid-template-columns: 194px minmax(0, 1fr); min-height: 880px; }
+    #atlas-discovery-mock .sidebar { background: var(--atlas-sidebar); border-right: 1px solid var(--atlas-line); padding: 20px 12px; }
+    #atlas-discovery-mock .brand { align-items: center; display: flex; gap: 10px; font-size: 16px; font-weight: 650; letter-spacing: -.3px; padding: 1px 10px 25px; }
+    #atlas-discovery-mock .brand-mark { align-items: center; background: linear-gradient(145deg,#819cff,#6bcac8); border-radius: 9px; color: #10182a; display:flex; font-size: 15px; font-weight: 800; height: 28px; justify-content:center; width: 28px; }
+    #atlas-discovery-mock .workspace { color: var(--atlas-muted); font-size: 10px; letter-spacing: .12em; padding: 4px 10px 8px; text-transform: uppercase; }
+    #atlas-discovery-mock .nav-item { align-items:center; border-radius:7px; color:#aab6ca; display:flex; gap:10px; margin:2px 0; padding:9px 10px; }
+    #atlas-discovery-mock .nav-item.active { background:#1a2540; color:#e5ecff; box-shadow:inset 2px 0 #89a4ff; }
+    #atlas-discovery-mock .nav-icon { color:#7e8da8; display:inline-flex; font-size:15px; justify-content:center; width:15px; }
+    #atlas-discovery-mock .nav-item.active .nav-icon { color:var(--atlas-blue); }
+    #atlas-discovery-mock .nav-count { background:#222e49; border-radius:9px; color:#aab9d2; font-size:10px; margin-left:auto; padding:1px 6px; }
+    #atlas-discovery-mock .side-divider { border-top:1px solid #202b40; margin:17px 8px; }
+    #atlas-discovery-mock .source { align-items:center; color:#a8b4c8; display:flex; font-size:11px; gap:8px; padding:7px 10px; }
+    #atlas-discovery-mock .source-dot { background:var(--atlas-green); border-radius:99px; height:6px; width:6px; }
+    #atlas-discovery-mock .side-footer { border-top:1px solid #202b40; color:#8190a8; font-size:11px; margin-top:28px; padding:15px 10px; }
+    #atlas-discovery-mock .main { min-width:0; }
+    #atlas-discovery-mock .topbar { align-items:center; border-bottom:1px solid var(--atlas-line); display:flex; gap:14px; justify-content:space-between; min-height:54px; padding:0 22px; }
+    #atlas-discovery-mock .crumb { color:var(--atlas-muted); font-size:12px; }
+    #atlas-discovery-mock .crumb b { color:#d9e2f2; font-weight:500; }
+    #atlas-discovery-mock .top-actions { align-items:center; color:#a7b3c8; display:flex; gap:14px; }
+    #atlas-discovery-mock .env { background:#18233a; border:1px solid #293750; border-radius:6px; color:#d6e0f0; padding:5px 9px; }
+    #atlas-discovery-mock .avatar { align-items:center; background:#334365; border-radius:50%; color:#edf2fb; display:flex; font-size:10px; height:25px; justify-content:center; width:25px; }
+    #atlas-discovery-mock .content { padding:20px 22px 26px; }
+    #atlas-discovery-mock .title-row { align-items:flex-start; display:flex; gap:15px; justify-content:space-between; }
+    #atlas-discovery-mock h1 { font-size:22px; font-weight:590; letter-spacing:-.55px; line-height:1.2; margin:0 0 5px; }
+    #atlas-discovery-mock .subtitle { color:var(--atlas-muted); font-size:12px; }
+    #atlas-discovery-mock .actions { align-items:center; display:flex; gap:8px; }
+    #atlas-discovery-mock .btn { background:#172139; border:1px solid #34415c; border-radius:6px; color:#dce5f5; padding:8px 11px; white-space:nowrap; }
+    #atlas-discovery-mock .btn:hover { background:#202d49; }
+    #atlas-discovery-mock .btn.primary { background:#819bfa; border-color:#819bfa; color:#111a2b; font-weight:600; }
+    #atlas-discovery-mock .btn.primary:hover { background:#9aafff; }
+    #atlas-discovery-mock .btn.quiet { background:transparent; border-color:transparent; color:#aebbd0; }
+    #atlas-discovery-mock .runline { align-items:center; color:#90a0b9; display:flex; font-size:11px; gap:7px; margin:12px 0 17px; }
+    #atlas-discovery-mock .runline .ok { color:var(--atlas-green); font-size:14px; }
+    #atlas-discovery-mock .runline .sep { color:#48556d; margin:0 3px; }
+    #atlas-discovery-mock .kpis { display:grid; gap:10px; grid-template-columns:repeat(4,minmax(0,1fr)); margin-bottom:14px; }
+    #atlas-discovery-mock .kpi { background:var(--atlas-panel); border:1px solid var(--atlas-line); border-radius:8px; min-height:78px; padding:12px 14px; }
+    #atlas-discovery-mock .kpi-label { color:#9baac1; font-size:11px; }
+    #atlas-discovery-mock .kpi-bottom { align-items:baseline; display:flex; gap:8px; margin-top:4px; }
+    #atlas-discovery-mock .kpi-value { font-size:21px; font-weight:590; letter-spacing:-.5px; }
+    #atlas-discovery-mock .kpi-hint { color:#7f8da5; font-size:10px; }
+    #atlas-discovery-mock .kpi-mark { color:var(--atlas-blue); float:right; font-size:14px; }
+    #atlas-discovery-mock .section-head { align-items:center; display:flex; justify-content:space-between; margin:18px 0 9px; }
+    #atlas-discovery-mock .section-head h2 { font-size:12px; font-weight:550; margin:0; }
+    #atlas-discovery-mock .section-head a { color:#9caeff; font-size:11px; text-decoration:none; }
+    #atlas-discovery-mock .class-grid { display:grid; gap:7px; grid-template-columns:repeat(8,minmax(0,1fr)); }
+    #atlas-discovery-mock .class-tile { background:#11192a; border:1px solid #27334a; border-radius:7px; min-width:0; padding:9px 9px 8px; }
+    #atlas-discovery-mock .class-tile.active { background:#192443; border-color:#637bb9; box-shadow:inset 0 0 0 1px #526ba8; }
+    #atlas-discovery-mock .class-name { align-items:center; color:#c0cadd; display:flex; font-size:10px; gap:5px; line-height:1.25; min-height:27px; }
+    #atlas-discovery-mock .class-dot { border-radius:50%; flex:0 0 6px; height:6px; }
+    #atlas-discovery-mock .class-count { font-size:17px; font-weight:570; margin-top:3px; }
+    #atlas-discovery-mock .coverage { align-items:center; background:#111a2d; border:1px solid #293651; border-radius:7px; color:#aebbd0; display:flex; gap:11px; margin:13px 0 17px; padding:10px 12px; }
+    #atlas-discovery-mock .coverage-icon { align-items:center; background:#202e4d; border-radius:6px; color:#9eb1ff; display:flex; flex:0 0 25px; height:25px; justify-content:center; }
+    #atlas-discovery-mock .coverage-copy { flex:1; font-size:11px; }
+    #atlas-discovery-mock .coverage-copy b { color:#e1e9f7; font-weight:550; }
+    #atlas-discovery-mock .coverage a { color:#a5b5ff; font-size:10px; text-decoration:none; white-space:nowrap; }
+    #atlas-discovery-mock .table-title { align-items:center; display:flex; justify-content:space-between; margin:4px 0 9px; }
+    #atlas-discovery-mock .table-title h2 { font-size:13px; font-weight:550; margin:0; }
+    #atlas-discovery-mock .table-title small { color:#8392aa; font-size:10px; margin-left:7px; }
+    #atlas-discovery-mock .table-tools { align-items:center; display:flex; gap:7px; }
+    #atlas-discovery-mock .search { background:#11192b; border:1px solid #303c54; border-radius:6px; color:#e3eaf6; min-width:170px; outline:none; padding:7px 9px; }
+    #atlas-discovery-mock .search::placeholder { color:#78869d; }
+    #atlas-discovery-mock .filter-btn { background:#151f34; border:1px solid #303c54; border-radius:6px; color:#b6c2d6; padding:7px 9px; }
+    #atlas-discovery-mock .table-layout { display:grid; gap:12px; grid-template-columns:minmax(0,1fr) 284px; }
+    #atlas-discovery-mock .table-wrap { background:#10182a; border:1px solid var(--atlas-line); border-radius:8px; min-width:0; overflow:hidden; }
+    #atlas-discovery-mock table { border-collapse:collapse; text-align:left; width:100%; }
+    #atlas-discovery-mock th { background:#141d31; color:#8291aa; font-size:9px; font-weight:550; letter-spacing:.06em; padding:9px 9px; text-transform:uppercase; white-space:nowrap; }
+    #atlas-discovery-mock td { border-top:1px solid #222e43; color:#bdc8da; font-size:10px; padding:10px 9px; vertical-align:middle; }
+    #atlas-discovery-mock tbody tr { cursor:pointer; }
+    #atlas-discovery-mock tbody tr:hover { background:#18233b; }
+    #atlas-discovery-mock tbody tr.selected { background:#192644; box-shadow:inset 2px 0 #8fa7ff; }
+    #atlas-discovery-mock .resource-name { color:#e6edf8; font-size:10px; font-weight:530; white-space:nowrap; }
+    #atlas-discovery-mock .resource-type { color:#7f8fa8; font-size:9px; margin-top:2px; }
+    #atlas-discovery-mock .cell-quiet { color:#8e9cb2; }
+    #atlas-discovery-mock .badge { border-radius:4px; display:inline-flex; font-size:9px; line-height:1.3; padding:3px 6px; white-space:nowrap; }
+    #atlas-discovery-mock .b-hybrid { background:#30284b; color:#d2b9ff; }
+    #atlas-discovery-mock .b-ext { background:#1d3041; color:#9bd3ec; }
+    #atlas-discovery-mock .b-manual { background:#3a3021; color:#efcf90; }
+    #atlas-discovery-mock .b-unknown { background:#273143; color:#bac5d5; }
+    #atlas-discovery-mock .b-conflict { background:#442730; color:#ffabb4; }
+    #atlas-discovery-mock .b-atlas { background:#20382f; color:#a3e2bc; }
+    #atlas-discovery-mock .owner-pair { color:#b4c0d2; line-height:1.5; }
+    #atlas-discovery-mock .confidence { align-items:center; display:flex; gap:5px; white-space:nowrap; }
+    #atlas-discovery-mock .confidence i { background:var(--atlas-yellow); border-radius:50%; height:5px; width:5px; }
+    #atlas-discovery-mock .confidence.high i { background:var(--atlas-green); }
+    #atlas-discovery-mock .confidence.low i { background:#8a98ad; }
+    #atlas-discovery-mock .pager { align-items:center; color:#8492a9; display:flex; font-size:10px; justify-content:space-between; padding:9px 11px; }
+    #atlas-discovery-mock .pager-actions { display:flex; gap:5px; }
+    #atlas-discovery-mock .pager button { background:#172138; border:1px solid #303c54; border-radius:4px; color:#aebbd0; padding:3px 7px; }
+    #atlas-discovery-mock .detail { background:#111a2d; border:1px solid #2b3850; border-radius:8px; min-width:0; }
+    #atlas-discovery-mock .detail-head { border-bottom:1px solid #263249; padding:12px 13px 10px; }
+    #atlas-discovery-mock .detail-kicker { color:#8292aa; font-size:9px; letter-spacing:.07em; text-transform:uppercase; }
+    #atlas-discovery-mock .detail-name { color:#edf2fb; font-size:13px; font-weight:570; margin:4px 0; overflow-wrap:anywhere; }
+    #atlas-discovery-mock .detail-sub { color:#8d9bb1; font-size:10px; }
+    #atlas-discovery-mock .detail-body { padding:10px 13px 13px; }
+    #atlas-discovery-mock .detail-badges { align-items:center; display:flex; flex-wrap:wrap; gap:5px; margin-bottom:9px; }
+    #atlas-discovery-mock .origin-tag { background:#253049; border:1px solid #34435f; border-radius:4px; color:#b9c6dd; font:9px ui-monospace,monospace; padding:3px 5px; }
+    #atlas-discovery-mock .layer-title { color:#8392a9; font-size:9px; letter-spacing:.06em; margin:12px 0 5px; text-transform:uppercase; }
+    #atlas-discovery-mock .layer { align-items:flex-start; border-bottom:1px solid #222e43; display:grid; gap:6px; grid-template-columns:68px minmax(0,1fr); padding:6px 0; }
+    #atlas-discovery-mock .layer-label { color:#8897ad; font-size:9px; }
+    #atlas-discovery-mock .layer-value { color:#d0d9e8; font-size:9px; line-height:1.45; }
+    #atlas-discovery-mock .layer-value strong { color:#ecf1f8; font-weight:520; }
+    #atlas-discovery-mock .ev { color:#8a99b0; display:block; font-size:8px; margin-top:2px; }
+    #atlas-discovery-mock .component-list { display:flex; flex-direction:column; gap:5px; }
+    #atlas-discovery-mock .component { align-items:center; background:#151f33; border:1px solid #25324a; border-radius:5px; color:#c0cbdd; display:flex; font-size:9px; justify-content:space-between; padding:6px 7px; }
+    #atlas-discovery-mock .catalog { align-items:center; color:#bbc6d7; display:flex; font-size:9px; gap:6px; }
+    #atlas-discovery-mock .catalog-mark { align-items:center; background:#202d48; border-radius:4px; color:#b8c8ff; display:flex; font-size:9px; height:19px; justify-content:center; width:19px; }
+    #atlas-discovery-mock .detail-actions { display:flex; flex-direction:column; gap:6px; margin-top:13px; }
+    #atlas-discovery-mock .detail-actions .btn { font-size:10px; padding:7px 8px; text-align:center; }
+    #atlas-discovery-mock .mock-note { color:#75839a; font-size:9px; margin-top:9px; text-align:center; }
+    #atlas-discovery-mock .nav-button { background:transparent; border:0; text-align:left; width:100%; }
+    #atlas-discovery-mock .drift-content { min-height:850px; }
+    #atlas-discovery-mock .drift-tabs { border-bottom:1px solid var(--atlas-line); display:flex; gap:22px; margin:20px 0 16px; }
+    #atlas-discovery-mock .drift-tab { background:transparent; border:0; border-bottom:2px solid transparent; color:#8f9db3; padding:0 1px 10px; }
+    #atlas-discovery-mock .drift-tab[aria-selected="true"] { border-bottom-color:#91a9ff; color:#b4c2ff; }
+    #atlas-discovery-mock .drift-panel { background:var(--atlas-panel); border:1px solid var(--atlas-line); border-radius:8px; margin:0 0 13px; padding:14px; }
+    #atlas-discovery-mock .drift-grid { display:grid; gap:11px; grid-template-columns:repeat(2,minmax(0,1fr)); margin:12px 0; }
+    #atlas-discovery-mock .drift-label { color:#93a1b7; display:flex; flex-direction:column; font-size:10px; gap:5px; min-width:0; }
+    #atlas-discovery-mock .drift-select, #atlas-discovery-mock .drift-input { background:#10182a; border:1px solid #303d56; border-radius:5px; color:#e0e8f5; min-width:0; padding:8px 9px; width:100%; }
+    #atlas-discovery-mock .drift-row { align-items:center; display:flex; flex-wrap:wrap; gap:9px; justify-content:space-between; }
+    #atlas-discovery-mock .drift-heading { color:#e6edf8; font-size:13px; font-weight:550; margin:0; }
+    #atlas-discovery-mock .drift-muted { color:#8998af; font-size:10px; }
+    #atlas-discovery-mock .drift-note { background:#17233a; border:1px solid #2b3b5b; border-radius:6px; color:#afbdd2; font-size:10px; line-height:1.5; margin:10px 0; padding:9px 10px; }
+    #atlas-discovery-mock .drift-note b { color:#e1e9f7; font-weight:550; }
+    #atlas-discovery-mock .drift-note.warning { background:#332b20; border-color:#57432a; color:#e6c98f; }
+    #atlas-discovery-mock .drift-path { color:#b9c7dc; font-size:10px; margin-top:8px; overflow-wrap:anywhere; }
+    #atlas-discovery-mock .drift-ownership { display:grid; gap:7px; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:11px; }
+    #atlas-discovery-mock .drift-owner { background:#111a2d; border:1px solid #25314a; border-radius:5px; padding:8px; }
+    #atlas-discovery-mock .drift-owner span { color:#8392a9; display:block; font-size:9px; }
+    #atlas-discovery-mock .drift-owner strong { color:#d6e0ee; display:block; font-size:10px; font-weight:520; margin-top:3px; }
+    #atlas-discovery-mock .drift-stats { display:grid; gap:8px; grid-template-columns:repeat(3,minmax(0,1fr)); margin:12px 0; }
+    #atlas-discovery-mock .drift-stat { background:#10182a; border-radius:6px; padding:9px 10px; }
+    #atlas-discovery-mock .drift-stat span { color:#8f9db2; display:block; font-size:9px; }
+    #atlas-discovery-mock .drift-stat b { color:#e7edf7; display:block; font-size:17px; font-weight:550; margin-top:2px; }
+    #atlas-discovery-mock .drift-diff { background:#0e1523; border-radius:5px; color:#c5d0e0; font:10px/1.65 ui-monospace,SFMono-Regular,monospace; margin-top:8px; overflow-wrap:anywhere; padding:10px; white-space:pre-wrap; }
+    #atlas-discovery-mock .diff-change { color:#efcb82; }
+    #atlas-discovery-mock .drift-table { border-collapse:collapse; width:100%; }
+    #atlas-discovery-mock .table-responsive { overflow-x:auto; }
+    #atlas-discovery-mock .drift-table th, #atlas-discovery-mock .drift-table td { border-bottom:1px solid #263249; font-size:10px; padding:9px 7px; text-align:left; vertical-align:top; }
+    #atlas-discovery-mock .drift-table th { color:#8392a9; font-size:9px; font-weight:500; text-transform:uppercase; }
+    #atlas-discovery-mock .cron-row { align-items:center; border-top:1px solid #27334a; display:grid; gap:11px; grid-template-columns:minmax(135px,1.3fr) minmax(105px,.8fr) minmax(120px,1fr) auto; padding:10px 0; }
+    #atlas-discovery-mock .cron-code { color:#dce5f3; font:10px ui-monospace,monospace; }
+    #atlas-discovery-mock .cron-pending { color:#f0cd87; font-size:9px; margin-top:4px; }
+    #atlas-discovery-mock .cron-editor { border-top:1px solid #2a3851; margin-top:12px; padding-top:12px; }
+    #atlas-discovery-mock .cron-diff { background:#0e1523; border-radius:5px; color:#aebdd3; font:10px/1.7 ui-monospace,monospace; margin:8px 0; padding:9px; white-space:pre-wrap; }
+    #atlas-discovery-mock .drift-status { color:#a7b6cc; font-size:10px; margin-top:8px; min-height:14px; }
+    #atlas-discovery-mock .drift-status[aria-live] { line-height:1.45; }
+    #atlas-discovery-mock .hidden-row { display:none; }
+    #atlas-discovery-mock.compact td { padding-bottom:6px; padding-top:6px; }
+    #atlas-discovery-mock .modal-backdrop { align-items:center; background:#050811bb; display:none; inset:0; justify-content:center; padding:16px; position:fixed; z-index:1000; }
+    #atlas-discovery-mock .modal-backdrop.open { display:flex; }
+    #atlas-discovery-mock .modal { background:#121b30; border:1px solid #374561; border-radius:10px; box-shadow:0 20px 70px #0009; max-width:500px; padding:20px; width:100%; }
+    #atlas-discovery-mock .modal h3 { font-size:16px; font-weight:570; margin:0 0 5px; }
+    #atlas-discovery-mock .modal p { color:#a0aec3; font-size:11px; margin:0 0 14px; }
+    #atlas-discovery-mock .step { align-items:flex-start; border-top:1px solid #27334a; display:flex; gap:10px; padding:10px 0; }
+    #atlas-discovery-mock .step-n { align-items:center; background:#253453; border-radius:50%; color:#dce6ff; display:flex; flex:0 0 21px; font-size:10px; height:21px; justify-content:center; }
+    #atlas-discovery-mock .step b { color:#e2e9f5; display:block; font-size:11px; font-weight:520; }
+    #atlas-discovery-mock .step span { color:#8d9bb1; display:block; font-size:10px; margin-top:2px; }
+    #atlas-discovery-mock .modal-foot { display:flex; justify-content:flex-end; gap:8px; margin-top:9px; }
+    @media (max-width: 1120px) {
+      #atlas-discovery-mock .class-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+      #atlas-discovery-mock .table-layout { grid-template-columns:minmax(0,1fr); }
+      #atlas-discovery-mock .detail { display:grid; grid-template-columns:1fr 1fr; }
+      #atlas-discovery-mock .detail-head { border-bottom:0; border-right:1px solid #263249; }
+      #atlas-discovery-mock .detail-body { display:grid; grid-template-columns:1fr 1fr; column-gap:12px; }
+      #atlas-discovery-mock .detail-body > .detail-badges, #atlas-discovery-mock .detail-body > .layer-title:first-of-type, #atlas-discovery-mock .detail-body > .layer:nth-of-type(-n+6), #atlas-discovery-mock .detail-body > .detail-actions, #atlas-discovery-mock .detail-body > .mock-note { grid-column:1/-1; }
+    }
+    @media (max-width: 760px) {
+      #atlas-discovery-mock .shell { grid-template-columns:1fr; }
+      #atlas-discovery-mock .sidebar { border-bottom:1px solid var(--atlas-line); border-right:0; padding:8px; }
+      #atlas-discovery-mock .brand { padding:3px 7px 8px; }
+      #atlas-discovery-mock .workspace, #atlas-discovery-mock .side-divider, #atlas-discovery-mock .source, #atlas-discovery-mock .side-footer { display:none; }
+      #atlas-discovery-mock .nav-item { display:inline-flex; font-size:10px; margin:0; padding:7px; }
+      #atlas-discovery-mock .nav-item:nth-of-type(n+5) { display:none; }
+      #atlas-discovery-mock .nav-icon { display:none; }
+      #atlas-discovery-mock .topbar { padding:0 12px; }
+      #atlas-discovery-mock .content { padding:16px 12px; }
+      #atlas-discovery-mock .title-row { flex-direction:column; }
+      #atlas-discovery-mock .actions { flex-wrap:wrap; }
+      #atlas-discovery-mock .kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      #atlas-discovery-mock .class-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      #atlas-discovery-mock .coverage { align-items:flex-start; }
+      #atlas-discovery-mock .coverage a { white-space:normal; }
+      #atlas-discovery-mock .table-tools { flex-wrap:wrap; }
+      #atlas-discovery-mock .search { min-width:0; width:100%; }
+      #atlas-discovery-mock .table-wrap { overflow-x:auto; }
+      #atlas-discovery-mock table { min-width:730px; }
+      #atlas-discovery-mock .detail { display:block; }
+      #atlas-discovery-mock .detail-head { border-bottom:1px solid #263249; border-right:0; }
+      #atlas-discovery-mock .detail-body { display:block; }
+      #atlas-discovery-mock .drift-ownership { grid-template-columns:1fr; }
+      #atlas-discovery-mock .cron-row { grid-template-columns:1fr 1fr; }
+      #atlas-discovery-mock .drift-grid { grid-template-columns:1fr; }
+    }
+  </style>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Navegação Atlas">
+      <div class="brand"><span class="brand-mark">A</span><span>atlas<span style="color:#94a8ff">.</span></span></div>
+      <div class="workspace">Platform Engineering</div>
+      <div class="nav-item"><span class="nav-icon">⌂</span>Visão geral</div>
+      <button class="nav-item nav-button active" type="button" data-view-target="discovery"><span class="nav-icon">⌕</span>Discovery<span class="nav-count">1.284</span></button>
+      <button class="nav-item nav-button" type="button" data-view-target="drift"><span class="nav-icon">◌</span>Drift</button>
+      <div class="nav-item"><span class="nav-icon">◇</span>Planos de adoção<span class="nav-count">12</span></div>
+      <div class="nav-item"><span class="nav-icon">▦</span>Catálogo</div>
+      <div class="side-divider"></div>
+      <div class="workspace">Fontes conectadas</div>
+      <div class="source"><i class="source-dot"></i>AWS · 4 contas</div>
+      <div class="source"><i class="source-dot"></i>GitHub Actions</div>
+      <div class="source"><i class="source-dot" style="background:#8290a7"></i>Backstage</div>
+      <div class="side-divider"></div>
+      <div class="nav-item"><span class="nav-icon">⚙</span>Configurações</div>
+      <div class="side-footer">Atlas Platform<br><span style="color:#63728a">v2.8.1 · us-east-1</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">Plataforma <span style="color:#5c6980">/</span> <b>Infrastructure Discovery</b></div>
+        <div class="top-actions"><span class="env">Produção ▾</span><span aria-label="Notificações">♧</span><span class="avatar">WF</span></div>
+      </header>
+      <div class="content" id="discovery-view">
+        <div class="title-row">
+          <div><h1>Infrastructure Discovery</h1><div class="subtitle">Entenda o que existe, quem controla cada camada e o que pode ser adotado pelo Atlas.</div></div>
+          <div class="actions"><button type="button" class="btn quiet">↗ Exportar</button><button type="button" class="btn primary" id="run-discovery">⟳ Executar discovery</button></div>
+        </div>
+        <div class="runline"><span class="ok">●</span><span>Último scan concluído há 18 min</span><span class="sep">·</span><span>4 contas AWS</span><span class="sep">·</span><span>12 regiões</span><span class="sep">·</span><span>7 famílias cobertas</span><span class="sep">·</span><a href="#coverage" style="color:#9badff;text-decoration:none">Ver cobertura</a></div>
+        <section class="kpis" aria-label="Resumo do inventário">
+          <div class="kpi"><span class="kpi-mark">◈</span><div class="kpi-label">Recursos descobertos</div><div class="kpi-bottom"><span class="kpi-value">1.284</span><span class="kpi-hint">+32 nesta semana</span></div></div>
+          <div class="kpi"><span class="kpi-mark" style="color:var(--atlas-green)">✓</span><div class="kpi-label">Gerenciados pelo Atlas</div><div class="kpi-bottom"><span class="kpi-value">348</span><span class="kpi-hint">27% do inventário</span></div></div>
+          <div class="kpi"><span class="kpi-mark" style="color:var(--atlas-yellow)">◉</span><div class="kpi-label">Fora do Atlas</div><div class="kpi-bottom"><span class="kpi-value">936</span><span class="kpi-hint">demais classes do inventário</span></div></div>
+          <div class="kpi"><span class="kpi-mark" style="color:var(--atlas-red)">⚠</span><div class="kpi-label">Conflitos de ownership</div><div class="kpi-bottom"><span class="kpi-value">18</span><span class="kpi-hint">precisam de revisão</span></div></div>
+        </section>
+        <div class="section-head"><h2>Classificação de ownership</h2><a href="#classification">Como classificamos?</a></div>
+        <section class="class-grid" id="classification" aria-label="Filtrar por classificação">
+          <button class="class-tile" type="button" data-class="Atlas"><div class="class-name"><i class="class-dot" style="background:var(--atlas-green)"></i>Atlas</div><div class="class-count">348</div></button>
+          <button class="class-tile active" type="button" data-class="Hybrid"><div class="class-name"><i class="class-dot" style="background:var(--atlas-purple)"></i>Hybrid</div><div class="class-count">126</div></button>
+          <button class="class-tile" type="button" data-class="External Terraform"><div class="class-name"><i class="class-dot" style="background:var(--atlas-cyan)"></i>External Terraform</div><div class="class-count">214</div></button>
+          <button class="class-tile" type="button" data-class="Other IaC"><div class="class-name"><i class="class-dot" style="background:#91a9ff"></i>Other IaC</div><div class="class-count">137</div></button>
+          <button class="class-tile" type="button" data-class="Pipeline"><div class="class-name"><i class="class-dot" style="background:var(--atlas-yellow)"></i>Pipeline</div><div class="class-count">201</div></button>
+          <button class="class-tile" type="button" data-class="Manual"><div class="class-name"><i class="class-dot" style="background:#eda875"></i>Manual</div><div class="class-count">96</div></button>
+          <button class="class-tile" type="button" data-class="Unknown"><div class="class-name"><i class="class-dot" style="background:#8290a7"></i>Unknown</div><div class="class-count">144</div></button>
+          <button class="class-tile" type="button" data-class="Ownership Conflict"><div class="class-name"><i class="class-dot" style="background:var(--atlas-red)"></i>Conflict</div><div class="class-count">18</div></button>
+        </section>
+        <section class="coverage" id="coverage">
+          <div class="coverage-icon">⌘</div><div class="coverage-copy"><b>Discovery funciona sem acesso a states externos.</b> Consultamos a infraestrutura real e enriquecemos a classificação com as fontes disponíveis. States federados podem ampliar a cobertura de ownership.</div><a href="#coverage">Configurar Federated State Discovery →</a>
+        </section>
+        <div class="table-title"><h2>Recursos e workloads <small id="result-count">· 126 em Hybrid</small></h2><div class="table-tools"><input class="search" id="resource-search" type="search" placeholder="⌕  Buscar nome, ARN ou time" aria-label="Buscar recursos"><button class="filter-btn" id="filter-btn" type="button">☷ Filtros <span style="color:#8796ad">2</span></button></div></div>
+        <div class="table-layout">
+          <section class="table-wrap" aria-label="Resultados do discovery">
+            <table>
+              <thead><tr><th>Recurso / workload</th><th>Tipo</th><th>Ownership</th><th>Camadas</th><th>Backstage</th><th>Confiança</th></tr></thead>
+              <tbody id="resource-rows">
+                <tr class="selected" data-name="payments-api-prod lambda payments" data-class="Hybrid" data-id="payments"><td><div class="resource-name">payments-api-prod</div><div class="resource-type">payments / produção</div></td><td>Lambda</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">Terraform · GitHub Actions</div></td><td><span class="cell-quiet">Component ✓</span></td><td><span class="confidence high"><i></i>Alta</span></td></tr>
+                <tr data-name="orders-worker consumer orders" data-class="Hybrid" data-id="orders"><td><div class="resource-name">orders-worker</div><div class="resource-type">orders / produção</div></td><td>ECS service</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">Terraform · Deploy pipeline</div></td><td><span class="cell-quiet">Component ✓</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+                <tr data-name="edge-public-api gateway platform" data-class="Hybrid" data-id="edge"><td><div class="resource-name">edge-public-api</div><div class="resource-type">platform / produção</div></td><td>API Gateway</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">CloudFormation · Pipeline</div></td><td><span class="cell-quiet">Sem entidade</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+                <tr data-name="customer-ledger dynamodb finance" data-class="External Terraform" data-id="ledger"><td><div class="resource-name">customer-ledger</div><div class="resource-type">finance / produção</div></td><td>DynamoDB</td><td><span class="badge b-ext">External Terraform</span></td><td><div class="owner-pair">Terraform externo</div></td><td><span class="cell-quiet">Resource ✓</span></td><td><span class="confidence high"><i></i>Alta</span></td></tr>
+                <tr data-name="legacy-batch-runner ec2 data" data-class="Manual" data-id="legacy"><td><div class="resource-name">legacy-batch-runner</div><div class="resource-type">data-platform / produção</div></td><td>EC2</td><td><span class="badge b-manual">Manual</span></td><td><div class="owner-pair">Console AWS</div></td><td><span class="cell-quiet">Sem entidade</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+                <tr data-name="shared-network vpc platform" data-class="Ownership Conflict" data-id="network"><td><div class="resource-name">shared-network</div><div class="resource-type">platform / produção</div></td><td>VPC</td><td><span class="badge b-conflict">Conflict</span></td><td><div class="owner-pair">Atlas ↔ Terraform externo</div></td><td><span class="cell-quiet">Resource ⚠</span></td><td><span class="confidence low"><i></i>Revisar</span></td></tr>
+                <tr data-name="media-transform lambda assets" data-class="Hybrid" data-id="media"><td><div class="resource-name">media-transform</div><div class="resource-type">assets / produção</div></td><td>Lambda</td><td><span class="badge b-hybrid">Hybrid</span></td><td><div class="owner-pair">Terraform · GitHub Actions</div></td><td><span class="cell-quiet">Sem entidade</span></td><td><span class="confidence"><i></i>Média</span></td></tr>
+              </tbody>
+            </table>
+            <div class="pager"><span>Mostrando 1–25 de 126 workloads</span><div class="pager-actions"><button type="button" aria-label="Página anterior">‹</button><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button" aria-label="Próxima página">›</button><span style="padding:4px 3px">25 / página</span></div></div>
+          </section>
+          <aside class="detail" id="detail-panel" aria-label="Detalhe do workload selecionado">
+            <div class="detail-head"><div class="detail-kicker">Workload selecionado</div><div class="detail-name" id="detail-name">payments-api-prod</div><div class="detail-sub" id="detail-sub">Lambda · us-east-1 · conta prod-payments</div></div>
+            <div class="detail-body">
+              <div class="detail-badges"><span class="badge b-hybrid" id="detail-class">Hybrid</span><span class="origin-tag">originBy: Atlas</span></div>
+              <div class="layer-title">Ownership por camada</div>
+              <div class="layer"><div class="layer-label">Origin</div><div class="layer-value"><strong>Atlas</strong><span class="ev">Tag encontrada · há 2 anos</span></div></div>
+              <div class="layer"><div class="layer-label">Infrastructure</div><div class="layer-value"><strong>Terraform · Atlas</strong><span class="ev">role + log group no state atlas-prod</span></div></div>
+              <div class="layer"><div class="layer-label">Configuration</div><div class="layer-value"><strong>GitHub Actions</strong><span class="ev">workflow deploy-lambda.yml · há 4 min</span></div></div>
+              <div class="layer"><div class="layer-label">Delivery</div><div class="layer-value"><strong>GitHub Actions</strong><span class="ev">payments-api / release.yml</span></div></div>
+              <div class="layer"><div class="layer-label">Runtime</div><div class="layer-value"><strong>Time Payments</strong><span class="ev">confirmado pelo catálogo</span></div></div>
+              <div class="layer"><div class="layer-label">Catalog</div><div class="layer-value"><div class="catalog"><i class="catalog-mark">B</i><span>Component · payments/payments-api</span></div></div></div>
+              <div class="layer-title">Componentes relacionados</div>
+              <div class="component-list"><div class="component"><span>IAM role · payments-api-role</span><span class="badge b-atlas">Atlas</span></div><div class="component"><span>Lambda · função + alias</span><span class="badge b-hybrid">Pipeline</span></div><div class="component"><span>CloudWatch · log group</span><span class="badge b-atlas">Atlas</span></div></div>
+              <div class="detail-actions"><button class="btn primary" type="button" id="adopt-btn">Criar plano de adoção</button><button class="btn" type="button" id="open-drift-from-resource">Ver drift deste workload</button><button class="btn" type="button" id="investigate-btn">Ver evidências completas</button></div>
+              <div class="mock-note">Dados demonstrativos · evidência atualizada há 4 min</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <div class="content drift-content" id="drift-view" hidden>
+        <div class="title-row">
+          <div><h1>Drift</h1><div class="subtitle">Execute o plan pelo GitHub Actions e acompanhe o report e os schedules no Atlas.</div></div>
+          <div class="actions"><span class="badge b-hybrid">GitHub Actions · integração simulada</span></div>
+        </div>
+        <div class="drift-tabs" role="tablist" aria-label="Seções de drift">
+          <button class="drift-tab" id="drift-tab-exec" type="button" role="tab" aria-controls="drift-panel-exec" aria-selected="true" data-drift-tab="exec">Execução</button>
+          <button class="drift-tab" id="drift-tab-history" type="button" role="tab" aria-controls="drift-panel-history" aria-selected="false" data-drift-tab="history">Histórico</button>
+          <button class="drift-tab" id="drift-tab-schedules" type="button" role="tab" aria-controls="drift-panel-schedules" aria-selected="false" data-drift-tab="schedules">Schedules</button>
+        </div>
+        <section id="drift-panel-exec" role="tabpanel" aria-labelledby="drift-tab-exec">
+          <div class="drift-panel">
+            <div class="drift-row"><h2 class="drift-heading">Nova execução</h2><span class="drift-muted">Somente plan · sem apply</span></div>
+            <div class="drift-grid">
+              <label class="drift-label">Repositório IaC<select id="drift-repo" class="drift-select"><option value="platform/iac-core">platform/iac-core</option><option value="platform/iac-data" selected>platform/iac-data</option><option value="platform/iac-services">platform/iac-services</option></select></label>
+              <label class="drift-label">Executar em<select id="drift-scope" class="drift-select"><option value="repo">Repositório inteiro</option><option value="env">Ambiente</option><option value="group">Grupo de recursos</option><option value="resource" selected>Recurso específico</option></select></label>
+              <label class="drift-label" id="drift-env-wrap">Ambiente<select id="drift-env" class="drift-select"><option>HINT</option><option>HEXT</option><option>DEV</option><option>PROD</option></select></label>
+              <label class="drift-label" id="drift-group-wrap">Grupo de recursos<select id="drift-group" class="drift-select"></select></label>
+              <label class="drift-label" id="drift-resource-wrap">Recurso<select id="drift-resource" class="drift-select"></select></label>
+            </div>
+            <div class="drift-note"><b>Discovery não depende de state externo.</b> O workflow GitHub precisa carregar o baseline para comparar; se não conseguir, o resultado será “Não avaliado”, nunca “sem drift”.</div>
+            <div class="drift-row"><div><div class="drift-path" id="drift-scope-path"></div><div class="drift-muted" style="margin-top:4px">Workflow: .github/workflows/drift.yml · branch main</div></div><button class="btn primary" id="drift-run" type="button">Executar plan no GitHub</button></div>
+            <div class="drift-status" id="drift-run-status" role="status" aria-live="polite"></div>
+          </div>
+          <div class="drift-panel">
+            <div class="drift-row"><h2 class="drift-heading">Baseline e ownership usados</h2><span class="badge b-atlas" id="drift-baseline-badge">Baseline disponível</span></div>
+            <div class="drift-ownership">
+              <div class="drift-owner"><span>Infrastructure · avaliado</span><strong id="drift-infra-owner">Terraform · Atlas</strong></div>
+              <div class="drift-owner"><span>Delivery · não comparado</span><strong id="drift-delivery-owner">GitHub Actions</strong></div>
+              <div class="drift-owner"><span>Baseline</span><strong id="drift-baseline-ref">state workspace finance-hint</strong></div>
+            </div>
+            <div class="drift-note" id="drift-boundary-note"><b>Workload híbrido:</b> comparação restrita aos atributos gerenciados pelo IaC. Código/artefato publicado pela esteira aparece em Delivery e não será tratado como drift IaC.</div>
+            <div class="drift-note warning" id="drift-no-baseline-note" hidden><b>Não avaliado:</b> não há baseline de state/configuração acessível para este escopo. Discovery continua válido; ausência de state não significa ausência de drift.</div>
+          </div>
+          <div class="drift-panel" id="drift-report">
+            <div class="drift-row"><div><div class="drift-muted">RESULTADO DO PLAN · <span id="drift-run-id">#1842</span></div><h2 class="drift-heading" style="margin-top:4px">Report de drift</h2></div><span class="badge b-manual" id="drift-result-badge">Drift detectado</span></div>
+            <div class="drift-path" id="drift-report-scope">platform/iac-data › HINT › rds › banco-x</div>
+            <div class="drift-muted" id="drift-report-meta" style="margin-top:4px">Manual · hoje, 10:42 BRT · plan concluído · commit 9ac31f2</div>
+            <div class="drift-stats" id="drift-report-stats"><div class="drift-stat"><span>Criar</span><b>0</b></div><div class="drift-stat"><span>Alterar</span><b>1</b></div><div class="drift-stat"><span>Destruir</span><b>0</b></div></div>
+            <div class="drift-muted">1 recurso com diferença · origem: summary do workflow GitHub</div>
+            <div class="drift-diff" id="drift-attribute-diff">~ aws_db_instance.banco_x
+  identifier = "banco-x"
+<span class="diff-change">~ backup_retention_period: 1 → 7</span>
+<span class="diff-change">~ deletion_protection: false → true</span></div>
+            <div class="drift-row" style="margin-top:10px"><span class="drift-muted">Valores observados → valores planejados · nenhum apply executado</span><button class="btn" id="drift-github-link" type="button">Ver execução no GitHub ↗</button></div>
+            <div class="drift-status" id="drift-github-status" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+        <section id="drift-panel-history" role="tabpanel" aria-labelledby="drift-tab-history" hidden>
+          <div class="drift-panel"><div class="drift-row"><h2 class="drift-heading">Execuções recentes</h2><span class="drift-muted">Horários no fuso America/Sao_Paulo</span></div>
+            <div class="table-responsive"><table class="drift-table"><thead><tr><th>Execução</th><th>Escopo</th><th>Gatilho</th><th>Resultado</th><th>GitHub</th></tr></thead><tbody id="drift-history-rows">
+              <tr><td>#1842<br><span class="drift-muted">Hoje · 10:42 · 1m 24s</span></td><td>iac-data › HINT › rds › banco-x</td><td>Manual · payments-api-prod</td><td><span class="badge b-manual">Drift detectado</span></td><td>9ac31f2 ↗</td></tr>
+              <tr><td>#1839<br><span class="drift-muted">Hoje · 06:00 · 52s</span></td><td>iac-core › repositório inteiro</td><td>Schedule</td><td><span class="badge b-atlas">Sem mudanças</span></td><td>7be82a1 ↗</td></tr>
+              <tr><td>#1827<br><span class="drift-muted">Ontem · 14:18 · 31s</span></td><td>iac-services › HEXT › micro</td><td>Manual</td><td><span class="badge b-conflict">Não avaliado · baseline</span></td><td>4cf1d92 ↗</td></tr>
+            </tbody></table></div>
+            <div class="drift-muted" style="margin-top:10px">Protótipo: histórico e links são dados de exemplo; a tela final deve carregar snapshots imutáveis do plan.</div>
+          </div>
+        </section>
+        <section id="drift-panel-schedules" role="tabpanel" aria-labelledby="drift-tab-schedules" hidden>
+          <div class="drift-panel"><div class="drift-row"><h2 class="drift-heading">Schedules por repositório</h2><span class="badge b-atlas">Lidos do workflow no GitHub</span></div><div class="drift-muted" style="margin:5px 0 10px">O cron vigente continua ativo até a PR ser aprovada e integrada.</div>
+            <div class="cron-row" data-schedule-repo="platform/iac-core"><div><div class="drift-heading">platform/iac-core</div><div class="drift-muted">Repositório inteiro</div></div><div><div class="cron-code">0 6 * * *</div><div class="drift-muted">Diário · 03:00 BRT</div></div><div class="drift-muted">Próxima: amanhã · 03:00</div><button class="btn" type="button" data-edit-cron="platform/iac-core">Alterar cron</button></div>
+            <div class="cron-row" data-schedule-repo="platform/iac-data"><div><div class="drift-heading">platform/iac-data</div><div class="drift-muted">PROD → rds</div></div><div><div class="cron-code">0 9 * * 1-5</div><div class="drift-muted">Seg–sex · 06:00 BRT</div></div><div class="drift-muted">Próxima: segunda · 06:00</div><button class="btn" type="button" data-edit-cron="platform/iac-data">Alterar cron</button></div>
+            <div class="cron-row" data-schedule-repo="platform/iac-services"><div><div class="drift-heading">platform/iac-services</div><div class="drift-muted">HEXT → micro</div></div><div><div class="cron-code">0 */6 * * *</div><div class="drift-muted">A cada 6h · UTC</div></div><div class="drift-muted">Próxima: 12:00 UTC</div><button class="btn" type="button" data-edit-cron="platform/iac-services">Alterar cron</button></div>
+            <div class="cron-editor" id="cron-editor" hidden><div class="drift-row"><h2 class="drift-heading">Propor alteração do cron</h2><button type="button" class="btn" id="cron-cancel">Fechar</button></div><div class="drift-muted" id="cron-repo" style="margin-top:5px"></div><label class="drift-label" style="margin-top:10px">Nova expressão cron · interpretada em UTC<input class="drift-input" id="cron-input" value="0 9 * * 1-5"></label><div class="cron-diff" id="cron-diff"></div><div class="drift-note">A proposta cria uma PR para <code>.github/workflows/drift.yml</code>. Até merge, a execução agendada continua usando a expressão vigente.</div><button class="btn primary" type="button" id="cron-pr">Criar PR (simulação)</button><div class="drift-status" id="cron-status" role="status" aria-live="polite"></div></div>
+            <div class="drift-muted" style="margin-top:10px">Mock interativo · nenhuma execução ou PR real será acionada por esta tela.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="adoption-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal"><h3 id="modal-title">Novo plano de adoção</h3><p>Revise o escopo e as camadas antes de gerar um plano. Nenhuma alteração será aplicada nesta etapa.</p>
+      <div class="step"><i class="step-n">1</i><div><b>Confirmar o workload e as evidências</b><span>payments-api-prod · classificação Hybrid · confiança alta</span></div></div>
+      <div class="step"><i class="step-n">2</i><div><b>Escolher camadas para adotar</b><span>Infrastructure · Configuration · Delivery · Catalog</span></div></div>
+      <div class="step"><i class="step-n">3</i><div><b>Gerar diff revisável</b><span>Mapeamento para padrão Atlas, import e preview Backstage</span></div></div>
+      <div class="modal-foot"><button type="button" class="btn" id="cancel-modal">Voltar</button><button type="button" class="btn primary" id="continue-modal">Continuar para seleção</button></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById("atlas-discovery-mock");
+      const search = root.querySelector("#resource-search");
+      const rows = [...root.querySelectorAll("#resource-rows tr")];
+      const panel = root.querySelector("#detail-panel");
+      const modal = root.querySelector("#adoption-modal");
+      const detailName = root.querySelector("#detail-name");
+      const detailSub = root.querySelector("#detail-sub");
+      const detailClass = root.querySelector("#detail-class");
+      const resultCount = root.querySelector("#result-count");
+      const discoveryView = root.querySelector("#discovery-view");
+      const driftView = root.querySelector("#drift-view");
+      let activeClass = "Hybrid";
+      function badgeClass(value) {
+        if (value === "Atlas") return "badge b-atlas";
+        if (value === "Ownership Conflict") return "badge b-conflict";
+        if (value === "External Terraform") return "badge b-ext";
+        if (value === "Manual") return "badge b-manual";
+        return "badge b-hybrid";
+      }
+      function filterRows() {
+        const q = search.value.trim().toLowerCase();
+        let visible = 0;
+        rows.forEach((row) => {
+          const match = row.dataset.name.includes(q) && (!activeClass || row.dataset.class === activeClass);
+          row.classList.toggle("hidden-row", !match);
+          if (match) visible += 1;
+        });
+        resultCount.textContent = `· ${activeClass || "todos"} · ${visible} exibidos nesta página`;
+      }
+      root.querySelectorAll(".class-tile").forEach((tile) => tile.addEventListener("click", () => {
+        root.querySelectorAll(".class-tile").forEach((item) => item.classList.remove("active"));
+        tile.classList.add("active");
+        activeClass = tile.dataset.class;
+        filterRows();
+      }));
+      search.addEventListener("input", filterRows);
+      rows.forEach((row) => row.addEventListener("click", () => {
+        rows.forEach((item) => item.classList.remove("selected"));
+        row.classList.add("selected");
+        const names = {
+          payments: ["payments-api-prod", "Lambda · us-east-1 · conta prod-payments", "Hybrid", ["Atlas · tag `originBy`", "Terraform · Atlas", "GitHub Actions", "GitHub Actions", "Time Payments"], ["IAM role · payments-api-role|Atlas", "Lambda · função + alias|Pipeline", "CloudWatch · log group|Atlas"], "Component · payments/payments-api"],
+          orders: ["orders-worker", "ECS service · us-east-1 · conta prod-orders", "Hybrid", ["Pipeline · evento recente", "Terraform · state orders-prod", "Deploy pipeline", "GitHub Actions", "Time Orders"], ["ECS service + task definition|Hybrid", "Execution role|Terraform", "Container image|Pipeline"], "Component · orders/orders-worker"],
+          edge: ["edge-public-api", "API Gateway · us-east-1 · conta platform", "Hybrid", ["CloudFormation · stack platform-edge", "CloudFormation", "Deploy pipeline", "GitHub Actions", "Time Platform"], ["API + stage|Other IaC", "Integration · Lambda|Pipeline", "Custom domain|Other IaC"], "Sem entidade Backstage"],
+          ledger: ["customer-ledger", "DynamoDB · us-east-1 · conta prod-finance", "External Terraform", ["State externo · workspace finance-prod", "Terraform externo", "Terraform externo", "Pipeline de release", "Time Finance"], ["DynamoDB table|External TF", "KMS key|External TF", "Backup policy|External TF"], "Resource · finance/customer-ledger"],
+          legacy: ["legacy-batch-runner", "EC2 · us-east-1 · conta data-prod", "Manual", ["CloudTrail · console AWS", "Console AWS", "Console AWS", "Sem fonte conectada", "Owner não confirmado"], ["EC2 instance|Manual", "EBS volume|Manual", "Security group|Manual"], "Sem entidade Backstage"],
+          network: ["shared-network", "VPC · us-east-1 · conta shared-prod", "Ownership Conflict", ["`originBy: Atlas` + state externo", "Atlas ↔ Terraform externo", "Atlas", "Sem evidência recente", "Time Platform · revisar"], ["VPC · vpc-0c3a…|Conflict", "Subnets|Atlas", "Route table|External TF"], "Resource · platform/shared-network · conflito"],
+          media: ["media-transform", "Lambda · us-east-1 · conta prod-assets", "Hybrid", ["Tag `originBy: Atlas`", "Terraform · Atlas", "GitHub Actions", "GitHub Actions", "Time Assets"], ["IAM role · media-transform-role|Atlas", "Lambda · função + alias|Pipeline", "CloudWatch · log group|Atlas"], "Sem entidade Backstage"]
+        };
+        const selected = names[row.dataset.id];
+        detailName.textContent = selected[0];
+        detailSub.textContent = selected[1];
+        detailClass.className = badgeClass(selected[2]);
+        detailClass.textContent = selected[2];
+        const layerValues = [...root.querySelectorAll(".layer-value")].slice(0, 5);
+        selected[3].forEach((value, index) => { layerValues[index].innerHTML = `<strong>${value}</strong><span class="ev">Evidência disponível nesta fonte conectada</span>`; });
+        root.querySelector(".component-list").innerHTML = selected[4].map((value) => {
+          const [label, category] = value.split("|");
+          const kind = category === "Atlas" ? "Atlas" : category === "Pipeline" ? "Pipeline" : category.includes("Conflict") ? "Conflict" : category === "Hybrid" ? "Hybrid" : category === "Manual" ? "Manual" : "External Terraform";
+          return `<div class="component"><span>${label}</span><span class="${badgeClass(kind)}">${category}</span></div>`;
+        }).join("");
+        root.querySelectorAll(".layer-value")[5].innerHTML = `<div class="catalog"><i class="catalog-mark">B</i><span>${selected[5]}</span></div>`;
+      }));
+      root.querySelector("#adopt-btn").addEventListener("click", () => modal.classList.add("open"));
+      root.querySelector("#cancel-modal").addEventListener("click", () => modal.classList.remove("open"));
+      root.querySelector("#continue-modal").addEventListener("click", (event) => {
+        event.currentTarget.textContent = "Escopo preparado ✓";
+        event.currentTarget.disabled = true;
+      });
+      modal.addEventListener("click", (event) => { if (event.target === modal) modal.classList.remove("open"); });
+      root.querySelector("#run-discovery").addEventListener("click", (event) => {
+        const button = event.currentTarget;
+        button.textContent = "Discovery em execução…";
+        window.setTimeout(() => { button.textContent = "✓ Scan concluído"; }, 1100);
+      });
+      root.querySelector("#filter-btn").addEventListener("click", (event) => { event.currentTarget.textContent = event.currentTarget.textContent.includes("2") ? "☷ Filtros · conta + tipo" : "☷ Filtros 2"; });
+
+      const navButtons = [...root.querySelectorAll("[data-view-target]")];
+      function showView(name) {
+        discoveryView.hidden = name !== "discovery";
+        driftView.hidden = name !== "drift";
+        navButtons.forEach((button) => button.classList.toggle("active", button.dataset.viewTarget === name));
+      }
+      navButtons.forEach((button) => button.addEventListener("click", () => showView(button.dataset.viewTarget)));
+      root.querySelector("#open-drift-from-resource").addEventListener("click", () => {
+        root.querySelector("#drift-repo").value = "platform/iac-services";
+        populateDriftEnvironments("PROD", "micro", "payments-api-prod");
+        setDriftScope();
+        showDriftTab("exec");
+        showView("drift");
+      });
+
+      const inventory = {
+        "platform/iac-core": { HINT: { S3: ["assets-hint", "logs-hint"] }, DEV: { S3: ["assets-dev"] }, PROD: { S3: ["assets-prod"] } },
+        "platform/iac-data": { HINT: { rds: ["banco-x", "banco-y-sem-baseline"] }, HEXT: { micro: ["checkout", "catalogo"] }, DEV: { rds: ["banco-dev"] }, PROD: { rds: ["banco-prod", "banco-analytics"] } },
+        "platform/iac-services": { HEXT: { micro: ["checkout", "catalogo"] }, DEV: { micro: ["api-dev"] }, PROD: { micro: ["payments-api-prod"] } }
+      };
+      let driftSerial = 1842;
+      let scheduleTarget = null;
+      let proposedCron = null;
+      function optionsFor(select, values, selectedValue) {
+        select.replaceChildren(...values.map((value) => {
+          const option = document.createElement("option");
+          const id = typeof value === "string" ? value : value.value;
+          option.value = id;
+          option.textContent = typeof value === "string" && value === "banco-y-sem-baseline" ? "banco-y · baseline indisponível" : id;
+          option.selected = id === selectedValue;
+          return option;
+        }));
+      }
+      function populateDriftEnvironments(preferredEnv, preferredGroup, preferredResource) {
+        const repo = root.querySelector("#drift-repo").value;
+        const envs = Object.keys(inventory[repo]);
+        const env = envs.includes(preferredEnv) ? preferredEnv : envs[0];
+        optionsFor(root.querySelector("#drift-env"), envs, env);
+        populateDriftGroups(preferredGroup, preferredResource);
+      }
+      function populateDriftGroups(preferredGroup, preferredResource) {
+        const groups = Object.keys(inventory[root.querySelector("#drift-repo").value][root.querySelector("#drift-env").value]);
+        const group = groups.includes(preferredGroup) ? preferredGroup : groups[0];
+        optionsFor(root.querySelector("#drift-group"), groups, group);
+        const resources = inventory[root.querySelector("#drift-repo").value][root.querySelector("#drift-env").value][group];
+        optionsFor(root.querySelector("#drift-resource"), resources, resources.includes(preferredResource) ? preferredResource : resources[0]);
+        setDriftScope();
+      }
+      function selectedLabel(selector) { return selector.options[selector.selectedIndex]?.textContent || ""; }
+      function driftPath() {
+        const scope = root.querySelector("#drift-scope").value;
+        const parts = [selectedLabel(root.querySelector("#drift-repo")).replace("platform/", "")];
+        if (scope !== "repo") parts.push(root.querySelector("#drift-env").value);
+        if (scope === "group" || scope === "resource") parts.push(root.querySelector("#drift-group").value);
+        if (scope === "resource") parts.push(selectedLabel(root.querySelector("#drift-resource")));
+        return parts.join(" › ");
+      }
+      function setDriftScope() {
+        const scope = root.querySelector("#drift-scope").value;
+        root.querySelector("#drift-env-wrap").hidden = scope === "repo";
+        root.querySelector("#drift-group-wrap").hidden = !["group", "resource"].includes(scope);
+        root.querySelector("#drift-resource-wrap").hidden = scope !== "resource";
+        root.querySelector("#drift-scope-path").textContent = driftPath();
+        const repo = root.querySelector("#drift-repo").value;
+        const hybrid = repo === "platform/iac-services";
+        root.querySelector("#drift-infra-owner").textContent = repo === "platform/iac-core" ? "Terraform · Atlas" : repo === "platform/iac-data" ? "Terraform · externo" : "Terraform · Atlas (role/base)";
+        root.querySelector("#drift-delivery-owner").textContent = hybrid ? "GitHub Actions · excluído do plan" : "Camada de delivery não mapeada";
+        root.querySelector("#drift-baseline-ref").textContent = repo === "platform/iac-core" ? "workflow · state atlas-core" : repo === "platform/iac-data" ? "workflow GitHub · backend do repo" : "workflow GitHub · state atlas-services";
+        const unavailable = scope === "resource" && root.querySelector("#drift-resource").value === "banco-y-sem-baseline";
+        root.querySelector("#drift-baseline-badge").textContent = unavailable ? "Baseline indisponível" : "Baseline carregado pelo workflow";
+        root.querySelector("#drift-baseline-badge").className = unavailable ? "badge b-conflict" : "badge b-atlas";
+        root.querySelector("#drift-no-baseline-note").hidden = !unavailable;
+        root.querySelector("#drift-boundary-note").hidden = unavailable || !hybrid;
+        root.querySelector("#drift-scope-path").textContent = driftPath();
+      }
+      const driftRepo = root.querySelector("#drift-repo");
+      driftRepo.addEventListener("change", () => populateDriftEnvironments());
+      root.querySelector("#drift-env").addEventListener("change", () => populateDriftGroups());
+      root.querySelector("#drift-group").addEventListener("change", () => {
+        const vals = inventory[driftRepo.value][root.querySelector("#drift-env").value][root.querySelector("#drift-group").value];
+        optionsFor(root.querySelector("#drift-resource"), vals);
+        setDriftScope();
+      });
+      root.querySelector("#drift-resource").addEventListener("change", setDriftScope);
+      root.querySelector("#drift-scope").addEventListener("change", setDriftScope);
+      root.querySelector("#drift-env").addEventListener("change", setDriftScope);
+      populateDriftEnvironments("PROD", "micro", "payments-api-prod");
+      driftRepo.value = "platform/iac-data";
+      populateDriftEnvironments("HINT", "rds", "banco-x");
+      root.querySelector("#drift-scope").value = "resource";
+      setDriftScope();
+
+      function showDriftTab(name) {
+        ["exec", "history", "schedules"].forEach((tab) => {
+          const active = tab === name;
+          root.querySelector(`#drift-tab-${tab}`).setAttribute("aria-selected", String(active));
+          root.querySelector(`#drift-panel-${tab}`).hidden = !active;
+        });
+      }
+      root.querySelectorAll("[data-drift-tab]").forEach((tab) => tab.addEventListener("click", () => showDriftTab(tab.dataset.driftTab)));
+      function renderDriftResult({ notEvaluated = false, path = driftPath(), id = driftSerial, meta = "Manual · simulação · report recebido do workflow GitHub" } = {}) {
+        root.querySelector("#drift-report-scope").textContent = `${driftRepo.value} › ${path}`;
+        root.querySelector("#drift-run-id").textContent = `#${id}`;
+        root.querySelector("#drift-report-meta").textContent = meta;
+        root.querySelector("#drift-result-badge").textContent = notEvaluated ? "Não avaliado · baseline" : "Drift detectado";
+        root.querySelector("#drift-result-badge").className = notEvaluated ? "badge b-conflict" : "badge b-manual";
+        root.querySelector("#drift-report-stats").innerHTML = notEvaluated
+          ? '<div class="drift-stat"><span>Criar</span><b>—</b></div><div class="drift-stat"><span>Alterar</span><b>—</b></div><div class="drift-stat"><span>Destruir</span><b>—</b></div>'
+          : '<div class="drift-stat"><span>Criar</span><b>0</b></div><div class="drift-stat"><span>Alterar</span><b>1</b></div><div class="drift-stat"><span>Destruir</span><b>0</b></div>';
+        root.querySelector("#drift-attribute-diff").textContent = notEvaluated
+          ? "Plan não produzido. O workflow não encontrou baseline/state acessível para este escopo. Resultado: Not evaluated."
+          : driftRepo.value === "platform/iac-services"
+            ? "~ aws_iam_role.payments_api_role\n    name = \"payments-api-prod-role\"\n~ max_session_duration: 3600 → 7200\n    # Código e alias Lambda pertencem ao deploy pipeline; fora desta comparação."
+            : "~ aws_db_instance.banco_x\n    identifier = \"banco-x\"\n~ backup_retention_period: 1 → 7\n~ deletion_protection: false → true";
+      }
+      root.querySelector("#drift-run").addEventListener("click", (event) => {
+        const button = event.currentTarget;
+        const status = root.querySelector("#drift-run-status");
+        const unavailable = root.querySelector("#drift-scope").value === "resource" && root.querySelector("#drift-resource").value === "banco-y-sem-baseline";
+        if (unavailable) {
+          status.textContent = "Não avaliado: o workflow não conseguiu carregar baseline para este recurso. Nenhuma contagem de drift foi inferida.";
+          renderDriftResult({ notEvaluated: true, path: driftPath(), meta: "Manual · workflow concluído · sem baseline · plan não produzido" });
+          return;
+        }
+        button.disabled = true;
+        status.textContent = "Simulação: workflow GitHub Actions iniciado; aguardando o summary do plan…";
+        window.setTimeout(() => {
+          driftSerial += 1;
+          renderDriftResult({ path: driftPath(), id: driftSerial, meta: "Manual · simulação concluída agora · GitHub Actions · plan · commit 5fd2c41" });
+          status.textContent = "Simulação concluída. O report do plan está disponível nesta tela.";
+          button.disabled = false;
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>#${driftSerial}<br><span class="drift-muted">Agora · 1m 06s</span></td><td>${driftRepo.value.replace("platform/", "")} › ${driftPath().replace(`${driftRepo.value.replace("platform/", "")} › `, "")}</td><td>Manual</td><td><span class="badge b-manual">Drift detectado</span></td><td>5fd2c41 ↗</td>`;
+          root.querySelector("#drift-history-rows").prepend(row);
+        }, 900);
+      });
+      root.querySelector("#drift-github-link").addEventListener("click", () => { root.querySelector("#drift-github-status").textContent = "Protótipo: aqui abrirá a URL do workflow/run que forneceu este report."; });
+
+      function cronData(repo) {
+        return repo === "platform/iac-core" ? "0 6 * * *" : repo === "platform/iac-data" ? "0 9 * * 1-5" : "0 */6 * * *";
+      }
+      function updateCronDiff() {
+        if (!scheduleTarget) return;
+        const oldCron = cronData(scheduleTarget);
+        proposedCron = root.querySelector("#cron-input").value.trim();
+        root.querySelector("#cron-diff").textContent = `.github/workflows/drift.yml\n  schedule:\n-   - cron: \"${oldCron}\"\n+   - cron: \"${proposedCron}\"`;
+        root.querySelector("#cron-status").textContent = proposedCron ? "Prévia local do diff · nenhum arquivo ou repositório foi alterado." : "Informe uma expressão cron.";
+      }
+      root.querySelectorAll("[data-edit-cron]").forEach((button) => button.addEventListener("click", () => {
+        scheduleTarget = button.dataset.editCron;
+        root.querySelector("#cron-editor").hidden = false;
+        root.querySelector("#cron-repo").textContent = `${scheduleTarget} · branch main · schedule atual: ${cronData(scheduleTarget)}`;
+        root.querySelector("#cron-input").value = scheduleTarget.endsWith("core") ? "0 8 * * *" : scheduleTarget.endsWith("data") ? "0 10 * * 1-5" : "0 */4 * * *";
+        root.querySelector("#cron-pr").disabled = false;
+        root.querySelector("#cron-pr").textContent = "Criar PR (simulação)";
+        root.querySelector("#cron-status").textContent = "";
+        updateCronDiff();
+      }));
+      root.querySelector("#cron-input").addEventListener("input", updateCronDiff);
+      root.querySelector("#cron-cancel").addEventListener("click", () => { root.querySelector("#cron-editor").hidden = true; });
+      function validCron(value) {
+        const fields = value.split(/\s+/);
+        const ranges = [[0, 59], [0, 23], [1, 31], [1, 12], [0, 6]];
+        return fields.length === 5 && fields.every((field, index) => field.split(",").every((part) => {
+          const match = part.match(/^(\*|\d+(?:-\d+)?)(?:\/(\d+))?$/);
+          if (!match) return false;
+          if (match[2] && (+match[2] < 1 || +match[2] > ranges[index][1])) return false;
+          if (match[1] === "*") return true;
+          const values = match[1].split("-").map(Number);
+          return values.every((number) => number >= ranges[index][0] && number <= ranges[index][1]) && (values.length < 2 || values[0] <= values[1]);
+        }));
+      }
+      root.querySelector("#cron-pr").addEventListener("click", (event) => {
+        if (!scheduleTarget || !validCron(proposedCron || "")) {
+          root.querySelector("#cron-status").textContent = "Informe uma expressão cron numérica válida com cinco campos.";
+          return;
+        }
+        if (proposedCron === cronData(scheduleTarget)) {
+          root.querySelector("#cron-status").textContent = "O cron proposto é igual ao cron vigente.";
+          return;
+        }
+        const row = root.querySelector(`[data-schedule-repo="${scheduleTarget}"]`);
+        let pending = row.querySelector(".cron-pending");
+        if (!pending) {
+          pending = document.createElement("div");
+          pending.className = "cron-pending";
+          row.children[1].append(pending);
+        }
+        pending.textContent = `PR simulada pendente · proposta ${proposedCron} · cron atual permanece ativo`;
+        event.currentTarget.disabled = true;
+        event.currentTarget.textContent = "PR simulada registrada ✓";
+        root.querySelector("#cron-status").textContent = `Simulação: proposta para ${scheduleTarget}. O schedule atual (${cronData(scheduleTarget)}) continua vigente até merge.`;
+      });
+      filterRows();
+      const state = { density: "Confortável" };
+      if (globalThis.Tweak) {
+        const tweak = new Tweak({ container: root, onChange: () => root.classList.toggle("compact", state.density === "Compacta") });
+        tweak.addSelect(state, "density", { label: "Densidade da lista", options: ["Confortável", "Compacta"] });
+      }
+    })();
+  </script>
+</div>
